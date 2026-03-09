@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIA | Laboratorio de Inteligencia Artificial</title>
-    
+    <link rel="icon" href="/static/img/LIA_Mini.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -67,9 +67,9 @@
     <nav class="fixed w-full z-50 glass-card border-b border-slate-700/50 transition-all duration-300" id="navbar">
         <div class="container mx-auto max-w-6xl px-4 py-4 flex justify-between items-center">
             
-            <h1 class="text-2xl font-bold tracking-tighter">
+            <h1 class="text-2xl font-bold tracking-tighter" style="font-size: 2rem;">
                 <i class="fa-solid fa-microchip text-[#6c1d45] mr-2"></i>
-                <span class="text-gradient-ipn">LIA</span> CECyT 16
+                <span class="text-gradient-ipn">LIA</span> <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;"> CECyT 16</a> 
             </h1>
 
             <div class="hidden md:flex items-center gap-8">
@@ -101,10 +101,10 @@
 
     <header id="inicio" class="min-h-screen flex items-center justify-center text-center px-4 pt-20">
         <div id="hero-content" data-aos="zoom-in" data-aos-duration="1500">
-            <div class="inline-block mb-6 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-300 text-xs font-semibold tracking-widest uppercase">
-                Instituto Politécnico Nacional
+            <div style="font-size: 1.15rem;" class="inline-block mb-6 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-300 text-xs font-semibold tracking-widest uppercase">
+                <a href="https://www.ipn.mx/" target="_blank" class="hover:text-[#fff] transition-colors">Instituto Politécnico Nacional</a>
             </div>
-            <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+            <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight" style="font-size: 4rem">
                 Laboratorio de <br> 
                 <span class="text-gradient">Inteligencia Artificial</span>
             </h2>
@@ -152,13 +152,14 @@
                     <h4 class="text-2xl font-bold mb-3 text-white">Torniquete Automatizado</h4>
                     
                     <p class="text-slate-400 leading-relaxed mb-6 flex-grow">
-                        Infraestructura inteligente diseñada para agilizar y asegurar el control de entrada y salida de los alumnos mediante hardware programable.
+                        Sistema de visión computacional y aprendizaje automático capaz de reconocer e interpretar la Lengua de Señas Mexicana para promover la inclusión.
                     </p>
                     
                     <div class="mt-auto">
                         <div class="flex gap-2 mb-6">
-                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">Robótica</span>
+                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">Software</span>
                             <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">Hardware</span>
+                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">DataBase</span>
                         </div>
                         <a href="/torniquete" class="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors font-semibold group-hover:translate-x-1 duration-300">
                             Conocer más detalles <i class="fa-solid fa-arrow-right text-sm"></i>
@@ -293,6 +294,69 @@
 
         </div>
     </section>
+
+    <section id="recursos" class="py-20 px-4 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    <i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> 
+                    Recursos y <span class="text-gradient">Más Información</span>
+                </h3>
+                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <a href="https://github.com/Amsf0803/LSM" target="_blank" rel="noopener noreferrer" 
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
+                        <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura de los proyectos y códigos de todos nuestros proyectos.</p>
+                </a>
+                    
+                <button onclick="abrirModalPDF()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-sky-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-sky-600/20 transition-colors shadow-lg">
+                        <i class="fa-solid fa-file-pdf text-4xl text-slate-300 group-hover:text-sky-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Nuestra Organización</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Consulta como estamos organizados en LIA.</p>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+<div id="pdf-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    
+    <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalPDF()"></div>
+    
+    <div class="relative w-full max-w-5xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-sky-500/20 transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]" id="modal-content-pdf">
+        
+        <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+            <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-file-pdf text-sky-400"></i> Organización LIA
+            </h3>
+            
+            <div class="flex gap-3">
+                <a href="/static/docs/Diagrama.pdf" download="Organizacion_LIA.pdf" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Descargar</span>
+                </a>
+                
+                <button onclick="cerrarModalPDF()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full bg-slate-200">
+            <iframe src="/static/docs/Diagrama.pdf" class="w-full h-full" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -301,6 +365,9 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
+
+
+
 
     <script>
         // --- ANIMACIONES DE SCROLL (AOS) ---
@@ -412,6 +479,35 @@
                 iconoMenu.classList.replace('fa-xmark', 'fa-bars');
             });
         });
+
+
+        // Lógica del Modal de PDF
+        const modalPDF = document.getElementById('pdf-modal');
+        const modalContentPDF = document.getElementById('modal-content-pdf');
+
+        function abrirModalPDF() {
+            modalPDF.classList.remove('hidden');
+            modalPDF.classList.add('flex');
+            
+            setTimeout(() => {
+                modalPDF.classList.remove('opacity-0');
+                modalContentPDF.classList.remove('scale-95');
+                modalContentPDF.classList.add('scale-100');
+            }, 10);
+        }
+
+        function cerrarModalPDF() {
+            modalPDF.classList.add('opacity-0');
+            modalContentPDF.classList.remove('scale-100');
+            modalContentPDF.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modalPDF.classList.add('hidden');
+                modalPDF.classList.remove('flex');
+            }, 300);
+        }
+
+
     </script>
 </body>
 </html>
