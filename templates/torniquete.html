@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Torniquete Automatizado | LIA</title>
+    <link rel="icon" href="/static/img/LIA_Mini.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,9 +34,9 @@
 
     <nav class="p-6 fixed w-full z-50 glass-card border-b-0">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tighter">
+            <h1 class="text-2xl font-bold tracking-tighter" style="font-size: 2rem;">
                 <i class="fa-solid fa-microchip text-[#6c1d45] mr-2"></i>
-                <span class="text-gradient-ipn">LIA</span> CECyT 16
+                <span class="text-gradient-ipn">LIA</span> <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;"> CECyT 16</a> 
             </h1>
             <a href="/" class="hover:text-indigo-400 transition-colors font-medium text-sm flex items-center gap-2">
                 <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
@@ -235,13 +236,171 @@
             </div>
 
         </div>
+
+<section id="recursos" class="py-20 px-4 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    <i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> 
+                    Recursos y <span class="text-gradient">Más Información</span>
+                </h3>
+                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="https://github.com/Amsf0803/LSM" target="_blank" rel="noopener noreferrer" 
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
+                        <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
+                </a>
+
+                <button onclick="abrirModalPDF()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-sky-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-sky-600/20 transition-colors shadow-lg">
+                        <i class="fa-solid fa-file-pdf text-4xl text-slate-300 group-hover:text-sky-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2"> Diagramas de Flujo</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Consulta como el sistema toma las decisiones correspondientes para cada caso.</p>
+                </button>
+
+                <button onclick="abrirModalVideo()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-purple-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-600/20 transition-colors shadow-lg">
+                        <i class="fa-solid fa-circle-play text-4xl text-slate-300 group-hover:text-purple-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Ver Demostración</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Reproduce el video del funcionamiento del prototipo en tiempo real.</p>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
     </main>
 
+
+    <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        
+        <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalVideo()"></div>
+        
+        <div class="relative w-full max-w-4xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-purple-500/20 transform scale-95 transition-transform duration-300" id="modal-content">
+            
+            <button onclick="cerrarModalVideo()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-slate-900/80 hover:bg-rose-600 text-white rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="aspect-video w-full bg-black flex items-center justify-center relative">
+                <video id="demo-video" controls class="w-full h-full object-contain">
+                    <source src="/static/video/Prueba de entrada.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+        </div>
+    </div>
+
+<div id="pdf-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    
+    <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalPDF()"></div>
+    
+    <div class="relative w-full max-w-5xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-sky-500/20 transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]" id="modal-content-pdf">
+        
+        <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+            <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-file-pdf text-sky-400"></i> Diagrama de Flujo Entrada y Salida
+            </h3>
+            
+            <div class="flex gap-3">
+                <a href="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" download="Diagrama de Flujo Entrada y Salida-1.pdf" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Descargar</span>
+                </a>
+                
+                <button onclick="cerrarModalPDF()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full bg-slate-200">
+            <iframe src="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" class="w-full h-full" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, duration: 1000 });
         particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#818cf8" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#c084fc", "opacity": 0.2 }, "move": { "enable": true, "speed": 1 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } } });
+    </script>
+
+    <script>
+        // Lógica del Modal de Video
+        const modalVideo = document.getElementById('video-modal');
+        const modalContentVideo = document.getElementById('modal-content');
+        const videoElement = document.getElementById('demo-video');
+
+        function abrirModalVideo() {
+            // Quitamos el 'hidden' para que ocupe espacio y agregamos 'flex' para centrar
+            modalVideo.classList.remove('hidden');
+            modalVideo.classList.add('flex');
+            
+            // Un pequeño retraso para que Tailwind procese la animación de opacidad y escala
+            setTimeout(() => {
+                modalVideo.classList.remove('opacity-0');
+                modalContentVideo.classList.remove('scale-95');
+                modalContentVideo.classList.add('scale-100');
+                
+                // Opcional: Iniciar el video automáticamente al abrir el modal
+                // videoElement.play(); 
+            }, 10);
+        }
+
+        function cerrarModalVideo() {
+            // 1. Pausar el video inmediatamente para que no suene el audio
+            videoElement.pause();
+            
+            // 2. Animación de salida (desaparecer y encoger un poco)
+            modalVideo.classList.add('opacity-0');
+            modalContentVideo.classList.remove('scale-100');
+            modalContentVideo.classList.add('scale-95');
+            
+            // 3. Esperar a que termine la animación (300ms) para volver a ocultarlo del todo
+            setTimeout(() => {
+                modalVideo.classList.add('hidden');
+                modalVideo.classList.remove('flex');
+            }, 300);
+        }
+
+
+// Lógica del Modal de PDF
+        const modalPDF = document.getElementById('pdf-modal');
+        const modalContentPDF = document.getElementById('modal-content-pdf');
+
+        function abrirModalPDF() {
+            modalPDF.classList.remove('hidden');
+            modalPDF.classList.add('flex');
+            
+            setTimeout(() => {
+                modalPDF.classList.remove('opacity-0');
+                modalContentPDF.classList.remove('scale-95');
+                modalContentPDF.classList.add('scale-100');
+            }, 10);
+        }
+
+        function cerrarModalPDF() {
+            modalPDF.classList.add('opacity-0');
+            modalContentPDF.classList.remove('scale-100');
+            modalContentPDF.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modalPDF.classList.add('hidden');
+                modalPDF.classList.remove('flex');
+            }, 300);
+        }
+
     </script>
 
 <script>
