@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de LSM | LIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/static/img/LIA_Mini.png" type="image/png">
+    <style>
+        body { background-color: #0b1120; color: #f8fafc; overflow-x: hidden; font-family: 'Segoe UI', Roboto, sans-serif; }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
+        .glass-card { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+        .text-gradient { background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; background-clip: none; -webkit-text-fill-color: transparent; }
+        
+        /* Ocultar scrollbar en el carrusel pero mantener funcionalidad */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Texto con gradiente con colores Politecnicos*/
+        .text-gradient-ipn { 
+            background: linear-gradient(to right, #6c1d45, #fff); 
+            -webkit-background-clip: text; 
+            background-clip: none;
+            -webkit-text-fill-color: transparent; 
+        }
+    </style>
+
+
+
+</head>
+<body class="antialiased">
+    <div id="particles-js"></div>
+
+    <nav class="p-6 fixed w-full z-50 glass-card border-b-0">
+        <div class="container mx-auto flex justify-between items-center" >
+            <h1 class="text-2xl font-bold tracking-tighter" style="font-size: 2rem;">
+                <i class="fa-solid fa-microchip text-[#6c1d45] mr-2"></i>
+                <span class="text-gradient-ipn">LIA</span> <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;"> CECyT 16</a> 
+            </h1>
+            <a href="/" class="hover:text-sky-400 transition-colors font-medium text-sm flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+            </a>
+        </div>
+    </nav>
+
+    <main class="min-h-screen pt-32 pb-20 px-4">
+        <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+            
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-sky-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-sky-400 text-4xl border border-sky-500/20">
+                    <i class="fa-solid fa-hands-asl-interpreting"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Detector de <span class="text-gradient">LSM</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Lengua de Señas Mexicana interpretada en tiempo real mediante Visión Computacional.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+                <div class="flex-1 glass-card p-8 rounded-2xl h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Sobre el Proyecto</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Este sistema utiliza modelos de aprendizaje profundo 
+                        (Deep Learning) para mapear los puntos clave de las manos 
+                        y el cuerpo. 
+                        Al analizar la geometría espacial de los gestos,
+                        el algoritmo es capaz de traducir los movimientos 
+                        a texto y voz de forma instantánea.
+                    </p>
+                    <h4 class="text-xl font-semibold mb-3 text-sky-300">Objetivo de Impacto</h4>
+                    <p class="text-slate-300 leading-relaxed">
+                        Romper las barreras de comunicación entre personas oyentes y 
+                        personas con discapacidad auditiva dentro y fuera de nuestra 
+                        comunidad politécnica, fomentando un entorno verdaderamente inclusivo.
+                    </p>
+                </div>
+
+                <div class="flex-1 w-full flex flex-col gap-4">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-sky-500">
+                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-brands fa-python text-sky-400"></i> Stack Tecnológico
+                        </h4>
+                        <ul class="text-slate-400 space-y-2 text-sm">
+                            <li>• Python 3.10+</li>
+                            <li>• OpenCV (Procesamiento de imagen)</li>
+                            <li>• MediaPipe (Tracking de manos/cuerpo)</li>
+                            <li>• TensorFlow / Keras (Red Neuronal)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-blue-500">
+                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-blue-400"></i> El futuro del proyecto
+                        </h4>
+                        <ul class="text-slate-400 space-y-2 text-sm">
+                            <li>• Implementarlo a una Raspberry Pi</li>
+                            <li>• Transformarlo en una mini cámara más transportable</li>
+                            <li>• Ampliar el diccionario de palabar y frases a detectar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+            <div class="glass-card p-8 rounded-2xl relative">
+                
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-white"> Así funciona</h3>
+                    
+                    <div class="flex gap-2">
+                        <button onclick="moverCarrusel(-1)" class="bg-slate-800 hover:bg-sky-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button onclick="moverCarrusel(1)" class="bg-slate-800 hover:bg-sky-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="carrusel-galeria" class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth">
+                    
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        
+                        <img src="/static/img/vale_lsm.jpg" alt="Funcionamiento del LSM" class="object-cover w-full h-full">
+
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                Funcionamiento del sistema de detección de LSM en tiempo real
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <img src="/static/img/extreme.png" alt="El laboratorio de LIA" class="object-cover w-full h-full">
+
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                El sistema opera incluso en condiciones de iluminación extremas
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <img src="/static/img/pruebas LSM.jpg" alt="Próxima generación de LIA" class="object-cover w-full h-full">
+                        
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                Prueba de como se implementara el detector de LSM en la vida diaria
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    <section id="recursos" class="py-20 px-4 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    <i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> 
+                    Recursos y <span class="text-gradient">Más Información</span>
+                </h3>
+                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <a href="https://github.com/Amsf0803/LSM" target="_blank" rel="noopener noreferrer" 
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
+                        <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
+                </a>
+
+                <button onclick="abrirModalVideo()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-purple-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-600/20 transition-colors shadow-lg">
+                        <i class="fa-solid fa-circle-play text-4xl text-slate-300 group-hover:text-purple-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Ver Demostración</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Reproduce el video del funcionamiento del prototipo en tiempo real.</p>
+                </button>
+
+            </div>
+        </div>
+    </section>
+    </main>
+
+
+    <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        
+        <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalVideo()"></div>
+        
+        <div class="relative w-full max-w-4xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-purple-500/20 transform scale-95 transition-transform duration-300" id="modal-content">
+            
+            <button onclick="cerrarModalVideo()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-slate-900/80 hover:bg-rose-600 text-white rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="aspect-video w-full bg-black flex items-center justify-center relative">
+                <video id="demo-video" controls class="w-full h-full object-contain">
+                    <source src="/static/video/LSM.webm" type="video/webm">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lógica del Modal de Video
+        const modalVideo = document.getElementById('video-modal');
+        const modalContentVideo = document.getElementById('modal-content');
+        const videoElement = document.getElementById('demo-video');
+
+        function abrirModalVideo() {
+            // Quitamos el 'hidden' para que ocupe espacio y agregamos 'flex' para centrar
+            modalVideo.classList.remove('hidden');
+            modalVideo.classList.add('flex');
+            
+            // Un pequeño retraso para que Tailwind procese la animación de opacidad y escala
+            setTimeout(() => {
+                modalVideo.classList.remove('opacity-0');
+                modalContentVideo.classList.remove('scale-95');
+                modalContentVideo.classList.add('scale-100');
+                
+                // Opcional: Iniciar el video automáticamente al abrir el modal
+                // videoElement.play(); 
+            }, 10);
+        }
+
+        function cerrarModalVideo() {
+            // 1. Pausar el video inmediatamente para que no suene el audio
+            videoElement.pause();
+            
+            // 2. Animación de salida (desaparecer y encoger un poco)
+            modalVideo.classList.add('opacity-0');
+            modalContentVideo.classList.remove('scale-100');
+            modalContentVideo.classList.add('scale-95');
+            
+            // 3. Esperar a que termine la animación (300ms) para volver a ocultarlo del todo
+            setTimeout(() => {
+                modalVideo.classList.add('hidden');
+                modalVideo.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 1000 });
+        particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#38bdf8" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#818cf8", "opacity": 0.2 }, "move": { "enable": true, "speed": 1 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } } });
+    </script>
+
+<script>
+    // Configuración del carrusel
+    const carrusel = document.getElementById('carrusel-galeria');
+    const contenedorPrincipal = carrusel.closest('.glass-card'); // Contenedor padre para detectar el hover
+    let intervaloAutoPlay;
+    const tiempoEspera = 3000; // 3000 milisegundos = 3 segundos por imagen
+
+    // Función principal para mover
+    function moverCarrusel(direccion) {
+        if (!carrusel) return;
+        
+        // 1. Calculamos el ancho exacto de una imagen + el espacio (gap-6 = 24px)
+        const tarjeta = carrusel.querySelector('.snap-center');
+        if (!tarjeta) return;
+        const cantidadScroll = tarjeta.clientWidth + 24; 
+
+        // 2. Lógica de ciclo infinito
+        // Si vamos a la derecha y ya estamos en el final, regresamos al inicio
+        if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
+            carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+        } 
+        // Si vamos a la izquierda y estamos en el inicio, vamos al final
+        else if (direccion === -1 && carrusel.scrollLeft <= 0) {
+            carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
+        } 
+        // Si no estamos en los extremos, nos movemos normalmente
+        else {
+            carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+        }
+
+        // Si el usuario hace clic en la flecha, reiniciamos el temporizador para que no se mueva de golpe otra vez
+        reiniciarAutoPlay();
+    }
+
+    // Funciones para el Auto-Play
+    function iniciarAutoPlay() {
+        intervaloAutoPlay = setInterval(() => {
+            moverCarrusel(1); // Simula un clic a la derecha automáticamente
+        }, tiempoEspera);
+    }
+
+    function detenerAutoPlay() {
+        clearInterval(intervaloAutoPlay);
+    }
+
+    function reiniciarAutoPlay() {
+        detenerAutoPlay();
+        iniciarAutoPlay();
+    }
+
+    // Eventos: Pausar al pasar el cursor (hover) y reanudar al quitarlo
+    if (contenedorPrincipal) {
+        contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
+        contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
+    }
+
+    // Iniciar el ciclo cuando cargue la página
+    iniciarAutoPlay();
+</script>
+
+
+
+</body>
+</html>

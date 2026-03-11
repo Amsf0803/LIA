@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIA | Laboratorio de Inteligencia Artificial</title>
+    <link rel="icon" href="/static/img/LIA_Mini.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Estilos personalizados para el tema oscuro tecnológico */
+        body { 
+            background-color: #0b1120; 
+            color: #f8fafc; 
+            overflow-x: hidden; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        /* Contenedor de la animación de partículas */
+        #particles-js { 
+            position: fixed; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -1; 
+            top: 0; 
+            left: 0; 
+        }
+        
+        /* Efecto de cristal (Glassmorphism) para las tarjetas */
+        .glass-card { 
+            background: rgba(30, 41, 59, 0.6); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Texto con gradiente */
+        .text-gradient { 
+            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc); 
+            -webkit-background-clip: text; 
+            background-clip: none;
+            -webkit-text-fill-color: transparent; 
+        }
+
+        /* Texto con gradiente con colores Politecnicos*/
+        .text-gradient-ipn { 
+            background: linear-gradient(to right, #6c1d45, #fff); 
+            -webkit-background-clip: text; 
+            background-clip: none;
+            -webkit-text-fill-color: transparent; 
+        }
+
+        a{
+            font-size: 1.125rem;
+        }
+
+    </style>
+
+</head>
+<body class="antialiased">
+
+    <div id="particles-js"></div>
+
+    <nav class="fixed w-full z-50 glass-card border-b border-slate-700/50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto max-w-6xl px-4 py-4 flex justify-between items-center">
+            
+            <h1 class="text-2xl font-bold tracking-tighter" style="font-size: 2rem;">
+                <i class="fa-solid fa-microchip text-[#6c1d45] mr-2"></i>
+                <span class="text-gradient-ipn">LIA</span> <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;"> CECyT 16</a> 
+            </h1>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#inicio" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Inicio</a>
+                <a href="#proyectos" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Proyectos</a>
+                <a href="#conocenos" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Conócenos</a>
+                <a href="mailto:08amsf@gmail.com" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-full transition-colors shadow-lg shadow-indigo-500/30 font-semibold">
+                    Contáctanos
+                </a>
+            </div>
+
+            <button id="btn-menu" class="md:hidden text-slate-300 hover:text-white focus:outline-none text-2xl transition-transform">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+        <div class="relative group hidden md:block">
+            <button class="text-slate-300 hover:text-indigo-400 transition-colors font-medium flex items-center gap-2 cursor-pointer py-2">
+                <i class="fa-solid fa-globe"></i> <span id="current-lang-text">ES</span> <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            
+            <div class="absolute right-0 mt-2 w-36 glass-card rounded-xl hidden group-hover:block border border-slate-700/50 overflow-hidden shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button onclick="cambiarIdioma('es')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2">
+                    🇪🇸 Español
+                </button>
+                <button onclick="cambiarIdioma('en')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2">
+                    🇬🇧 English
+                </button>
+                <button onclick="cambiarIdioma('ja')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2">
+                    🇯🇵 日本語
+                </button>
+                <button onclick="cambiarIdioma('fr')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2">
+                    🇫🇷 Français
+                </button>
+            </div>
+        </div>
+        <div id="menu-movil" class="hidden md:hidden bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-2xl absolute w-full">
+            <div class="flex flex-col px-6 py-8 space-y-6 text-center">
+                <a href="#inicio" class="movil-link text-slate-300 hover:text-indigo-400 text-lg font-medium tracking-wide">Inicio</a>
+                <a href="#proyectos" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Proyectos</a>
+                <a href="#conocenos" class="movil-link text-slate-300 hover:text-indigo-400 text-lg font-medium tracking-wide">Conócenos</a>
+                <a href="mailto:08amsf@gmail.com" class="movil-link mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-full font-semibold shadow-lg">
+                    Contáctanos
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="inicio" class="min-h-screen flex items-center justify-center text-center px-4 pt-20">
+        <div id="hero-content" data-aos="zoom-in" data-aos-duration="1500">
+            <div style="font-size: 1.15rem;" class="inline-block mb-6 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-300 text-xs font-semibold tracking-widest uppercase">
+                <a href="https://www.ipn.mx/" target="_blank" class="hover:text-[#fff] transition-colors">Instituto Politécnico Nacional</a>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight" style="font-size: 4rem">
+                Laboratorio de <br> 
+                <span class="text-gradient">Inteligencia Artificial</span>
+            </h2>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                Investigación, robótica y desarrollo de software aplicado. Transformamos la tecnología en soluciones tangibles para nuestro entorno.
+            </p>
+            <a href="#proyectos" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white px-8 py-3.5 rounded-lg font-medium transition-all shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] hover:-translate-y-1">
+                Ver Proyectos <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <section id="proyectos" class="py-24 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4">Proyectos Destacados</h3>
+                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full"></div>
+            </div>
+            
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 group flex flex-col h-full" data-aos="fade-right" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-sky-500/20 to-blue-600/20 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl border border-sky-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-hands-asl-interpreting"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3 text-white">Detector de LSM</h4>
+                    
+                    <p class="text-slate-400 leading-relaxed mb-6 flex-grow">
+                        Sistema de visión computacional y aprendizaje automático capaz de reconocer e interpretar la Lengua de Señas Mexicana para promover la inclusión.
+                    </p>
+                    
+                    <div class="mt-auto">
+                        <div class="flex gap-2 mb-6">
+                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">Python</span>
+                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">Computer Vision</span>
+                        </div>
+                        <a href="/lsm" class="inline-flex items-center gap-2 text-sky-400 hover:text-sky-300 transition-colors font-semibold group-hover:translate-x-1 duration-300">
+                            Conocer más detalles <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div> <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 group flex flex-col h-full" data-aos="fade-left" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 rounded-xl flex items-center justify-center mb-6 text-indigo-400 text-3xl border border-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-door-open"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3 text-white">Torniquete Automatizado</h4>
+                    
+                    <p class="text-slate-400 leading-relaxed mb-6 flex-grow">
+                        Sistema de acceso automatizado que integra un torniquete electrónico con componentes de control y programación, permitiendo regular el paso de personas de forma segura y eficiente en entornos educativos o institucionales.
+                    </p>
+                    
+                    <div class="mt-auto">
+                        <div class="flex gap-2 mb-6">
+                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">Software</span>
+                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">Hardware</span>
+                            <span class="text-xs font-mono bg-slate-800 text-slate-300 px-3 py-1 rounded">DataBase</span>
+                        </div>
+                        <a href="/torniquete" class="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors font-semibold group-hover:translate-x-1 duration-300">
+                            Conocer más detalles <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div> 
+            </div>
+            <br><br><br><br><br><br><br>
+    </section>
+
+    <section id="conocenos" class="min-h-screen pt-24 pb-20 px-4 scroll-mt-24">
+        <div class="container mx-auto max-w-5xl" data-aos="fade-up" data-aos-duration="1000">
+            
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-indigo-400 text-4xl border border-indigo-500/20">
+                    <i class="fa-solid fa-users"></i> </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Conoce a <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Innovación, tecnología y soluciones inteligentes para el futuro.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+                
+                <div class="flex-1 glass-card p-8 rounded-2xl h-full bg-slate-800/50 border border-slate-700">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Nuestra Identidad</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        En Llia, nos dedicamos a diseñar sistemas tecnológicos y electromecánicos controlados por la última generación de microcontroladores. Nuestro objetivo es transformar problemas complejos en soluciones automatizadas, eficientes y seguras.
+                    </p>
+                    <h4 class="text-xl font-semibold mb-3 text-indigo-300">Nuestros Pilares</h4>
+                    <ul class="text-slate-300 space-y-2 mb-6">
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Innovación constante en hardware y software.</li>
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Compromiso con la seguridad de nuestros usuarios.</li>
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Integración fluida con tecnologías IoT.</li>
+                    </ul>
+                </div>
+
+                <div class="flex-1 w-full flex flex-col gap-4">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-indigo-500 bg-slate-800/50 border border-slate-700">
+                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-indigo-400"></i> Nuestra Visión
+                        </h4>
+                        <p class="text-slate-400 text-sm">
+                            Ser líderes en el desarrollo de prototipos y sistemas automatizados, creando un ecosistema donde el hardware y la conectividad trabajen en perfecta armonía.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-purple-500 bg-slate-800/50 border border-slate-700">
+                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-handshake text-purple-400"></i> ¿Por qué elegirnos?
+                        </h4>
+                        <p class="text-slate-400 text-sm">
+                            Combinamos bases de datos eficientes, dashboards administrativos intuitivos y hardware de alto rendimiento para ofrecer resultados inmediatos y confiables.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl relative">
+                
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-white">Nosotros somos LIA</h3>
+                    
+                    <div class="flex gap-2">
+                        <button onclick="moverCarrusel(-1)" class="bg-slate-800 hover:bg-sky-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button onclick="moverCarrusel(1)" class="bg-slate-800 hover:bg-sky-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="carrusel-galeria" class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth">
+                    
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        
+                        <img src="/static/img/LIA 1 gen.jpg" alt="Primera generación de LIA" class="object-cover w-full h-full">
+
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                Primera generación de LIA
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <img src="/static/img/Oficina.jpg" alt="El laboratorio de LIA" class="object-cover w-full h-full">
+
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                El laboratorio donde nacen las ideas, se forjan los proyectos y se construye el futuro tecnológico de nuestro entorno educativo
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        
+                        <img src="/static/img/Compa6.jpg" alt="Primera generación de LIA" class="object-cover w-full h-full">
+
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                Somos un equipo de estudiantes apasionados por la tecnología, la innovación y el aprendizaje colaborativo
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        
+                        <img src="/static/img/orientativa.jpg" alt="Primera generación de LIA" class="object-cover w-full h-full">
+
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                Primera sesion para la introducción a la inteligencia artificial, donde compartimos conocimientos, experiencias y el entusiasmo por la tecnología con nuestros compañeros de clase
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <img src="/static/img/coming soon.avif" alt="Próxima generación de LIA" class="object-cover w-full h-full">
+                        
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                                Una proxima generación en camino
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+<br><br><br><br><br>
+        </div>
+    </section>
+
+    <section id="reconocimientos" class="py-20 px-4 relative z-10 scroll-mt-24">
+        <div class="container mx-auto max-w-6xl">
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500/20 to-amber-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-yellow-400 text-3xl border border-yellow-500/20">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    Nuestros <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Reconocimientos</span>
+                </h3>
+                <div class="h-1 w-20 bg-yellow-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Logros y distinciones que respaldan nuestro compromiso con la innovación y el desarrollo tecnológico.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass-card rounded-2xl overflow-hidden hover:-translate-y-3 hover:shadow-[0_10px_30px_rgba(234,179,8,0.15)] transition-all duration-300 group flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-full aspect-video bg-slate-800 overflow-hidden relative">
+                        <img src="/static/img/reconocimiento-nasa.jpg" alt="Hackathon NASA" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-yellow-500/90 backdrop-blur-sm text-slate-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                            Ganadores Locales
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">Hackathon NASA</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                            Reconocimiento por el desarrollo de soluciones creativas e innovadoras ante problemáticas globales planteadas directamente por la NASA.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden hover:-translate-y-3 hover:shadow-[0_10px_30px_rgba(234,179,8,0.15)] transition-all duration-300 group flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-full aspect-video bg-slate-800 overflow-hidden relative">
+                        <img src="/static/img/reconocimiento-ipn.jpg" alt="Feria IPN" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">Proyecto Destacado IPN</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                            Mención especial por la integración de hardware y software en la creación de nuestro sistema de control de accesos automatizados.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden hover:-translate-y-3 hover:shadow-[0_10px_30px_rgba(234,179,8,0.15)] transition-all duration-300 group flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-full aspect-video bg-slate-800 overflow-hidden relative">
+                        <img src="/static/img/reconocimiento-cecyt.jpg" alt="CECyT 16" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">Excelencia Tecnológica CECyT 16</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                            Reconocimiento institucional por el desarrollo de la aplicación con Inteligencia Artificial orientada a la Lengua de Señas Mexicana (LSM).
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="recursos" class="py-20 px-4 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    <i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> 
+                    Recursos y <span class="text-gradient">Más Información</span>
+                </h3>
+                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <a href="https://github.com/Amsf0803?tab=repositories" target="_blank" rel="noopener noreferrer" 
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
+                        <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura de los proyectos y códigos de todos nuestros proyectos.</p>
+                </a>
+                    
+                <button onclick="abrirModalPDF()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-sky-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-sky-600/20 transition-colors shadow-lg">
+                        <i class="fa-solid fa-file-pdf text-4xl text-slate-300 group-hover:text-sky-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Nuestra Organización</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Consulta como estamos organizados en LIA.</p>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+<div id="pdf-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    
+    <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalPDF()"></div>
+    
+    <div class="relative w-full max-w-5xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-sky-500/20 transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]" id="modal-content-pdf">
+        
+        <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+            <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-file-pdf text-sky-400"></i> Organización LIA
+            </h3>
+            
+            <div class="flex gap-3">
+                <a href="/static/docs/Diagrama.pdf" download="Organizacion_LIA.pdf" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Descargar</span>
+                </a>
+                
+                <button onclick="cerrarModalPDF()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full bg-slate-200">
+            <iframe src="/static/docs/Diagrama.pdf" class="w-full h-full" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+
+
+
+    <script>
+        // --- ANIMACIONES DE SCROLL (AOS) ---
+        AOS.init({
+            once: true, // Cambiado a true para que no parpadee al subir y bajar
+            offset: 50,
+            duration: 1000
+        });
+
+        // --- PARTÍCULAS DE FONDO ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#38bdf8" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.4, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { 
+                    "enable": true, 
+                    "distance": 150, 
+                    "color": "#818cf8", 
+                    "opacity": 0.3, 
+                    "width": 1.5 
+                },
+                "move": { 
+                    "enable": true, 
+                    "speed": 1.5, 
+                    "direction": "none", 
+                    "random": true, 
+                    "straight": false, 
+                    "out_mode": "out", 
+                    "bounce": false 
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } },
+                    "push": { "particles_nb": 3 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // --- LÓGICA DEL CARRUSEL ---
+        const carrusel = document.getElementById('carrusel-galeria');
+        const contenedorPrincipal = carrusel ? carrusel.closest('.glass-card') : null;
+        let intervaloAutoPlay;
+        const tiempoEspera = 3000;
+
+        function moverCarrusel(direccion) {
+            if (!carrusel) return;
+            const tarjeta = carrusel.querySelector('.snap-center');
+            if (!tarjeta) return;
+            const cantidadScroll = tarjeta.clientWidth + 24; 
+
+            if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
+                carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (direccion === -1 && carrusel.scrollLeft <= 0) {
+                carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
+            } else {
+                carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+            }
+            reiniciarAutoPlay();
+        }
+
+        function iniciarAutoPlay() {
+            intervaloAutoPlay = setInterval(() => { moverCarrusel(1); }, tiempoEspera);
+        }
+
+        function detenerAutoPlay() {
+            clearInterval(intervaloAutoPlay);
+        }
+
+        function reiniciarAutoPlay() {
+            detenerAutoPlay();
+            iniciarAutoPlay();
+        }
+
+        if (contenedorPrincipal) {
+            contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
+            contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
+            iniciarAutoPlay();
+        }
+
+        // --- MENÚ DE HAMBURGUESA (MÓVILES) ---
+        const btnMenu = document.getElementById('btn-menu');
+        const menuMovil = document.getElementById('menu-movil');
+        const iconoMenu = btnMenu.querySelector('i');
+        const movilLinks = document.querySelectorAll('.movil-link');
+
+        btnMenu.addEventListener('click', () => {
+            menuMovil.classList.toggle('hidden');
+            if (menuMovil.classList.contains('hidden')) {
+                iconoMenu.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                iconoMenu.classList.replace('fa-bars', 'fa-xmark');
+            }
+        });
+
+        movilLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuMovil.classList.add('hidden');
+                iconoMenu.classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
+
+
+        // Lógica del Modal de PDF
+        const modalPDF = document.getElementById('pdf-modal');
+        const modalContentPDF = document.getElementById('modal-content-pdf');
+
+        function abrirModalPDF() {
+            modalPDF.classList.remove('hidden');
+            modalPDF.classList.add('flex');
+            
+            setTimeout(() => {
+                modalPDF.classList.remove('opacity-0');
+                modalContentPDF.classList.remove('scale-95');
+                modalContentPDF.classList.add('scale-100');
+            }, 10);
+        }
+
+        function cerrarModalPDF() {
+            modalPDF.classList.add('opacity-0');
+            modalContentPDF.classList.remove('scale-100');
+            modalContentPDF.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modalPDF.classList.add('hidden');
+                modalPDF.classList.remove('flex');
+            }, 300);
+        }
+
+
+    // Diccionario de traducciones
+    const traducciones = {
+        'es': {
+            'nav-inicio': 'Inicio',
+            'nav-proyectos': 'Proyectos',
+            'hero-titulo': 'Laboratorio de <br> <span class="text-gradient">Inteligencia Artificial</span>',
+            'hero-desc': 'Investigación, robótica y desarrollo de software aplicado. Transformamos la tecnología en soluciones tangibles para nuestro entorno.'
+            // Agrega el resto de tus textos aquí...
+        },
+        'en': {
+            'nav-inicio': 'Home',
+            'nav-proyectos': 'Projects',
+            'hero-titulo': 'Artificial Intelligence <br> <span class="text-gradient">Laboratory</span>',
+            'hero-desc': 'Research, robotics, and applied software development. We transform technology into tangible solutions for our environment.'
+        },
+        'ja': {
+            'nav-inicio': 'ホーム',
+            'nav-proyectos': 'プロジェクト',
+            'hero-titulo': '人工知能 <br> <span class="text-gradient">研究所</span>',
+            'hero-desc': '研究、ロボティクス、応用ソフトウェア開発。私たちはテクノロジーを環境のための具体的なソリューションに変換します。'
+        },
+        'fr': {
+            'nav-inicio': 'Accueil',
+            'nav-proyectos': 'Projets',
+            'hero-titulo': 'Laboratoire d\' <br> <span class="text-gradient">Intelligence Artificielle</span>',
+            'hero-desc': 'Recherche, robotique et développement de logiciels appliqués. Nous transformons la technologie en solutions tangibles pour notre environnement.'
+        }
+    };
+
+    // Función para cambiar el idioma
+    function cambiarIdioma(idioma) {
+        // Buscar todos los elementos que tengan el atributo data-i18n
+        const elementos = document.querySelectorAll('[data-i18n]');
+        
+        elementos.forEach(el => {
+            const clave = el.getAttribute('data-i18n');
+            // Si existe la traducción para esa clave en el idioma seleccionado
+            if (traducciones[idioma] && traducciones[idioma][clave]) {
+                el.innerHTML = traducciones[idioma][clave]; 
+                // Usamos innerHTML para respetar etiquetas como <br> o <span>
+            }
+        });
+
+        // Actualizar el texto del botón del menú
+        const langLabel = document.getElementById('current-lang-text');
+        if(langLabel) langLabel.textContent = idioma.toUpperCase();
+
+        // Guardar la preferencia en el navegador
+        localStorage.setItem('lia-idioma', idioma);
+    }
+
+    // Cargar el idioma guardado al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        // Si hay un idioma guardado lo usa, si no, usa 'es' por defecto
+        const idiomaGuardado = localStorage.getItem('lia-idioma') || 'es';
+        cambiarIdioma(idiomaGuardado);
+    });
+
+
+
+    </script>
+</body>
+</html>
