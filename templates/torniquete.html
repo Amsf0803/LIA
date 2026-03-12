@@ -318,7 +318,7 @@
                 </div>
             </div>
             <div class="flex-1 w-full bg-slate-200">
-                <iframe src="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" class="w-full h-full" frameborder="0"></iframe>
+                <iframe id="pdf-viewer" class="w-full h-full" frameborder="0"></iframe>
             </div>
         </div>
     </div>
@@ -361,6 +361,13 @@
         function abrirModalPDF() {
             modalPDF.classList.remove('hidden');
             modalPDF.classList.add('flex');
+            
+            // NUEVO: Asignar el src al iframe solo cuando se abre el modal
+            const iframe = document.getElementById('pdf-viewer');
+            if (iframe && !iframe.src) {
+                iframe.src = "/static/docs/Diagrama.pdf";
+            }
+
             setTimeout(() => {
                 modalPDF.classList.remove('opacity-0');
                 modalContentPDF.classList.remove('scale-95');

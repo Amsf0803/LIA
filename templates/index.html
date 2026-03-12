@@ -221,8 +221,14 @@
             <div class="text-center mb-12">
                 <div class="w-20 h-20 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-indigo-400 text-4xl border border-indigo-500/20">
                     <i class="fa-solid fa-users"></i> </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Conoce a <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span></h2>
-                <p data-i18n="conocenos-subtitulo" class="text-slate-400 text-lg max-w-2xl mx-auto">Innovación, tecnología y soluciones inteligentes para el futuro.</p>
+
+                <h2 data-i18n="conocenos-titulo" class="text-4xl md:text-5xl font-extrabold mb-4">
+                    Conoce a <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>
+                </h2>
+                <p data-i18n="conocenos-subtitulo" class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Innovación, tecnología y soluciones inteligentes para el futuro.
+                </p>
+            
             </div>
 
             <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
@@ -457,8 +463,9 @@
         </div>
 
         <div class="flex-1 w-full bg-slate-200">
-            <iframe src="/static/docs/Diagrama.pdf" class="w-full h-full" frameborder="0"></iframe>
+            <iframe id="pdf-viewer" class="w-full h-full" frameborder="0"></iframe>
         </div>
+
     </div>
 </div>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -589,10 +596,17 @@
         const modalPDF = document.getElementById('pdf-modal');
         const modalContentPDF = document.getElementById('modal-content-pdf');
 
+
         function abrirModalPDF() {
             modalPDF.classList.remove('hidden');
             modalPDF.classList.add('flex');
             
+            // NUEVO: Asignar el src al iframe solo cuando se abre el modal
+            const iframe = document.getElementById('pdf-viewer');
+            if (iframe && !iframe.src) {
+                iframe.src = "/static/docs/Diagrama.pdf";
+            }
+
             setTimeout(() => {
                 modalPDF.classList.remove('opacity-0');
                 modalContentPDF.classList.remove('scale-95');
