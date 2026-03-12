@@ -26,9 +26,6 @@
             -webkit-text-fill-color: transparent; 
         }
     </style>
-
-
-
 </head>
 <body class="antialiased">
     <div id="particles-js"></div>
@@ -39,9 +36,36 @@
                 <i class="fa-solid fa-microchip text-[#6c1d45] mr-2"></i>
                 <span class="text-gradient-ipn">LIA</span> <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;"> CECyT 16</a> 
             </h1>
-            <a href="/" class="hover:text-sky-400 transition-colors font-medium text-sm flex items-center gap-2">
-                <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
-            </a>
+            
+            <div class="flex items-center">
+                <a data-i18n="nav-volver" href="/" class="hover:text-sky-400 transition-colors font-medium text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+                </a>
+
+                <div class="relative hidden md:block">
+                    <button id="btn-selector-idioma" class="ml-6 text-slate-300 hover:text-indigo-400 transition-colors font-medium flex items-center gap-2 cursor-pointer py-2">
+                        <i class="fa-solid fa-globe"></i> <span id="current-lang-text">ES</span> <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    
+                    <div id="dropdown-idiomas" class="absolute -left-8 top-full mt-2 w-36 glass-card rounded-xl border border-slate-700/50 overflow-hidden shadow-2xl transition-all duration-300 opacity-0 invisible scale-95 origin-top z-50">
+                        <button onclick="cambiarIdioma('es')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇪🇸 Español
+                        </button>
+                        <button onclick="cambiarIdioma('en')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇬🇧 English
+                        </button>
+                        <button onclick="cambiarIdioma('ja')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇯🇵 日本語
+                        </button>
+                        <button onclick="cambiarIdioma('fr')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇫🇷 Français
+                        </button>
+                        <button onclick="cambiarIdioma('pt')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇧🇷 Português
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -52,62 +76,54 @@
                 <div class="w-20 h-20 bg-gradient-to-br from-sky-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-sky-400 text-4xl border border-sky-500/20">
                     <i class="fa-solid fa-hands-asl-interpreting"></i>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Detector de <span class="text-gradient">LSM</span></h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Lengua de Señas Mexicana interpretada en tiempo real mediante Visión Computacional.</p>
+                <h2 data-i18n="hero-titulo" class="text-4xl md:text-5xl font-extrabold mb-4">Detector de <span class="text-gradient">LSM</span></h2>
+                <p data-i18n="hero-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Lengua de Señas Mexicana interpretada en tiempo real mediante Visión Computacional.</p>
             </div>
 
             <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
                 <div class="flex-1 glass-card p-8 rounded-2xl h-full">
-                    <h3 class="text-2xl font-bold mb-4 text-white">Sobre el Proyecto</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        Este sistema utiliza modelos de aprendizaje profundo 
-                        (Deep Learning) para mapear los puntos clave de las manos 
-                        y el cuerpo. 
-                        Al analizar la geometría espacial de los gestos,
-                        el algoritmo es capaz de traducir los movimientos 
-                        a texto y voz de forma instantánea.
+                    <h3 data-i18n="proy-titulo" class="text-2xl font-bold mb-4 text-white">Sobre el Proyecto</h3>
+                    <p data-i18n="proy-desc" class="text-slate-300 leading-relaxed mb-6">
+                        Este sistema utiliza modelos de aprendizaje profundo (Deep Learning) para mapear los puntos clave de las manos y el cuerpo. Al analizar la geometría espacial de los gestos, el algoritmo es capaz de traducir los movimientos a texto y voz de forma instantánea.
                     </p>
-                    <h4 class="text-xl font-semibold mb-3 text-sky-300">Objetivo de Impacto</h4>
-                    <p class="text-slate-300 leading-relaxed">
-                        Romper las barreras de comunicación entre personas oyentes y 
-                        personas con discapacidad auditiva dentro y fuera de nuestra 
-                        comunidad politécnica, fomentando un entorno verdaderamente inclusivo.
+                    <h4 data-i18n="obj-titulo" class="text-xl font-semibold mb-3 text-sky-300">Objetivo de Impacto</h4>
+                    <p data-i18n="obj-desc" class="text-slate-300 leading-relaxed">
+                        Romper las barreras de comunicación entre personas oyentes y personas con discapacidad auditiva dentro y fuera de nuestra comunidad politécnica, fomentando un entorno verdaderamente inclusivo.
                     </p>
                 </div>
 
                 <div class="flex-1 w-full flex flex-col gap-4">
                     <div class="glass-card p-6 rounded-2xl border-l-4 border-l-sky-500">
-                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                        <h4 data-i18n="stack-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
                             <i class="fa-brands fa-python text-sky-400"></i> Stack Tecnológico
                         </h4>
                         <ul class="text-slate-400 space-y-2 text-sm">
-                            <li>• Python 3.10+</li>
-                            <li>• OpenCV (Procesamiento de imagen)</li>
-                            <li>• MediaPipe (Tracking de manos/cuerpo)</li>
-                            <li>• TensorFlow / Keras (Red Neuronal)</li>
+                            <li data-i18n="stack-1">• Python 3.10+</li>
+                            <li data-i18n="stack-2">• OpenCV (Procesamiento de imagen)</li>
+                            <li data-i18n="stack-3">• MediaPipe (Tracking de manos/cuerpo)</li>
+                            <li data-i18n="stack-4">• TensorFlow / Keras (Red Neuronal)</li>
                         </ul>
                     </div>
                     
                     <div class="glass-card p-6 rounded-2xl border-l-4 border-l-blue-500">
-                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                        <h4 data-i18n="fut-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-bolt text-blue-400"></i> El futuro del proyecto
                         </h4>
                         <ul class="text-slate-400 space-y-2 text-sm">
-                            <li>• Implementarlo a una Raspberry Pi</li>
-                            <li>• Transformarlo en una mini cámara más transportable</li>
-                            <li>• Ampliar el diccionario de palabar y frases a detectar</li>
+                            <li data-i18n="fut-1">• Implementarlo a una Raspberry Pi</li>
+                            <li data-i18n="fut-2">• Transformarlo en una mini cámara más transportable</li>
+                            <li data-i18n="fut-3">• Ampliar el diccionario de palabras y frases a detectar</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <div class="container mx-auto max-w-5xl" data-aos="fade-up">
             <div class="glass-card p-8 rounded-2xl relative">
                 
                 <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-white"> Así funciona</h3>
+                    <h3 data-i18n="func-titulo" class="text-2xl font-bold text-white"> Así funciona</h3>
                     
                     <div class="flex gap-2">
                         <button onclick="moverCarrusel(-1)" class="bg-slate-800 hover:bg-sky-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
@@ -122,32 +138,28 @@
                 <div id="carrusel-galeria" class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth">
                     
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        
                         <img src="/static/img/vale_lsm.jpg" alt="Funcionamiento del LSM" class="object-cover w-full h-full">
-
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                            <p data-i18n="car-1" class="text-white text-lg font-semibold text-center leading-snug">
                                 Funcionamiento del sistema de detección de LSM en tiempo real
                             </p>
                         </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/extreme.png" alt="El laboratorio de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/extreme.png" alt="Iluminación extrema" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                            <p data-i18n="car-2" class="text-white text-lg font-semibold text-center leading-snug">
                                 El sistema opera incluso en condiciones de iluminación extremas
                             </p>
                         </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/pruebas LSM.jpg" alt="Próxima generación de LIA" class="object-cover w-full h-full">
-                        
+                        <img src="/static/img/pruebas LSM.jpg" alt="Pruebas LSM" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
-                                Prueba de como se implementara el detector de LSM en la vida diaria
+                            <p data-i18n="car-3" class="text-white text-lg font-semibold text-center leading-snug">
+                                Prueba de cómo se implementará el detector de LSM en la vida diaria
                             </p>
                         </div>
                     </div>
@@ -160,12 +172,12 @@
         <div class="container mx-auto max-w-5xl">
             
             <div class="text-center mb-12" data-aos="fade-up">
-                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                <h3 data-i18n="rec-titulo" class="text-3xl md:text-4xl font-bold mb-4 text-white">
                     <i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> 
                     Recursos y <span class="text-gradient">Más Información</span>
                 </h3>
                 <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+                <p data-i18n="rec-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -175,16 +187,16 @@
                     <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
                         <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
+                    <h4 data-i18n="git-titulo" class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                    <p data-i18n="git-desc" class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
                 </a>
 
                 <button onclick="abrirModalVideo()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-purple-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-600/20 transition-colors shadow-lg">
                         <i class="fa-solid fa-circle-play text-4xl text-slate-300 group-hover:text-purple-400 transition-colors animate-pulse group-hover:animate-none"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-2">Ver Demostración</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Reproduce el video del funcionamiento del prototipo en tiempo real.</p>
+                    <h4 data-i18n="vid-titulo" class="text-xl font-bold text-white mb-2">Ver Demostración</h4>
+                    <p data-i18n="vid-desc" class="text-slate-400 text-sm leading-relaxed">Reproduce el video del funcionamiento del prototipo en tiempo real.</p>
                 </button>
 
             </div>
@@ -192,17 +204,12 @@
     </section>
     </main>
 
-
     <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
-        
         <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalVideo()"></div>
-        
         <div class="relative w-full max-w-4xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-purple-500/20 transform scale-95 transition-transform duration-300" id="modal-content">
-            
             <button onclick="cerrarModalVideo()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-slate-900/80 hover:bg-rose-600 text-white rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-
             <div class="aspect-video w-full bg-black flex items-center justify-center relative">
                 <video id="demo-video" controls class="w-full h-full object-contain">
                     <source src="/static/video/LSM.webm" type="video/webm">
@@ -212,115 +219,256 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
-        // Lógica del Modal de Video
+        AOS.init({ once: true, duration: 1000 });
+        particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#38bdf8" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#818cf8", "opacity": 0.2 }, "move": { "enable": true, "speed": 1 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } } });
+
         const modalVideo = document.getElementById('video-modal');
         const modalContentVideo = document.getElementById('modal-content');
         const videoElement = document.getElementById('demo-video');
 
         function abrirModalVideo() {
-            // Quitamos el 'hidden' para que ocupe espacio y agregamos 'flex' para centrar
             modalVideo.classList.remove('hidden');
             modalVideo.classList.add('flex');
-            
-            // Un pequeño retraso para que Tailwind procese la animación de opacidad y escala
             setTimeout(() => {
                 modalVideo.classList.remove('opacity-0');
                 modalContentVideo.classList.remove('scale-95');
                 modalContentVideo.classList.add('scale-100');
-                
-                // Opcional: Iniciar el video automáticamente al abrir el modal
-                // videoElement.play(); 
             }, 10);
         }
 
         function cerrarModalVideo() {
-            // 1. Pausar el video inmediatamente para que no suene el audio
             videoElement.pause();
-            
-            // 2. Animación de salida (desaparecer y encoger un poco)
             modalVideo.classList.add('opacity-0');
             modalContentVideo.classList.remove('scale-100');
             modalContentVideo.classList.add('scale-95');
-            
-            // 3. Esperar a que termine la animación (300ms) para volver a ocultarlo del todo
             setTimeout(() => {
                 modalVideo.classList.add('hidden');
                 modalVideo.classList.remove('flex');
             }, 300);
         }
-    </script>
 
+        const carrusel = document.getElementById('carrusel-galeria');
+        const contenedorPrincipal = carrusel.closest('.glass-card'); 
+        let intervaloAutoPlay;
+        const tiempoEspera = 3000; 
 
+        function moverCarrusel(direccion) {
+            if (!carrusel) return;
+            const tarjeta = carrusel.querySelector('.snap-center');
+            if (!tarjeta) return;
+            const cantidadScroll = tarjeta.clientWidth + 24; 
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true, duration: 1000 });
-        particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#38bdf8" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#818cf8", "opacity": 0.2 }, "move": { "enable": true, "speed": 1 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } } });
-    </script>
-
-<script>
-    // Configuración del carrusel
-    const carrusel = document.getElementById('carrusel-galeria');
-    const contenedorPrincipal = carrusel.closest('.glass-card'); // Contenedor padre para detectar el hover
-    let intervaloAutoPlay;
-    const tiempoEspera = 3000; // 3000 milisegundos = 3 segundos por imagen
-
-    // Función principal para mover
-    function moverCarrusel(direccion) {
-        if (!carrusel) return;
-        
-        // 1. Calculamos el ancho exacto de una imagen + el espacio (gap-6 = 24px)
-        const tarjeta = carrusel.querySelector('.snap-center');
-        if (!tarjeta) return;
-        const cantidadScroll = tarjeta.clientWidth + 24; 
-
-        // 2. Lógica de ciclo infinito
-        // Si vamos a la derecha y ya estamos en el final, regresamos al inicio
-        if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
-            carrusel.scrollTo({ left: 0, behavior: 'smooth' });
-        } 
-        // Si vamos a la izquierda y estamos en el inicio, vamos al final
-        else if (direccion === -1 && carrusel.scrollLeft <= 0) {
-            carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
-        } 
-        // Si no estamos en los extremos, nos movemos normalmente
-        else {
-            carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+            if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
+                carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (direccion === -1 && carrusel.scrollLeft <= 0) {
+                carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
+            } else {
+                carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+            }
+            reiniciarAutoPlay();
         }
 
-        // Si el usuario hace clic en la flecha, reiniciamos el temporizador para que no se mueva de golpe otra vez
-        reiniciarAutoPlay();
-    }
+        function iniciarAutoPlay() { intervaloAutoPlay = setInterval(() => { moverCarrusel(1); }, tiempoEspera); }
+        function detenerAutoPlay() { clearInterval(intervaloAutoPlay); }
+        function reiniciarAutoPlay() { detenerAutoPlay(); iniciarAutoPlay(); }
 
-    // Funciones para el Auto-Play
-    function iniciarAutoPlay() {
-        intervaloAutoPlay = setInterval(() => {
-            moverCarrusel(1); // Simula un clic a la derecha automáticamente
-        }, tiempoEspera);
-    }
-
-    function detenerAutoPlay() {
-        clearInterval(intervaloAutoPlay);
-    }
-
-    function reiniciarAutoPlay() {
-        detenerAutoPlay();
+        if (contenedorPrincipal) {
+            contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
+            contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
+        }
         iniciarAutoPlay();
-    }
 
-    // Eventos: Pausar al pasar el cursor (hover) y reanudar al quitarlo
-    if (contenedorPrincipal) {
-        contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
-        contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
-    }
+        // --- SISTEMA DE TRADUCCIONES (LSM) ---
+        const traducciones = {
+            'es': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Volver al Inicio',
+                'hero-titulo': 'Detector de <span class="text-gradient">LSM</span>',
+                'hero-desc': 'Lengua de Señas Mexicana interpretada en tiempo real mediante Visión Computacional.',
+                'proy-titulo': 'Sobre el Proyecto',
+                'proy-desc': 'Este sistema utiliza modelos de aprendizaje profundo (Deep Learning) para mapear los puntos clave de las manos y el cuerpo. Al analizar la geometría espacial de los gestos, el algoritmo es capaz de traducir los movimientos a texto y voz de forma instantánea.',
+                'obj-titulo': 'Objetivo de Impacto',
+                'obj-desc': 'Romper las barreras de comunicación entre personas oyentes y personas con discapacidad auditiva dentro y fuera de nuestra comunidad politécnica, fomentando un entorno verdaderamente inclusivo.',
+                'stack-titulo': '<i class="fa-brands fa-python text-sky-400"></i> Stack Tecnológico',
+                'stack-1': '• Python 3.10+',
+                'stack-2': '• OpenCV (Procesamiento de imagen)',
+                'stack-3': '• MediaPipe (Tracking de manos/cuerpo)',
+                'stack-4': '• TensorFlow / Keras (Red Neuronal)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-blue-400"></i> El futuro del proyecto',
+                'fut-1': '• Implementarlo a una Raspberry Pi',
+                'fut-2': '• Transformarlo en una mini cámara más transportable',
+                'fut-3': '• Ampliar el diccionario de palabras y frases a detectar',
+                'func-titulo': 'Así funciona',
+                'car-1': 'Funcionamiento del sistema de detección de LSM en tiempo real',
+                'car-2': 'El sistema opera incluso en condiciones de iluminación extremas',
+                'car-3': 'Prueba de cómo se implementará el detector de LSM en la vida diaria',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos y <span class="text-gradient">Más Información</span>',
+                'rec-desc': 'Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.',
+                'git-titulo': 'Repositorio en GitHub',
+                'git-desc': 'Accede a los scripts principales, estructura del proyecto y código de implementación.',
+                'vid-titulo': 'Ver Demostración',
+                'vid-desc': 'Reproduce el video del funcionamiento del prototipo en tiempo real.'
+            },
+            'en': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Back to Home',
+                'hero-titulo': '<span class="text-gradient">MSL</span> Detector',
+                'hero-desc': 'Mexican Sign Language interpreted in real-time using Computer Vision.',
+                'proy-titulo': 'About the Project',
+                'proy-desc': 'This system uses Deep Learning models to map key points on the hands and body. By analyzing the spatial geometry of gestures, the algorithm can instantly translate movements into text and speech.',
+                'obj-titulo': 'Impact Objective',
+                'obj-desc': 'To break communication barriers between hearing individuals and people with hearing impairments within and outside our polytechnic community, fostering a truly inclusive environment.',
+                'stack-titulo': '<i class="fa-brands fa-python text-sky-400"></i> Tech Stack',
+                'stack-1': '• Python 3.10+',
+                'stack-2': '• OpenCV (Image Processing)',
+                'stack-3': '• MediaPipe (Hand/Body Tracking)',
+                'stack-4': '• TensorFlow / Keras (Neural Network)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-blue-400"></i> Future of the project',
+                'fut-1': '• Implement it on a Raspberry Pi',
+                'fut-2': '• Transform it into a more portable mini-camera',
+                'fut-3': '• Expand the dictionary of words and phrases to detect',
+                'func-titulo': 'How it works',
+                'car-1': 'Real-time operation of the MSL detection system',
+                'car-2': 'The system operates even under extreme lighting conditions',
+                'car-3': 'Testing how the MSL detector will be implemented in daily life',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Resources & <span class="text-gradient">More Info</span>',
+                'rec-desc': 'Explore the source code, technical documentation, and other details of this development.',
+                'git-titulo': 'GitHub Repository',
+                'git-desc': 'Access the main scripts, project structure, and implementation code.',
+                'vid-titulo': 'Watch Demo',
+                'vid-desc': 'Play the video of the prototype operating in real time.'
+            },
+            'ja': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> ホームに戻る',
+                'hero-titulo': '<span class="text-gradient">メキシコ手話</span> 検出器',
+                'hero-desc': 'コンピュータビジョンを使用してリアルタイムで通訳されるメキシコ手話。',
+                'proy-titulo': 'プロジェクトについて',
+                'proy-desc': 'このシステムは、ディープラーニングモデルを使用して手と体の重要なポイントをマッピングします。ジェスチャーの空間ジオメトリを分析することで、アルゴリズムは動きを即座にテキストと音声に翻訳できます。',
+                'obj-titulo': '影響の目標',
+                'obj-desc': 'ポリテクニックコミュニティの国内外において、健聴者と聴覚障害者の間のコミュニケーションの壁を打ち破り、真に包括的な環境を育むこと。',
+                'stack-titulo': '<i class="fa-brands fa-python text-sky-400"></i> 技術スタック',
+                'stack-1': '• Python 3.10+',
+                'stack-2': '• OpenCV (画像処理)',
+                'stack-3': '• MediaPipe (手/体のトラッキング)',
+                'stack-4': '• TensorFlow / Keras (ニューラルネットワーク)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-blue-400"></i> プロジェクトの未来',
+                'fut-1': '• Raspberry Piへの実装',
+                'fut-2': '• よりポータブルなミニカメラへの変換',
+                'fut-3': '• 検出する単語やフレーズの辞書の拡張',
+                'func-titulo': '仕組み',
+                'car-1': 'メキシコ手話検出システムのリアルタイム操作',
+                'car-2': '極端な照明条件下でもシステムは動作します',
+                'car-3': '日常生活でメキシコ手話検出器がどのように実装されるかのテスト',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> リソースと <span class="text-gradient">詳細情報</span>',
+                'rec-desc': 'この開発のソースコード、技術文書、その他の詳細をご覧ください。',
+                'git-titulo': 'GitHub リポジトリ',
+                'git-desc': 'メインスクリプト、プロジェクト構造、実装コードにアクセスできます。',
+                'vid-titulo': 'デモを見る',
+                'vid-desc': 'リアルタイムで動作するプロトタイプのビデオを再生します。'
+            },
+            'fr': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Retour à l\'Accueil',
+                'hero-titulo': 'Détecteur de <span class="text-gradient">LSM</span>',
+                'hero-desc': 'Langue des Signes Mexicaine interprétée en temps réel par Vision par Ordinateur.',
+                'proy-titulo': 'À propos du Projet',
+                'proy-desc': 'Ce système utilise des modèles d\'apprentissage profond (Deep Learning) pour cartographier les points clés des mains et du corps. En analysant la géométrie spatiale des gestes, l\'algorithme peut traduire instantanément les mouvements en texte et en parole.',
+                'obj-titulo': 'Objectif d\'Impact',
+                'obj-desc': 'Briser les barrières de communication entre les personnes entendantes et les personnes malentendantes au sein et en dehors de notre communauté polytechnique, favorisant un environnement véritablement inclusif.',
+                'stack-titulo': '<i class="fa-brands fa-python text-sky-400"></i> Pile Technologique',
+                'stack-1': '• Python 3.10+',
+                'stack-2': '• OpenCV (Traitement d\'image)',
+                'stack-3': '• MediaPipe (Suivi des mains/du corps)',
+                'stack-4': '• TensorFlow / Keras (Réseau de Neurones)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-blue-400"></i> L\'avenir du projet',
+                'fut-1': '• L\'implémenter sur un Raspberry Pi',
+                'fut-2': '• Le transformer en une mini-caméra plus portable',
+                'fut-3': '• Élargir le dictionnaire des mots et phrases à détecter',
+                'func-titulo': 'Comment ça marche',
+                'car-1': 'Fonctionnement en temps réel du système de détection de LSM',
+                'car-2': 'Le système fonctionne même dans des conditions d\'éclairage extrêmes',
+                'car-3': 'Test de la façon dont le détecteur de LSM sera implémenté dans la vie quotidienne',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Ressources et <span class="text-gradient">Plus d\'Infos</span>',
+                'rec-desc': 'Explorez le code source, la documentation technique et d\'autres détails de ce développement.',
+                'git-titulo': 'Dépôt GitHub',
+                'git-desc': 'Accédez aux scripts principaux, à la structure du projet et au code d\'implémentation.',
+                'vid-titulo': 'Voir la Démo',
+                'vid-desc': 'Lisez la vidéo du fonctionnement du prototype en temps réel.'
+            },
+            'pt': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Voltar ao Início',
+                'hero-titulo': 'Detector de <span class="text-gradient">LSM</span>',
+                'hero-desc': 'Língua de Sinais Mexicana interpretada em tempo real usando Visão Computacional.',
+                'proy-titulo': 'Sobre o Projeto',
+                'proy-desc': 'Este sistema usa modelos de aprendizado profundo (Deep Learning) para mapear os pontos-chave das mãos e do corpo. Ao analisar a geometria espacial dos gestos, o algoritmo é capaz de traduzir instantaneamente os movimentos em texto e voz.',
+                'obj-titulo': 'Objetivo de Impacto',
+                'obj-desc': 'Quebrar as barreiras de comunicação entre pessoas ouvintes e pessoas com deficiência auditiva dentro e fora de nossa comunidade politécnica, promovendo um ambiente verdadeiramente inclusivo.',
+                'stack-titulo': '<i class="fa-brands fa-python text-sky-400"></i> Stack Tecnológico',
+                'stack-1': '• Python 3.10+',
+                'stack-2': '• OpenCV (Processamento de imagem)',
+                'stack-3': '• MediaPipe (Rastreamento de mãos/corpo)',
+                'stack-4': '• TensorFlow / Keras (Rede Neural)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-blue-400"></i> O futuro do projeto',
+                'fut-1': '• Implementá-lo em um Raspberry Pi',
+                'fut-2': '• Transformá-lo em uma mini câmera mais portátil',
+                'fut-3': '• Expandir o dicionário de palavras e frases a serem detectadas',
+                'func-titulo': 'Como funciona',
+                'car-1': 'Operação em tempo real do sistema de detecção de LSM',
+                'car-2': 'O sistema opera mesmo sob condições extremas de iluminação',
+                'car-3': 'Teste de como o detector de LSM será implementado na vida diária',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos e <span class="text-gradient">Mais Informações</span>',
+                'rec-desc': 'Explore o código-fonte, a documentação técnica e outros detalhes deste desenvolvimento.',
+                'git-titulo': 'Repositório no GitHub',
+                'git-desc': 'Acesse os scripts principais, a estrutura do projeto e o código de implementação.',
+                'vid-titulo': 'Ver Demonstração',
+                'vid-desc': 'Reproduza o vídeo do funcionamento do protótipo em tempo real.'
+            }
+        };
 
-    // Iniciar el ciclo cuando cargue la página
-    iniciarAutoPlay();
-</script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnSelectorIdioma = document.getElementById('btn-selector-idioma');
+            const dropdownIdiomas = document.getElementById('dropdown-idiomas');
 
+            if (btnSelectorIdioma && dropdownIdiomas) {
+                btnSelectorIdioma.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    dropdownIdiomas.classList.toggle('opacity-0');
+                    dropdownIdiomas.classList.toggle('invisible');
+                    dropdownIdiomas.classList.toggle('scale-95');
+                });
 
+                document.addEventListener('click', (e) => {
+                    if (!dropdownIdiomas.contains(e.target) && !btnSelectorIdioma.contains(e.target)) {
+                        dropdownIdiomas.classList.add('opacity-0', 'invisible', 'scale-95');
+                    }
+                });
+            }
 
+            const idiomaGuardado = localStorage.getItem('lia-idioma') || 'es';
+            cambiarIdioma(idiomaGuardado);
+        });
+
+        function cambiarIdioma(idioma) {
+            const elementos = document.querySelectorAll('[data-i18n]');
+            
+            elementos.forEach(el => {
+                const clave = el.getAttribute('data-i18n');
+                if (traducciones[idioma] && traducciones[idioma][clave]) {
+                    el.innerHTML = traducciones[idioma][clave]; 
+                }
+            });
+
+            const langLabel = document.getElementById('current-lang-text');
+            if(langLabel) langLabel.textContent = idioma.toUpperCase();
+
+            localStorage.setItem('lia-idioma', idioma);
+
+            const dropdown = document.getElementById('dropdown-idiomas');
+            if(dropdown) {
+                dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            }
+        }
+    </script>
 </body>
 </html>

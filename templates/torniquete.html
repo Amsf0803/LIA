@@ -25,8 +25,6 @@
             background-clip: none;
             -webkit-text-fill-color: transparent; 
         }
-
-    
     </style>
 </head>
 <body class="antialiased">
@@ -38,9 +36,36 @@
                 <i class="fa-solid fa-microchip text-[#6c1d45] mr-2"></i>
                 <span class="text-gradient-ipn">LIA</span> <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;"> CECyT 16</a> 
             </h1>
-            <a href="/" class="hover:text-indigo-400 transition-colors font-medium text-sm flex items-center gap-2">
-                <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
-            </a>
+            
+            <div class="flex items-center">
+                <a data-i18n="nav-volver" href="/" class="hover:text-indigo-400 transition-colors font-medium text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+                </a>
+
+                <div class="relative hidden md:block">
+                    <button id="btn-selector-idioma" class="ml-6 text-slate-300 hover:text-indigo-400 transition-colors font-medium flex items-center gap-2 cursor-pointer py-2">
+                        <i class="fa-solid fa-globe"></i> <span id="current-lang-text">ES</span> <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    
+                    <div id="dropdown-idiomas" class="absolute -left-8 top-full mt-2 w-36 glass-card rounded-xl border border-slate-700/50 overflow-hidden shadow-2xl transition-all duration-300 opacity-0 invisible scale-95 origin-top z-50">
+                        <button onclick="cambiarIdioma('es')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇪🇸 Español
+                        </button>
+                        <button onclick="cambiarIdioma('en')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇬🇧 English
+                        </button>
+                        <button onclick="cambiarIdioma('ja')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇯🇵 日本語
+                        </button>
+                        <button onclick="cambiarIdioma('fr')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇫🇷 Français
+                        </button>
+                        <button onclick="cambiarIdioma('pt')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇧🇷 Português
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -51,48 +76,46 @@
                 <div class="w-20 h-20 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-indigo-400 text-4xl border border-indigo-500/20">
                     <i class="fa-solid fa-door-open"></i>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Torniquete <span class="text-gradient">Automatizado</span></h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Control de acceso inteligente integrado con bases de datos escolares.</p>
+                <h2 data-i18n="hero-titulo" class="text-4xl md:text-5xl font-extrabold mb-4">Torniquete <span class="text-gradient">Automatizado</span></h2>
+                <p data-i18n="hero-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Control de acceso inteligente integrado con bases de datos escolares.</p>
             </div>
 
             <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
                 
                 <div class="flex-1 glass-card p-8 rounded-2xl h-full">
-                    <h3 class="text-2xl font-bold mb-4 text-white">Arquitectura del Sistema</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        Diseñamos un sistema electromecánico controlado por microcontroladores. El torniquete valida 
-                        la identidad del estudiante mediante lectura de las credenciales de la DAE y/o el horario del SAES , consultando 
-                        la base de datos de la escuela en tiempo real para autorizar o denegar el paso dependiendo de la situación grupal o personal del alumno.
+                    <h3 data-i18n="arq-titulo" class="text-2xl font-bold mb-4 text-white">Arquitectura del Sistema</h3>
+                    <p data-i18n="arq-desc" class="text-slate-300 leading-relaxed mb-6">
+                        Diseñamos un sistema electromecánico controlado por microcontroladores. El torniquete valida la identidad del estudiante mediante lectura de las credenciales de la DAE y/o el horario del SAES, consultando la base de datos de la escuela en tiempo real para autorizar o denegar el paso dependiendo de la situación grupal o personal del alumno.
                     </p>
-                    <h4 class="text-xl font-semibold mb-3 text-sky-300">Beneficios Principales</h4>
+                    <h4 data-i18n="ben-titulo" class="text-xl font-semibold mb-3 text-sky-300">Beneficios Principales</h4>
                     <ul class="text-slate-300 space-y-2 mb-6">
-                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Mayor seguridad en el plantel.</li>
-                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Control de acceso automático.</li>
-                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Flujo de entrada más rápido y ordenado.</li>
+                        <li data-i18n="ben-1"><i class="fa-solid fa-check text-green-400 mr-2"></i> Mayor seguridad en el plantel.</li>
+                        <li data-i18n="ben-2"><i class="fa-solid fa-check text-green-400 mr-2"></i> Control de acceso automático.</li>
+                        <li data-i18n="ben-3"><i class="fa-solid fa-check text-green-400 mr-2"></i> Flujo de entrada más rápido y ordenado.</li>
                     </ul>
                 </div>
 
                 <div class="flex-1 w-full flex flex-col gap-4">
                     <div class="glass-card p-6 rounded-2xl border-l-4 border-l-red-500">
-                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                        <h4 data-i18n="hw-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-microchip text-red-400"></i> Hardware Aplicado
                         </h4>
                         <ul class="text-slate-400 space-y-2 text-sm">
-                            <li>• Microcontrolador ESP32</li>
-                            <li>• Lectores QR</li>
-                            <li>• Computadoras que fungen como servidor y puente de información</li>
-                            <li>• Sensores inductivos para validación de cruce</li>
+                            <li data-i18n="hw-1">• Microcontrolador ESP32</li>
+                            <li data-i18n="hw-2">• Lectores QR</li>
+                            <li data-i18n="hw-3">• Computadoras que fungen como servidor y puente de información</li>
+                            <li data-i18n="hw-4">• Sensores inductivos para validación de cruce</li>
                         </ul>
                     </div>
                     
                     <div class="glass-card p-6 rounded-2xl border-l-4 border-l-green-500">
-                        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                        <h4 data-i18n="sw-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-server text-green-400"></i> Programas Aplicados
                         </h4>
                         <ul class="text-slate-400 space-y-2 text-sm">
-                            <li>• Lenguajes como: Python, HTML, JavaScript, C y C++ aplicado a Arduino</li>
-                            <li>• Base de datos MySQL</li>
-                            <li>• Página web administrativo</li>
+                            <li data-i18n="sw-1">• Lenguajes como: Python, HTML, JavaScript, C y C++ aplicado a Arduino</li>
+                            <li data-i18n="sw-2">• Base de datos MySQL</li>
+                            <li data-i18n="sw-3">• Página web administrativa</li>
                         </ul>
                     </div>
                 </div>
@@ -102,7 +125,7 @@
             <div class="glass-card p-8 rounded-2xl relative">
                 
                 <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-white">Accediendo al Futuro</h3>
+                    <h3 data-i18n="car-titulo" class="text-2xl font-bold text-white">Accediendo al Futuro</h3>
                     
                     <div class="flex gap-2">
                         <button onclick="moverCarrusel(-1)" class="bg-slate-800 hover:bg-sky-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
@@ -117,118 +140,100 @@
                 <div id="carrusel-galeria" class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth">
                     
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        
-                        <img src="/static/img/Estado i1.jpg" alt="Primera generación de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/Estado i1.jpg" alt="Estado i1" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                            <p data-i18n="car-1" class="text-white text-lg font-semibold text-center leading-snug">
                                 Este fue el estado en el que estaba el Torniquete antes de su restauración en su totalidad
                             </p>
                         </div>
                     </div>
                         
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/Estado i2.jpg" alt="El laboratorio de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/Estado i2.jpg" alt="Estado i2" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
-                                La mayoria de los circuitos ya se encontraban en mal estado y lo poco que se pudo rescatar se reutilizó para la restauración
+                            <p data-i18n="car-2" class="text-white text-lg font-semibold text-center leading-snug">
+                                La mayoría de los circuitos ya se encontraban en mal estado y lo poco que se pudo rescatar se reutilizó para la restauración
                             </p>
                         </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/Estado i3.jpg" alt="Próxima generación de LIA" class="object-cover w-full h-full">
-                        
+                        <img src="/static/img/Estado i3.jpg" alt="Estado i3" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                            <p data-i18n="car-3" class="text-white text-lg font-semibold text-center leading-snug">
                                 Por falta de piezas solo pudimos restaurar 1 de los 2 Torniquetes, pero el segundo se encuentra en resguardo y espera para una próxima restauración y puesta en funcionamiento
                             </p>
                         </div>
                     </div>
                     
-
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        
-                        <img src="/static/img/Estado i4.jpg" alt="Primera generación de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/Estado i4.jpg" alt="Estado i4" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
-                                De las primeras interfaces que se tuvieron para el control del torniquete donde se planteo las bases de lo que es ahora el sistema de control actual
+                            <p data-i18n="car-4" class="text-white text-lg font-semibold text-center leading-snug">
+                                De las primeras interfaces que se tuvieron para el control del torniquete donde se plantearon las bases de lo que es ahora el sistema de control actual
                             </p>
                         </div>
                     </div>
 
-
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        
-                        <img src="/static/img/estadoi3.jpg" alt="Primera generación de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/estadoi3.jpg" alt="estadoi3" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
-                                De las interfaces intermedias que tuvo el torniquete aunque ya se contaba con la idea general de como se operaría y se acerca al producto final
+                            <p data-i18n="car-5" class="text-white text-lg font-semibold text-center leading-snug">
+                                De las interfaces intermedias que tuvo el torniquete, aunque ya se contaba con la idea general de cómo se operaría y se acerca al producto final
                             </p>
                         </div>
                     </div>
                         
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/Compa1.jpg" alt="El laboratorio de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/Compa1.jpg" alt="Compa1" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                            <p data-i18n="car-6" class="text-white text-lg font-semibold text-center leading-snug">
                                 Restauración del torniquete
                             </p>
                         </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/Compa2.jpg" alt="Próxima generación de LIA" class="object-cover w-full h-full">
-                        
+                        <img src="/static/img/Compa2.jpg" alt="Compa2" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
-                                Revisión de los circuitos y pruebas de funcionamiento, donde se detectaron fallas en el sistema de control que se solucionaron con la implementación de un nuevo microcontrolador y una nueva programación
+                            <p data-i18n="car-7" class="text-white text-lg font-semibold text-center leading-snug">
+                                Revisión de los circuitos y pruebas de funcionamiento, donde se detectaron fallas en el sistema de control que se solucionaron con la implementación de un nuevo microcontrolador y programación
                             </p>
                         </div>
                     </div>
 
-
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        
-                        <img src="/static/img/compa3.jpg" alt="Primera generación de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/compa3.jpg" alt="compa3" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                            <p data-i18n="car-8" class="text-white text-lg font-semibold text-center leading-snug">
                                 Restauración del torniquete
                             </p>
                         </div>
                     </div>
                         
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/compa4.jpg" alt="El laboratorio de LIA" class="object-cover w-full h-full">
-
+                        <img src="/static/img/compa4.jpg" alt="compa4" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
-                                Revisión de los circuitos y pruebas de funcionamiento, donde se detectaron fallas en el sistema de control que se solucionaron con la implementación de un nuevo microcontrolador y una nueva programación
+                            <p data-i18n="car-9" class="text-white text-lg font-semibold text-center leading-snug">
+                                Revisión de los circuitos y pruebas de funcionamiento, donde se detectaron fallas en el sistema de control que se solucionaron con la implementación de un nuevo microcontrolador
                             </p>
                         </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/compa5.jpg" alt="Próxima generación de LIA" class="object-cover w-full h-full">
-                        
+                        <img src="/static/img/compa5.jpg" alt="compa5" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
+                            <p data-i18n="car-10" class="text-white text-lg font-semibold text-center leading-snug">
                                 Primera prueba del funcionamiento del torniquete, donde se detectaron algunas fallas que se arreglaron para la siguiente prueba
                             </p>
                         </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
-                        <img src="/static/img/pruebas Torni.jpg" alt="Próxima generación de LIA" class="object-cover w-full h-full">
-                        
+                        <img src="/static/img/pruebas Torni.jpg" alt="pruebas Torni" class="object-cover w-full h-full">
                         <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p class="text-white text-lg font-semibold text-center leading-snug">
-                                La prueba más reciente del torniquete, donde un grupo completo estuvo entrando simultáneamente y sin haber ningún incoveniente ni error
+                            <p data-i18n="car-11" class="text-white text-lg font-semibold text-center leading-snug">
+                                La prueba más reciente del torniquete, donde un grupo completo estuvo entrando simultáneamente sin haber ningún inconveniente ni error
                             </p>
                         </div>
                     </div>
@@ -237,62 +242,56 @@
 
         </div>
 
-<section id="recursos" class="py-20 px-4 relative z-10">
-        <div class="container mx-auto max-w-5xl">
-            
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                    <i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> 
-                    Recursos y <span class="text-gradient">Más Información</span>
-                </h3>
-                <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section id="recursos" class="py-20 px-4 relative z-10">
+            <div class="container mx-auto max-w-5xl">
                 
-                <a href="https://github.com/Amsf0803/Torniquete" target="_blank" rel="noopener noreferrer" 
-                    class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
-                        <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
-                </a>
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h3 data-i18n="rec-titulo" class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                        <i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> 
+                        Recursos y <span class="text-gradient">Más Información</span>
+                    </h3>
+                    <div class="h-1 w-20 bg-sky-500 mx-auto rounded-full mb-4"></div>
+                    <p data-i18n="rec-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+                </div>
 
-                <button onclick="abrirModalPDF()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-sky-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-sky-600/20 transition-colors shadow-lg">
-                        <i class="fa-solid fa-file-pdf text-4xl text-slate-300 group-hover:text-sky-400 transition-colors animate-pulse group-hover:animate-none"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-2"> Diagramas de Flujo</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Consulta como el sistema toma las decisiones correspondientes para cada caso.</p>
-                </button>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <a href="https://github.com/Amsf0803/Torniquete" target="_blank" rel="noopener noreferrer" 
+                        class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
+                            <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                        </div>
+                        <h4 data-i18n="git-titulo" class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                        <p data-i18n="git-desc" class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
+                    </a>
 
-                <button onclick="abrirModalVideo()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-purple-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-600/20 transition-colors shadow-lg">
-                        <i class="fa-solid fa-circle-play text-4xl text-slate-300 group-hover:text-purple-400 transition-colors animate-pulse group-hover:animate-none"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-2">Ver Demostración</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Reproduce el video del funcionamiento del prototipo en tiempo real.</p>
-                </button>
+                    <button onclick="abrirModalPDF()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-sky-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-sky-600/20 transition-colors shadow-lg">
+                            <i class="fa-solid fa-file-pdf text-4xl text-slate-300 group-hover:text-sky-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                        </div>
+                        <h4 data-i18n="pdf-titulo" class="text-xl font-bold text-white mb-2">Diagramas de Flujo</h4>
+                        <p data-i18n="pdf-desc" class="text-slate-400 text-sm leading-relaxed">Consulta cómo el sistema toma las decisiones correspondientes para cada caso.</p>
+                    </button>
 
+                    <button onclick="abrirModalVideo()" class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-purple-500/50 w-full h-full cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-600/20 transition-colors shadow-lg">
+                            <i class="fa-solid fa-circle-play text-4xl text-slate-300 group-hover:text-purple-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                        </div>
+                        <h4 data-i18n="vid-titulo" class="text-xl font-bold text-white mb-2">Ver Demostración</h4>
+                        <p data-i18n="vid-desc" class="text-slate-400 text-sm leading-relaxed">Reproduce el video del funcionamiento del prototipo en tiempo real.</p>
+                    </button>
+
+                </div>
             </div>
-        </div>
-    </section>
-
+        </section>
     </main>
 
-
     <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
-        
         <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalVideo()"></div>
-        
         <div class="relative w-full max-w-4xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-purple-500/20 transform scale-95 transition-transform duration-300" id="modal-content">
-            
             <button onclick="cerrarModalVideo()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-slate-900/80 hover:bg-rose-600 text-white rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-
             <div class="aspect-video w-full bg-black flex items-center justify-center relative">
                 <video id="demo-video" controls class="w-full h-full object-contain">
                     <source src="/static/video/Prueba de entrada.webm" type="video/webm">
@@ -302,87 +301,67 @@
         </div>
     </div>
 
-<div id="pdf-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
-    
-    <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalPDF()"></div>
-    
-    <div class="relative w-full max-w-5xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-sky-500/20 transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]" id="modal-content-pdf">
-        
-        <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
-            <h3 class="text-white font-bold text-lg flex items-center gap-2">
-                <i class="fa-solid fa-file-pdf text-sky-400"></i> Diagrama de Flujo Entrada y Salida
-            </h3>
-            
-            <div class="flex gap-3">
-                <a href="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" download="Diagrama de Flujo Entrada y Salida-1.pdf" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
-                    <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Descargar</span>
-                </a>
-                
-                <button onclick="cerrarModalPDF()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
+    <div id="pdf-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalPDF()"></div>
+        <div class="relative w-full max-w-5xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-sky-500/20 transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]" id="modal-content-pdf">
+            <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+                <h3 data-i18n="modal-pdf-titulo" class="text-white font-bold text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-sky-400"></i> Diagrama de Flujo Entrada y Salida
+                </h3>
+                <div class="flex gap-3">
+                    <a href="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" download="Diagrama de Flujo Entrada y Salida-1.pdf" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-download"></i> <span data-i18n="modal-pdf-descargar" class="hidden sm:inline">Descargar</span>
+                    </a>
+                    <button onclick="cerrarModalPDF()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 w-full bg-slate-200">
+                <iframe src="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" class="w-full h-full" frameborder="0"></iframe>
             </div>
         </div>
-
-        <div class="flex-1 w-full bg-slate-200">
-            <iframe src="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" class="w-full h-full" frameborder="0"></iframe>
-        </div>
     </div>
-</div>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, duration: 1000 });
         particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#818cf8" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#c084fc", "opacity": 0.2 }, "move": { "enable": true, "speed": 1 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } } });
-    </script>
 
-    <script>
         // Lógica del Modal de Video
         const modalVideo = document.getElementById('video-modal');
         const modalContentVideo = document.getElementById('modal-content');
         const videoElement = document.getElementById('demo-video');
 
         function abrirModalVideo() {
-            // Quitamos el 'hidden' para que ocupe espacio y agregamos 'flex' para centrar
             modalVideo.classList.remove('hidden');
             modalVideo.classList.add('flex');
-            
-            // Un pequeño retraso para que Tailwind procese la animación de opacidad y escala
             setTimeout(() => {
                 modalVideo.classList.remove('opacity-0');
                 modalContentVideo.classList.remove('scale-95');
                 modalContentVideo.classList.add('scale-100');
-                
-                // Opcional: Iniciar el video automáticamente al abrir el modal
-                // videoElement.play(); 
             }, 10);
         }
 
         function cerrarModalVideo() {
-            // 1. Pausar el video inmediatamente para que no suene el audio
             videoElement.pause();
-            
-            // 2. Animación de salida (desaparecer y encoger un poco)
             modalVideo.classList.add('opacity-0');
             modalContentVideo.classList.remove('scale-100');
             modalContentVideo.classList.add('scale-95');
-            
-            // 3. Esperar a que termine la animación (300ms) para volver a ocultarlo del todo
             setTimeout(() => {
                 modalVideo.classList.add('hidden');
                 modalVideo.classList.remove('flex');
             }, 300);
         }
 
-
-// Lógica del Modal de PDF
+        // Lógica del Modal de PDF
         const modalPDF = document.getElementById('pdf-modal');
         const modalContentPDF = document.getElementById('modal-content-pdf');
 
         function abrirModalPDF() {
             modalPDF.classList.remove('hidden');
             modalPDF.classList.add('flex');
-            
             setTimeout(() => {
                 modalPDF.classList.remove('opacity-0');
                 modalContentPDF.classList.remove('scale-95');
@@ -394,75 +373,301 @@
             modalPDF.classList.add('opacity-0');
             modalContentPDF.classList.remove('scale-100');
             modalContentPDF.classList.add('scale-95');
-            
             setTimeout(() => {
                 modalPDF.classList.add('hidden');
                 modalPDF.classList.remove('flex');
             }, 300);
         }
 
-    </script>
+        // Configuración del carrusel
+        const carrusel = document.getElementById('carrusel-galeria');
+        const contenedorPrincipal = carrusel.closest('.glass-card'); 
+        let intervaloAutoPlay;
+        const tiempoEspera = 3000; 
 
-<script>
-    // Configuración del carrusel
-    const carrusel = document.getElementById('carrusel-galeria');
-    const contenedorPrincipal = carrusel.closest('.glass-card'); // Contenedor padre para detectar el hover
-    let intervaloAutoPlay;
-    const tiempoEspera = 3000; // 3000 milisegundos = 3 segundos por imagen
+        function moverCarrusel(direccion) {
+            if (!carrusel) return;
+            const tarjeta = carrusel.querySelector('.snap-center');
+            if (!tarjeta) return;
+            const cantidadScroll = tarjeta.clientWidth + 24; 
 
-    // Función principal para mover
-    function moverCarrusel(direccion) {
-        if (!carrusel) return;
-        
-        // 1. Calculamos el ancho exacto de una imagen + el espacio (gap-6 = 24px)
-        const tarjeta = carrusel.querySelector('.snap-center');
-        if (!tarjeta) return;
-        const cantidadScroll = tarjeta.clientWidth + 24; 
-
-        // 2. Lógica de ciclo infinito
-        // Si vamos a la derecha y ya estamos en el final, regresamos al inicio
-        if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
-            carrusel.scrollTo({ left: 0, behavior: 'smooth' });
-        } 
-        // Si vamos a la izquierda y estamos en el inicio, vamos al final
-        else if (direccion === -1 && carrusel.scrollLeft <= 0) {
-            carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
-        } 
-        // Si no estamos en los extremos, nos movemos normalmente
-        else {
-            carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+            if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
+                carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (direccion === -1 && carrusel.scrollLeft <= 0) {
+                carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
+            } else {
+                carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+            }
+            reiniciarAutoPlay();
         }
 
-        // Si el usuario hace clic en la flecha, reiniciamos el temporizador para que no se mueva de golpe otra vez
-        reiniciarAutoPlay();
-    }
+        function iniciarAutoPlay() { intervaloAutoPlay = setInterval(() => { moverCarrusel(1); }, tiempoEspera); }
+        function detenerAutoPlay() { clearInterval(intervaloAutoPlay); }
+        function reiniciarAutoPlay() { detenerAutoPlay(); iniciarAutoPlay(); }
 
-    // Funciones para el Auto-Play
-    function iniciarAutoPlay() {
-        intervaloAutoPlay = setInterval(() => {
-            moverCarrusel(1); // Simula un clic a la derecha automáticamente
-        }, tiempoEspera);
-    }
-
-    function detenerAutoPlay() {
-        clearInterval(intervaloAutoPlay);
-    }
-
-    function reiniciarAutoPlay() {
-        detenerAutoPlay();
+        if (contenedorPrincipal) {
+            contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
+            contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
+        }
         iniciarAutoPlay();
-    }
 
-    // Eventos: Pausar al pasar el cursor (hover) y reanudar al quitarlo
-    if (contenedorPrincipal) {
-        contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
-        contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
-    }
+        // --- SISTEMA DE TRADUCCIONES (TORNIQUETE) ---
+        const traducciones = {
+            'es': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Volver al Inicio',
+                'hero-titulo': 'Torniquete <span class="text-gradient">Automatizado</span>',
+                'hero-desc': 'Control de acceso inteligente integrado con bases de datos escolares.',
+                'arq-titulo': 'Arquitectura del Sistema',
+                'arq-desc': 'Diseñamos un sistema electromecánico controlado por microcontroladores. El torniquete valida la identidad del estudiante mediante lectura de las credenciales de la DAE y/o el horario del SAES, consultando la base de datos de la escuela en tiempo real para autorizar o denegar el paso dependiendo de la situación grupal o personal del alumno.',
+                'ben-titulo': 'Beneficios Principales',
+                'ben-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Mayor seguridad en el plantel.',
+                'ben-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Control de acceso automático.',
+                'ben-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Flujo de entrada más rápido y ordenado.',
+                'hw-titulo': '<i class="fa-solid fa-microchip text-red-400"></i> Hardware Aplicado',
+                'hw-1': '• Microcontrolador ESP32',
+                'hw-2': '• Lectores QR',
+                'hw-3': '• Computadoras que fungen como servidor y puente de información',
+                'hw-4': '• Sensores inductivos para validación de cruce',
+                'sw-titulo': '<i class="fa-solid fa-server text-green-400"></i> Programas Aplicados',
+                'sw-1': '• Lenguajes como: Python, HTML, JavaScript, C y C++ aplicado a Arduino',
+                'sw-2': '• Base de datos MySQL',
+                'sw-3': '• Página web administrativa',
+                'car-titulo': 'Accediendo al Futuro',
+                'car-1': 'Este fue el estado en el que estaba el Torniquete antes de su restauración en su totalidad',
+                'car-2': 'La mayoría de los circuitos ya se encontraban en mal estado y lo poco que se pudo rescatar se reutilizó para la restauración',
+                'car-3': 'Por falta de piezas solo pudimos restaurar 1 de los 2 Torniquetes, pero el segundo se encuentra en resguardo y espera para una próxima restauración y puesta en funcionamiento',
+                'car-4': 'De las primeras interfaces que se tuvieron para el control del torniquete donde se plantearon las bases de lo que es ahora el sistema de control actual',
+                'car-5': 'De las interfaces intermedias que tuvo el torniquete, aunque ya se contaba con la idea general de cómo se operaría y se acerca al producto final',
+                'car-6': 'Restauración del torniquete',
+                'car-7': 'Revisión de los circuitos y pruebas de funcionamiento, donde se detectaron fallas en el sistema de control que se solucionaron con la implementación de un nuevo microcontrolador y programación',
+                'car-8': 'Restauración del torniquete',
+                'car-9': 'Revisión de los circuitos y pruebas de funcionamiento, donde se detectaron fallas en el sistema de control que se solucionaron con la implementación de un nuevo microcontrolador',
+                'car-10': 'Primera prueba del funcionamiento del torniquete, donde se detectaron algunas fallas que se arreglaron para la siguiente prueba',
+                'car-11': 'La prueba más reciente del torniquete, donde un grupo completo estuvo entrando simultáneamente sin haber ningún inconveniente ni error',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos y <span class="text-gradient">Más Información</span>',
+                'rec-desc': 'Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.',
+                'git-titulo': 'Repositorio en GitHub',
+                'git-desc': 'Accede a los scripts principales, estructura del proyecto y código de implementación.',
+                'pdf-titulo': 'Diagramas de Flujo',
+                'pdf-desc': 'Consulta cómo el sistema toma las decisiones correspondientes para cada caso.',
+                'vid-titulo': 'Ver Demostración',
+                'vid-desc': 'Reproduce el video del funcionamiento del prototipo en tiempo real.',
+                'modal-pdf-titulo': '<i class="fa-solid fa-file-pdf text-sky-400"></i> Diagrama de Flujo Entrada y Salida',
+                'modal-pdf-descargar': 'Descargar'
+            },
+            'en': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Back to Home',
+                'hero-titulo': 'Automated <span class="text-gradient">Turnstile</span>',
+                'hero-desc': 'Smart access control integrated with school databases.',
+                'arq-titulo': 'System Architecture',
+                'arq-desc': 'We designed an electromechanical system controlled by microcontrollers. The turnstile validates the student\'s identity by reading DAE credentials and/or the SAES schedule, checking the school\'s database in real-time to grant or deny access based on the student\'s group or personal status.',
+                'ben-titulo': 'Main Benefits',
+                'ben-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Greater campus security.',
+                'ben-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Automatic access control.',
+                'ben-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Faster and more orderly entry flow.',
+                'hw-titulo': '<i class="fa-solid fa-microchip text-red-400"></i> Applied Hardware',
+                'hw-1': '• ESP32 Microcontroller',
+                'hw-2': '• QR Readers',
+                'hw-3': '• Computers functioning as servers and data bridges',
+                'hw-4': '• Inductive sensors for crossing validation',
+                'sw-titulo': '<i class="fa-solid fa-server text-green-400"></i> Applied Software',
+                'sw-1': '• Languages: Python, HTML, JavaScript, C, and C++ (Arduino)',
+                'sw-2': '• MySQL Database',
+                'sw-3': '• Administrative website',
+                'car-titulo': 'Accessing the Future',
+                'car-1': 'This was the state of the turnstile before its complete restoration.',
+                'car-2': 'Most of the circuits were already in poor condition, and the little that could be salvaged was reused for the restoration.',
+                'car-3': 'Due to a lack of parts, we could only restore 1 of the 2 turnstiles, but the second one is in storage awaiting future restoration and operation.',
+                'car-4': 'One of the first interfaces we had for controlling the turnstile, laying the foundation for what is now the current control system.',
+                'car-5': 'One of the intermediate interfaces, which already had the general idea of operation and was closer to the final product.',
+                'car-6': 'Restoration of the turnstile.',
+                'car-7': 'Circuit review and functional tests, where control system flaws were detected and solved by implementing a new microcontroller and programming.',
+                'car-8': 'Restoration of the turnstile.',
+                'car-9': 'Circuit review and functional tests, where control system flaws were detected and solved by implementing a new microcontroller.',
+                'car-10': 'First functional test of the turnstile, where some bugs were found and fixed for the next test.',
+                'car-11': 'The most recent test, where an entire group entered simultaneously without any inconveniences or errors.',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Resources & <span class="text-gradient">More Info</span>',
+                'rec-desc': 'Explore the source code, technical documentation, and other details of this development.',
+                'git-titulo': 'GitHub Repository',
+                'git-desc': 'Access the main scripts, project structure, and implementation code.',
+                'pdf-titulo': 'Flowcharts',
+                'pdf-desc': 'See how the system makes the appropriate decisions for each case.',
+                'vid-titulo': 'Watch Demo',
+                'vid-desc': 'Play the video of the prototype operating in real time.',
+                'modal-pdf-titulo': '<i class="fa-solid fa-file-pdf text-sky-400"></i> Entry and Exit Flowchart',
+                'modal-pdf-descargar': 'Download'
+            },
+            'ja': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> ホームに戻る',
+                'hero-titulo': '自動 <span class="text-gradient">改札機</span>',
+                'hero-desc': '学校のデータベースと統合されたスマートなアクセス制御。',
+                'arq-titulo': 'システムアーキテクチャ',
+                'arq-desc': 'マイクロコントローラによって制御される電気機械システムを設計しました。改札機は、DAEの資格情報やSAESのスケジュールを読み取ることで学生の身元を確認し、リアルタイムで学校のデータベースに照会して、学生のグループまたは個人的な状況に応じて通行を許可または拒否します。',
+                'ben-titulo': '主な利点',
+                'ben-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> キャンパスのセキュリティ向上。',
+                'ben-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> 自動アクセス制御。',
+                'ben-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> より迅速で秩序ある入場フロー。',
+                'hw-titulo': '<i class="fa-solid fa-microchip text-red-400"></i> 適用ハードウェア',
+                'hw-1': '• ESP32 マイクロコントローラ',
+                'hw-2': '• QRリーダー',
+                'hw-3': '• サーバーおよびデータブリッジとして機能するコンピュータ',
+                'hw-4': '• 通過検証用の誘導センサー',
+                'sw-titulo': '<i class="fa-solid fa-server text-green-400"></i> 適用ソフトウェア',
+                'sw-1': '• 言語: Python、HTML、JavaScript、C、C++ (Arduino)',
+                'sw-2': '• MySQL データベース',
+                'sw-3': '• 管理用ウェブサイト',
+                'car-titulo': '未来へのアクセス',
+                'car-1': '完全に修復される前の改札機の状態です。',
+                'car-2': '回路の大部分はすでに劣化しており、修復のために再利用できたのはごくわずかでした。',
+                'car-3': '部品不足のため、2台のうち1台しか修復できませんでしたが、2台目は保管されており、将来の修復と稼働を待っています。',
+                'car-4': '現在の制御システムの基礎を築いた、改札機制御用の最初のインターフェースの1つ。',
+                'car-5': '操作の一般的なアイデアがすでに組み込まれており、最終製品に近い中間のインターフェースの1つ。',
+                'car-6': '改札機の修復作業。',
+                'car-7': '回路のレビューと機能テスト。制御システムの欠陥が発見され、新しいマイクロコントローラとプログラミングの実装によって解決されました。',
+                'car-8': '改札機の修復作業。',
+                'car-9': '回路のレビューと機能テスト。制御システムの欠陥が発見され、新しいマイクロコントローラの実装によって解決されました。',
+                'car-10': '改札機の最初の機能テスト。いくつかのバグが発見され、次のテストに向けて修正されました。',
+                'car-11': '最新のテスト。グループ全体が同時にスムーズに入場し、問題やエラーは発生しませんでした。',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> リソースと <span class="text-gradient">詳細情報</span>',
+                'rec-desc': 'この開発のソースコード、技術文書、その他の詳細をご覧ください。',
+                'git-titulo': 'GitHub リポジトリ',
+                'git-desc': 'メインスクリプト、プロジェクト構造、実装コードにアクセスできます。',
+                'pdf-titulo': 'フローチャート',
+                'pdf-desc': 'システムがケースごとに適切な決定を下す仕組みをご覧ください。',
+                'vid-titulo': 'デモを見る',
+                'vid-desc': 'リアルタイムで動作するプロトタイプのビデオを再生します。',
+                'modal-pdf-titulo': '<i class="fa-solid fa-file-pdf text-sky-400"></i> 入退出フローチャート',
+                'modal-pdf-descargar': 'ダウンロード'
+            },
+            'fr': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Retour à l\'Accueil',
+                'hero-titulo': 'Tourniquet <span class="text-gradient">Automatisé</span>',
+                'hero-desc': 'Contrôle d\'accès intelligent intégré aux bases de données scolaires.',
+                'arq-titulo': 'Architecture du Système',
+                'arq-desc': 'Nous avons conçu un système électromécanique contrôlé par des microcontrôleurs. Le tourniquet valide l\'identité de l\'étudiant en lisant les identifiants DAE et/ou l\'emploi du temps SAES, en interrogeant la base de données de l\'école en temps réel pour autoriser ou refuser le passage selon la situation de l\'élève.',
+                'ben-titulo': 'Principaux Avantages',
+                'ben-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Plus grande sécurité sur le campus.',
+                'ben-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Contrôle d\'accès automatique.',
+                'ben-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Flux d\'entrée plus rapide et ordonné.',
+                'hw-titulo': '<i class="fa-solid fa-microchip text-red-400"></i> Matériel Appliqué',
+                'hw-1': '• Microcontrôleur ESP32',
+                'hw-2': '• Lecteurs QR',
+                'hw-3': '• Ordinateurs fonctionnant comme serveurs et ponts de données',
+                'hw-4': '• Capteurs inductifs pour la validation du passage',
+                'sw-titulo': '<i class="fa-solid fa-server text-green-400"></i> Logiciels Appliqués',
+                'sw-1': '• Langages : Python, HTML, JavaScript, C et C++ (Arduino)',
+                'sw-2': '• Base de données MySQL',
+                'sw-3': '• Site web administratif',
+                'car-titulo': 'Accéder à l\'Avenir',
+                'car-1': 'Voici l\'état du tourniquet avant sa restauration complète.',
+                'car-2': 'La plupart des circuits étaient déjà en mauvais état, et le peu qui a pu être sauvé a été réutilisé pour la restauration.',
+                'car-3': 'Par manque de pièces, nous n\'avons pu restaurer qu\'un des deux tourniquets, mais le second est en réserve en attente d\'une future restauration.',
+                'car-4': 'L\'une des premières interfaces de contrôle du tourniquet, posant les bases du système de contrôle actuel.',
+                'car-5': 'L\'une des interfaces intermédiaires, intégrant déjà l\'idée générale du fonctionnement et plus proche du produit final.',
+                'car-6': 'Restauration du tourniquet.',
+                'car-7': 'Examen des circuits et tests fonctionnels. Des défauts ont été détectés et résolus par l\'implémentation d\'un nouveau microcontrôleur et programmation.',
+                'car-8': 'Restauration du tourniquet.',
+                'car-9': 'Examen des circuits et tests fonctionnels. Des défauts ont été détectés et résolus par l\'implémentation d\'un nouveau microcontrôleur.',
+                'car-10': 'Premier test fonctionnel. Quelques bugs ont été détectés et corrigés pour le test suivant.',
+                'car-11': 'Le test le plus récent, où un groupe entier est entré simultanément sans aucun problème ni erreur.',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Ressources et <span class="text-gradient">Plus d\'Infos</span>',
+                'rec-desc': 'Explorez le code source, la documentation technique et d\'autres détails de ce développement.',
+                'git-titulo': 'Dépôt GitHub',
+                'git-desc': 'Accédez aux scripts principaux, à la structure du projet et au code d\'implémentation.',
+                'pdf-titulo': 'Organigrammes',
+                'pdf-desc': 'Consultez la manière dont le système prend les décisions appropriées pour chaque cas.',
+                'vid-titulo': 'Voir la Démo',
+                'vid-desc': 'Lisez la vidéo du fonctionnement du prototype en temps réel.',
+                'modal-pdf-titulo': '<i class="fa-solid fa-file-pdf text-sky-400"></i> Organigramme des Entrées et Sorties',
+                'modal-pdf-descargar': 'Télécharger'
+            },
+            'pt': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Voltar ao Início',
+                'hero-titulo': 'Catraca <span class="text-gradient">Automatizada</span>',
+                'hero-desc': 'Controle de acesso inteligente integrado com bancos de dados escolares.',
+                'arq-titulo': 'Arquitetura do Sistema',
+                'arq-desc': 'Projetamos um sistema eletromecânico controlado por microcontroladores. A catraca valida a identidade do estudante lendo as credenciais da DAE e/ou o horário do SAES, consultando o banco de dados da escola em tempo real para autorizar ou negar o acesso dependendo da situação do aluno.',
+                'ben-titulo': 'Principais Benefícios',
+                'ben-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Maior segurança no campus.',
+                'ben-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Controle de acesso automático.',
+                'ben-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Fluxo de entrada mais rápido e ordenado.',
+                'hw-titulo': '<i class="fa-solid fa-microchip text-red-400"></i> Hardware Aplicado',
+                'hw-1': '• Microcontrolador ESP32',
+                'hw-2': '• Leitores QR',
+                'hw-3': '• Computadores funcionando como servidores e pontes de informação',
+                'hw-4': '• Sensores indutivos para validação de cruzamento',
+                'sw-titulo': '<i class="fa-solid fa-server text-green-400"></i> Softwares Aplicados',
+                'sw-1': '• Linguagens: Python, HTML, JavaScript, C e C++ (Arduino)',
+                'sw-2': '• Banco de dados MySQL',
+                'sw-3': '• Site administrativo',
+                'car-titulo': 'Acessando o Futuro',
+                'car-1': 'Este era o estado da catraca antes de sua restauração completa.',
+                'car-2': 'A maioria dos circuitos já estava em más condições, e o pouco que pôde ser salvo foi reutilizado para a restauração.',
+                'car-3': 'Por falta de peças, só conseguimos restaurar 1 das 2 catracas, mas a segunda está guardada aguardando futura restauração e operação.',
+                'car-4': 'Uma das primeiras interfaces que tivemos para controlar a catraca, lançando as bases para o sistema de controle atual.',
+                'car-5': 'Uma das interfaces intermediárias, já com a ideia geral de operação e mais próxima do produto final.',
+                'car-6': 'Restauração da catraca.',
+                'car-7': 'Revisão dos circuitos e testes funcionais, onde falhas no sistema de controle foram detectadas e resolvidas implementando um novo microcontrolador e programação.',
+                'car-8': 'Restauração da catraca.',
+                'car-9': 'Revisão dos circuitos e testes funcionais, onde falhas no sistema de controle foram detectadas e resolvidas implementando um novo microcontrolador.',
+                'car-10': 'Primeiro teste funcional da catraca, onde algumas falhas foram encontradas e corrigidas para o próximo teste.',
+                'car-11': 'O teste mais recente, onde um grupo inteiro entrou simultaneamente sem nenhum inconveniente ou erro.',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos e <span class="text-gradient">Mais Informações</span>',
+                'rec-desc': 'Explore o código-fonte, a documentação técnica e outros detalhes deste desenvolvimento.',
+                'git-titulo': 'Repositório no GitHub',
+                'git-desc': 'Acesse os scripts principais, a estrutura do projeto e o código de implementação.',
+                'pdf-titulo': 'Fluxogramas',
+                'pdf-desc': 'Consulte como o sistema toma as decisões apropriadas para cada caso.',
+                'vid-titulo': 'Ver Demonstração',
+                'vid-desc': 'Reproduza o vídeo do funcionamento do protótipo em tempo real.',
+                'modal-pdf-titulo': '<i class="fa-solid fa-file-pdf text-sky-400"></i> Fluxograma de Entrada e Saída',
+                'modal-pdf-descargar': 'Baixar'
+            }
+        };
 
-    // Iniciar el ciclo cuando cargue la página
-    iniciarAutoPlay();
-</script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnSelectorIdioma = document.getElementById('btn-selector-idioma');
+            const dropdownIdiomas = document.getElementById('dropdown-idiomas');
 
+            if (btnSelectorIdioma && dropdownIdiomas) {
+                btnSelectorIdioma.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    dropdownIdiomas.classList.toggle('opacity-0');
+                    dropdownIdiomas.classList.toggle('invisible');
+                    dropdownIdiomas.classList.toggle('scale-95');
+                });
 
+                document.addEventListener('click', (e) => {
+                    if (!dropdownIdiomas.contains(e.target) && !btnSelectorIdioma.contains(e.target)) {
+                        dropdownIdiomas.classList.add('opacity-0', 'invisible', 'scale-95');
+                    }
+                });
+            }
+
+            const idiomaGuardado = localStorage.getItem('lia-idioma') || 'es';
+            cambiarIdioma(idiomaGuardado);
+        });
+
+        function cambiarIdioma(idioma) {
+            const elementos = document.querySelectorAll('[data-i18n]');
+            
+            elementos.forEach(el => {
+                const clave = el.getAttribute('data-i18n');
+                if (traducciones[idioma] && traducciones[idioma][clave]) {
+                    el.innerHTML = traducciones[idioma][clave]; 
+                }
+            });
+
+            const langLabel = document.getElementById('current-lang-text');
+            if(langLabel) langLabel.textContent = idioma.toUpperCase();
+
+            localStorage.setItem('lia-idioma', idioma);
+
+            const dropdown = document.getElementById('dropdown-idiomas');
+            if(dropdown) {
+                dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            }
+        }
+    </script>
 </body>
 </html>
