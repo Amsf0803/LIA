@@ -450,6 +450,9 @@
         });
 
         function cambiarIdioma(idioma) {
+            // NUEVA LÍNEA: Cambia el idioma oficial del documento HTML
+            document.documentElement.lang = idioma;
+            
             const elementos = document.querySelectorAll('[data-i18n]');
             
             elementos.forEach(el => {

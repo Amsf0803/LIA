@@ -76,9 +76,9 @@
                 <a data-i18n="inico" href="#inicio" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Inicio</a>
                 <a data-i18n="proyectos" href="#proyectos" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Proyectos</a>
                 <a data-i18n="conocenos" href="#conocenos" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Conócenos</a>
-                <a data-i18n="contactanos" href="mailto:08amsf@gmail.com" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-full transition-colors shadow-lg shadow-indigo-500/30 font-semibold">
+                <button data-i18n="contactanos" onclick="abrirModalContacto()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-full transition-colors shadow-lg shadow-indigo-500/30 font-semibold cursor-pointer">
                     Contáctanos
-                </a>
+                </button>
             </div>
 
             <button id="btn-menu" class="md:hidden text-slate-300 hover:text-white focus:outline-none text-2xl transition-transform">
@@ -119,9 +119,9 @@
                 <a data-i18n="inicio" href="#inicio" class="movil-link text-slate-300 hover:text-indigo-400 text-lg font-medium tracking-wide">Inicio</a>
                 <a data-i18n="proyectos" href="#proyectos" class="text-slate-300 hover:text-indigo-400 transition-colors font-medium">Proyectos</a>
                 <a data-i18n="conocenos" href="#conocenos" class="movil-link text-slate-300 hover:text-indigo-400 text-lg font-medium tracking-wide">Conócenos</a>
-                <a data-i18n="contactanos" href="mailto:08amsf@gmail.com" class="movil-link mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-full font-semibold shadow-lg">
+                <button data-i18n="contactanos" onclick="abrirModalContacto()" class="movil-link w-full mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-full font-semibold shadow-lg cursor-pointer">
                     Contáctanos
-                </a>
+                </button>
 
                 <div class="w-full h-px bg-slate-700/50 my-2"></div>
                 <p class="text-slate-400 text-sm font-medium mb-1">Idioma / Language</p>
@@ -176,7 +176,9 @@
                         <i class="fa-solid fa-hands-asl-interpreting"></i>
                     </div>
                     <h4 data-i18n="detector-titulo" class="text-2xl font-bold mb-3 text-white">Detector de LSM</h4>
-                    
+                    <div data-i18n="status-lsm" class="inline-block bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full mb-4 w-max">
+                        Fase de Pruebas
+                    </div>
                     <p data-i18n="detector-desc" class="text-slate-400 leading-relaxed mb-6 flex-grow">
                         Sistema de visión computacional y aprendizaje automático capaz de reconocer e interpretar la Lengua de Señas Mexicana para promover la inclusión.
                     </p>
@@ -195,7 +197,9 @@
                         <i class="fa-solid fa-door-open"></i>
                     </div>
                     <h4 data-i18n="torniquete-titulo" class="text-2xl font-bold mb-3 text-white">Torniquete Automatizado</h4>
-                    
+                    <div data-i18n="status-torni" class="inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full mb-4 w-max">
+                        En implementación
+                    </div>
                     <p data-i18n="torniquete-desc" class="text-slate-400 leading-relaxed mb-6 flex-grow">
                         Sistema de acceso automatizado que integra un torniquete electrónico con componentes de control y programación, permitiendo regular el paso de personas de forma segura y eficiente en entornos educativos o institucionales.
                     </p>
@@ -399,6 +403,9 @@
                         <p data-i18n="reconocimiento-3-descripcion" class="text-slate-400 text-sm leading-relaxed flex-grow">
                             Presentación de carteles científicos sobre el desarrollo de un sistema de reconocimiento de Lengua de Señas Mexicana con IA y un prototipo de torniquete automatizado.
                         </p>
+                        <button onclick="abrirModalCartel()" class="mt-4 text-sm text-yellow-400 hover:text-yellow-300 font-semibold flex items-center gap-2 transition-colors w-max group/btn cursor-pointer">
+                            <span data-i18n="btn-ver-cartel">Ver Cartel</span> <i class="fa-solid fa-expand group-hover/btn:scale-110 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -439,6 +446,115 @@
             </div>
         </div>
     </section>
+
+    <div id="contacto-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        
+        <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalContacto()"></div>
+        
+        <div class="relative w-full max-w-2xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl shadow-indigo-500/20 transform scale-95 transition-transform duration-300 flex flex-col" id="modal-content-contacto">
+            
+            <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+                <h3 data-i18n="contacto-titulo" class="text-white font-bold text-lg flex items-center gap-2">
+                    ¿Te interesa colaborar?
+                </h3>
+                <button onclick="cerrarModalContacto()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="p-6 md:p-8 bg-slate-900/90">
+                <p data-i18n="contacto-desc" class="text-slate-400 mb-6 text-center text-sm">Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.</p>
+                
+                <form id="form-contacto" action="https://formspree.io/f/mlgpnzle" method="POST" class="space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label data-i18n="form-nombre" class="block text-sm font-medium text-slate-300 mb-2">Nombre</label>
+                            <input type="text" name="name" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors">
+                        </div>
+                        <div>
+                            <label data-i18n="form-correo" class="block text-sm font-medium text-slate-300 mb-2">Correo Electrónico</label>
+                            <input type="email" name="email" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label data-i18n="form-mensaje" class="block text-sm font-medium text-slate-300 mb-2">Mensaje</label>
+                        <textarea name="message" rows="4" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors resize-none"></textarea>
+                    </div>
+                    <button id="btn-enviar-form" type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-500/30 transition-all hover:-translate-y-1 cursor-pointer flex justify-center items-center gap-2">
+                        <span data-i18n="form-enviar">Enviar Mensaje</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                    
+                    <p id="form-exito" class="hidden text-emerald-400 text-center text-sm font-medium mt-3">¡Mensaje enviado con éxito!</p>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="cartel-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-slate-900/95 backdrop-blur-md cursor-pointer" onclick="cerrarModalCartel()"></div>
+        
+        <div class="relative w-full max-w-5xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col h-[85vh]" id="modal-content-cartel">
+            
+            <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+                <h3 data-i18n="reconocimiento-3" class="text-white font-bold text-lg flex items-center gap-2">
+                    Carteles Científicos
+                </h3>
+                
+                <div class="flex gap-3">
+                    <a href="/static/docs/Cartel.pdf" download="Cartel_Cientifico_LIA.pdf" class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-download"></i> <span data-i18n="recursos-descargar" class="hidden sm:inline">Descargar</span>
+                    </a>
+                    
+                    <button onclick="cerrarModalCartel()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full bg-slate-200">
+                <iframe id="pdf-viewer-cartel" class="w-full h-full" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JS para el Modal del Cartel
+        const modalCartel = document.getElementById('cartel-modal');
+        const modalContentCartel = document.getElementById('modal-content-cartel');
+
+        function abrirModalCartel() {
+        modalCartel.classList.remove('hidden');
+        modalCartel.classList.add('flex');
+        
+        // Inyectar el PDF solo cuando se abre el modal (evita descargas automáticas)
+        const iframeCartel = document.getElementById('pdf-viewer-cartel');
+        if (iframeCartel && !iframeCartel.src) {
+            // COLOCA AQUÍ LA RUTA REAL DE TU PDF
+            iframeCartel.src = "/static/docs/Cartel.pdf"; 
+        }
+
+        setTimeout(() => {
+            modalCartel.classList.remove('opacity-0');
+            modalContentCartel.classList.remove('scale-95');
+            modalContentCartel.classList.add('scale-100');
+        }, 10);
+    }
+
+        function cerrarModalCartel() {
+            modalCartel.classList.add('opacity-0');
+            modalContentCartel.classList.remove('scale-100');
+            modalContentCartel.classList.add('scale-95');
+            setTimeout(() => {
+                modalCartel.classList.add('hidden');
+                modalCartel.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+
+
 
 <div id="pdf-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
     
@@ -625,280 +741,347 @@
             }, 300);
         }
 
+        // JS para el Modal de Contacto
+        const modalContacto = document.getElementById('contacto-modal');
+        const modalContentContacto = document.getElementById('modal-content-contacto');
 
+        function abrirModalContacto() {
+            modalContacto.classList.remove('hidden');
+            modalContacto.classList.add('flex');
+            setTimeout(() => {
+                modalContacto.classList.remove('opacity-0');
+                modalContentContacto.classList.remove('scale-95');
+                modalContentContacto.classList.add('scale-100');
+            }, 10);
+        }
+
+        function cerrarModalContacto() {
+            modalContacto.classList.add('opacity-0');
+            modalContentContacto.classList.remove('scale-100');
+            modalContentContacto.classList.add('scale-95');
+            setTimeout(() => {
+                modalContacto.classList.add('hidden');
+                modalContacto.classList.remove('flex');
+            }, 300);
+        }
     // Diccionario de traducciones
+    const traducciones = {
+        'es': {
+            // Navegación
+            'inico': 'Inicio',
+            'inicio': 'Inicio',
+            'proyectos': 'Proyectos',
+            'conocenos': 'Conócenos',
+            'contactanos': 'Contáctanos',
+            'ipn': 'Instituto Politécnico Nacional',
+            
+            // Hero
+            'hero-titulo': 'Laboratorio de <br> <span class="text-gradient">Inteligencia Artificial</span>',
+            'hero-desc': 'Investigación, robótica y desarrollo de software aplicado. Transformamos la tecnología en soluciones tangibles para nuestro entorno.',
+            'hero-boton': 'Ver Proyectos <i class="fa-solid fa-arrow-down"></i>',
+            
+            // Proyectos
+            'proyectos-destacados': 'Proyectos Destacados',
+            'detector-titulo': 'Detector de LSM',
+            'detector-desc': 'Sistema de visión computacional y aprendizaje automático capaz de reconocer e interpretar la Lengua de Señas Mexicana para promover la inclusión.',
+            'status-lsm': 'Fase de Pruebas',
+            'concocer-mas': 'Conocer más detalles <i class="fa-solid fa-arrow-right text-sm"></i>',
+            'torniquete-titulo': 'Torniquete Automatizado',
+            'torniquete-desc': 'Sistema de acceso automatizado que integra un torniquete electrónico con componentes de control y programación, permitiendo regular el paso de personas de forma segura y eficiente en entornos educativos o institucionales.',
+            'status-torni': 'Prototipo Funcional',
+            
+            // Conócenos
+            'conocenos-titulo': 'Conoce a <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
+            'conocenos-subtitulo': 'Innovación, tecnología y soluciones inteligentes para el futuro.',
+            'identidad-titulo': 'Nuestra Identidad',
+            'identidad-descripcion': 'En LIA, nos dedicamos a diseñar sistemas tecnológicos y electromecánicos controlados por la última generación de microcontroladores. Nuestro objetivo es transformar problemas complejos en soluciones automatizadas, eficientes y seguras.',
+            'pilares-titulo': 'Nuestros Pilares',
+            'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Innovación constante en hardware y software.',
+            'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Compromiso con la seguridad de nuestros usuarios.',
+            'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Integración fluida con tecnologías IoT.',
+            'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Nuestra Visión',
+            'vision-descripcion': 'Ser líderes en el desarrollo de prototipos y sistemas automatizados, creando un ecosistema donde el hardware y la conectividad trabajen en perfecta armonía.',
+            'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> ¿Por qué elegirnos?',
+            'mision-descripcion': 'Combinamos bases de datos eficientes, dashboards administrativos intuitivos y hardware de alto rendimiento para ofrecer resultados inmediatos y confiables.',
+            'nosotros-titulo': 'Nosotros somos LIA',
+            
+            // Carrusel
+            'carrusel-1': 'Primera generación de LIA',
+            'carrusel-2': 'El laboratorio donde nacen las ideas, se forjan los proyectos y se construye el futuro tecnológico de nuestro entorno educativo',
+            'carrusel-3': 'Somos un equipo de estudiantes apasionados por la tecnología, la innovación y el aprendizaje colaborativo',
+            'carrusel-4': 'Primera sesión para la introducción a la inteligencia artificial, donde compartimos conocimientos, experiencias y el entusiasmo por la tecnología con nuestros compañeros de clase',
+            'carrusel-5': 'Una próxima generación en camino',
+            
+            // Reconocimientos
+            'reconocimientos-titulo': 'Nuestros <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Reconocimientos</span>',
+            'reconocimientos-descripcion': 'Logros y distinciones que respaldan nuestro compromiso con la innovación y el desarrollo tecnológico.',
+            'reconocimientos-etiqueta': 'Ganadores Locales',
+            'reconocimiento-1': 'Hackathon NASA',
+            'reconocimiento-1-descripcion': 'Reconocimiento por el desarrollo de soluciones creativas e innovadoras ante problemáticas globales planteadas directamente por la NASA.',
+            'reconocimiento-2': 'Proyecto más Conciencia',
+            'reconocimiento-2-descripcion': 'Mención especial por la integración de hardware y software en la creación de nuestro sistema de control de accesos automatizados.',
+            'reconocimiento-3': 'Participación en carteles científicos (STEM, CECyT 16 y UPIIH)',
+            'reconocimiento-3-descripcion': 'Presentación de carteles científicos sobre el desarrollo de un sistema de reconocimiento de Lengua de Señas Mexicana con IA y un prototipo de torniquete automatizado.',
+            'btn-ver-cartel': 'Ver Cartel',
 
-const traducciones = {
-    'es': {
-        // Navegación
-        'inico': 'Inicio',
-        'inicio': 'Inicio',
-        'proyectos': 'Proyectos',
-        'conocenos': 'Conócenos',
-        'contactanos': 'Contáctanos',
-        'ipn': 'Instituto Politécnico Nacional',
-        
-        // Hero
-        'hero-titulo': 'Laboratorio de <br> <span class="text-gradient">Inteligencia Artificial</span>',
-        'hero-desc': 'Investigación, robótica y desarrollo de software aplicado. Transformamos la tecnología en soluciones tangibles para nuestro entorno.',
-        'hero-boton': 'Ver Proyectos <i class="fa-solid fa-arrow-down"></i>',
-        // Proyectos
-        'proyectos-destacados': 'Proyectos Destacados',
-        'detector-titulo': 'Detector de LSM',
-        'detector-desc': 'Sistema de visión computacional y aprendizaje automático capaz de reconocer e interpretar la Lengua de Señas Mexicana para promover la inclusión.',
-        'concocer-mas': 'Conocer más detalles <i class="fa-solid fa-arrow-right text-sm"></i>',
-        'torniquete-titulo': 'Torniquete Automatizado',
-        'torniquete-desc': 'Sistema de acceso automatizado que integra un torniquete electrónico con componentes de control y programación, permitiendo regular el paso de personas de forma segura y eficiente en entornos educativos o institucionales.',
-        
-        // Conócenos
-        'conocenos-titulo': 'Conoce a <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
-        'conocenos-subtitulo': 'Innovación, tecnología y soluciones inteligentes para el futuro.',
-        'identidad-titulo': 'Nuestra Identidad',
-        'identidad-descripcion': 'En LIA, nos dedicamos a diseñar sistemas tecnológicos y electromecánicos controlados por la última generación de microcontroladores. Nuestro objetivo es transformar problemas complejos en soluciones automatizadas, eficientes y seguras.',
-        'pilares-titulo': 'Nuestros Pilares',
-        'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Innovación constante en hardware y software.',
-        'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Compromiso con la seguridad de nuestros usuarios.',
-        'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Integración fluida con tecnologías IoT.',
-        'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Nuestra Visión',
-        'vision-descripcion': 'Ser líderes en el desarrollo de prototipos y sistemas automatizados, creando un ecosistema donde el hardware y la conectividad trabajen en perfecta armonía.',
-        'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> ¿Por qué elegirnos?',
-        'mision-descripcion': 'Combinamos bases de datos eficientes, dashboards administrativos intuitivos y hardware de alto rendimiento para ofrecer resultados inmediatos y confiables.',
-        'nosotros-titulo': 'Nosotros somos LIA',
-        
-        // Carrusel
-        'carrusel-1': 'Primera generación de LIA',
-        'carrusel-2': 'El laboratorio donde nacen las ideas, se forjan los proyectos y se construye el futuro tecnológico de nuestro entorno educativo',
-        'carrusel-3': 'Somos un equipo de estudiantes apasionados por la tecnología, la innovación y el aprendizaje colaborativo',
-        'carrusel-4': 'Primera sesión para la introducción a la inteligencia artificial, donde compartimos conocimientos, experiencias y el entusiasmo por la tecnología con nuestros compañeros de clase',
-        'carrusel-5': 'Una próxima generación en camino',
-        
-        // Reconocimientos
-        'reconocimientos-titulo': 'Nuestros <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Reconocimientos</span>',
-        'reconocimientos-descripcion': 'Logros y distinciones que respaldan nuestro compromiso con la innovación y el desarrollo tecnológico.',
-        'reconocimientos-etiqueta': 'Ganadores Locales',
-        'reconocimiento-1': 'Hackathon NASA',
-        'reconocimiento-1-descripcion': 'Reconocimiento por el desarrollo de soluciones creativas e innovadoras ante problemáticas globales planteadas directamente por la NASA.',
-        'reconocimiento-2': 'Proyecto más Conciencia',
-        'reconocimiento-2-descripcion': 'Mención especial por la integración de hardware y software en la creación de nuestro sistema de control de accesos automatizados.',
-        'reconocimiento-3': 'Participación en carteles científicos (STEM, CECyT 16 y UPIIH)',
-        'reconocimiento-3-descripcion': 'Presentación de carteles científicos sobre el desarrollo de un sistema de reconocimiento de Lengua de Señas Mexicana con IA y un prototipo de torniquete automatizado.',
-        
-        // Recursos
-        'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos y <span class="text-gradient">Más Información</span>',
-        'recursos-descripcion': 'Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.',
-        'recursos-repositorio': 'Repositorio en GitHub',
-        'recursos-repositorio-descripcion': 'Accede a los scripts principales, estructura de los proyectos y códigos de todos nuestros proyectos.',
-        'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Nuestra Organización',
-        'recursos-organizacion-descripcion': 'Consulta cómo estamos organizados en LIA.',
-        'recursos-descargar': 'Descargar'
-    },
-    'en': {
-        'inico': 'Home',
-        'inicio': 'Home',
-        'proyectos': 'Projects',
-        'conocenos': 'About Us',
-        'contactanos': 'Contact Us',
-        'ipn': 'National Polytechnic Institute',
-        'hero-titulo': 'Artificial Intelligence <br> <span class="text-gradient">Laboratory</span>',
-        'hero-desc': 'Research, robotics, and applied software development. We transform technology into tangible solutions for our environment.',
-        'hero-boton': 'View Projects <i class="fa-solid fa-arrow-down"></i>',
-        'proyectos-destacados': 'Featured Projects',
-        'detector-titulo': 'MSL Detector',
-        'detector-desc': 'Computer vision and machine learning system capable of recognizing and interpreting Mexican Sign Language to promote inclusion.',
-        'concocer-mas': 'Learn more details <i class="fa-solid fa-arrow-right text-sm"></i>',
-        'torniquete-titulo': 'Automated Turnstile',
-        'torniquete-desc': 'Automated access system integrating an electronic turnstile with control programming, allowing safe and efficient transit regulation in educational environments.',
-        'conocenos-titulo': 'Meet <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
-        'conocenos-subtitulo': 'Innovation, technology, and smart solutions for the future.',
-        'identidad-titulo': 'Our Identity',
-        'identidad-descripcion': 'At LIA, we design technological and electromechanical systems controlled by the latest generation of microcontrollers. Our goal is to transform complex problems into automated, efficient, and safe solutions.',
-        'pilares-titulo': 'Our Pillars',
-        'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Constant innovation in hardware and software.',
-        'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Commitment to our users\' safety.',
-        'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Seamless integration with IoT technologies.',
-        'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Our Vision',
-        'vision-descripcion': 'To be leaders in developing prototypes and automated systems, creating an ecosystem where hardware and connectivity work in perfect harmony.',
-        'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> Why choose us?',
-        'mision-descripcion': 'We combine efficient databases, intuitive administrative dashboards, and high-performance hardware to offer immediate and reliable results.',
-        'nosotros-titulo': 'We are LIA',
-        'carrusel-1': 'LIA\'s First Generation',
-        'carrusel-2': 'The laboratory where ideas are born, projects are forged, and the technological future of our educational environment is built.',
-        'carrusel-3': 'We are a team of students passionate about technology, innovation, and collaborative learning.',
-        'carrusel-4': 'First session for the introduction to artificial intelligence, sharing knowledge, experiences, and enthusiasm for technology with our classmates.',
-        'carrusel-5': 'A next generation on the way',
-        'reconocimientos-titulo': 'Our <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Awards</span>',
-        'reconocimientos-descripcion': 'Achievements and distinctions that support our commitment to innovation and technological development.',
-        'reconocimientos-etiqueta': 'Local Winners',
-        'reconocimiento-1': 'NASA Hackathon',
-        'reconocimiento-1-descripcion': 'Recognition for developing creative and innovative solutions to global problems directly posed by NASA.',
-        'reconocimiento-2': 'Most Aware Project',
-        'reconocimiento-2-descripcion': 'Participation in the Más Conciencia project, focused on science outreach through interviews with outstanding students and researchers.',
-        'reconocimiento-3': 'Scientific Poster Participation (STEM, CECyT 16 & UPIIH)',
-        'reconocimiento-3-descripcion': 'Presentation of scientific posters on the development of an AI-powered Mexican Sign Language recognition system and an automated turnstile prototype.',
-        'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Resources & <span class="text-gradient">More Info</span>',
-        'recursos-descripcion': 'Explore the source code, technical documentation, and other details of this development.',
-        'recursos-repositorio': 'GitHub Repository',
-        'recursos-repositorio-descripcion': 'Access the main scripts, project structures, and code for all our developments.',
-        'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Our Organization',
-        'recursos-organizacion-descripcion': 'Check out how we are organized at LIA.',
-        'recursos-descargar': 'Download'
-    },
-    'ja': {
-        'inico': 'ホーム',
-        'inicio': 'ホーム',
-        'proyectos': 'プロジェクト',
-        'conocenos': '私たちについて',
-        'contactanos': 'お問い合わせ',
-        'ipn': '国立工科大学',
-        'hero-titulo': '人工知能 <br> <span class="text-gradient">研究所</span>',
-        'hero-desc': '研究、ロボティクス、応用ソフトウェア開発。私たちはテクノロジーを環境のための具体的なソリューションに変換します。',
-        'hero-boton': 'プロジェクトを見る <i class="fa-solid fa-arrow-down"></i>',
-        'proyectos-destacados': '注目のプロジェクト',
-        'detector-titulo': 'メキシコ手話検出器',
-        'detector-desc': 'インクルージョンを促進するために、メキシコ手話を認識・通訳できるコンピュータビジョンと機械学習システム。',
-        'concocer-mas': '詳細を見る <i class="fa-solid fa-arrow-right text-sm"></i>',
-        'torniquete-titulo': '自動改札機',
-        'torniquete-desc': '電子改札機と制御コンポーネントを統合し、教育環境における人の通行を安全かつ効率的に規制する自動アクセスシステム。',
-        'conocenos-titulo': '<span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span> について',
-        'conocenos-subtitulo': '未来のためのイノベーション、テクノロジー、スマートなソリューション。',
-        'identidad-titulo': '私たちのアイデンティティ',
-        'identidad-descripcion': 'LIAでは、最新世代のマイクロコントローラによって制御される技術的および電気機械システムを設計しています。私たちの目標は、複雑な問題を自動化された効率的で安全なソリューションに変えることです。',
-        'pilares-titulo': '私たちの柱',
-        'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> ハードウェアとソフトウェアの絶え間ない革新。',
-        'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> ユーザーの安全への取り組み。',
-        'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> IoTテクノロジーとのシームレスな統合。',
-        'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> 私たちのビジョン',
-        'vision-descripcion': 'プロトタイプと自動化システムの開発におけるリーダーとなり、ハードウェアと接続性が完全に調和して機能するエコシステムを構築すること。',
-        'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> なぜ私たちを選ぶのか？',
-        'mision-descripcion': '効率的なデータベース、直感的な管理ダッシュボード、高性能ハードウェアを組み合わせて、即時かつ信頼性の高い結果を提供します。',
-        'nosotros-titulo': '私たちがLIAです',
-        'carrusel-1': 'LIAの第一期生',
-        'carrusel-2': 'アイデアが生まれ、プロジェクトが築かれ、教育環境の技術的な未来が構築される実験室。',
-        'carrusel-3': '私たちは、テクノロジー、イノベーション、協調学習に情熱を注ぐ学生チームです。',
-        'carrusel-4': '人工知能入門の最初のセッションで、クラスメートと知識、経験、テクノロジーへの熱意を共有しました。',
-        'carrusel-5': '次世代が間もなく登場',
-        'reconocimientos-titulo': '私たちの <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">受賞歴</span>',
-        'reconocimientos-descripcion': 'イノベーションと技術開発への取り組みを裏付ける実績と受賞歴。',
-        'reconocimientos-etiqueta': '地域優勝者',
-        'reconocimiento-1': 'NASA ハッカソン',
-        'reconocimiento-1-descripcion': 'NASAが直接提起した世界的な問題に対し、創造的で革新的な解決策を開発したことが評価されました。',
-        'reconocimiento-2': '意識向上プロジェクト',
-        'reconocimiento-2-descripcion': '優れた学生や研究者へのインタビューを通じて科学の普及を目的とした「Más Conciencia」プロジェクトへの参加。',
-        'reconocimiento-3': '科学ポスターへの参加 (STEM, CECyT 16 および UPIIH)',
-        'reconocimiento-3-descripcion': 'AIを活用したメキシコ手話認識システムと自動改札機のプロトタイプ開発に関する科学ポスターの発表。',
-        'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> リソースと <span class="text-gradient">詳細情報</span>',
-        'recursos-descripcion': 'この開発のソースコード、技術文書、その他の詳細をご覧ください。',
-        'recursos-repositorio': 'GitHub リポジトリ',
-        'recursos-repositorio-descripcion': 'すべてのプロジェクトのメインスクリプト、構造、コードにアクセスできます。',
-        'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> 私たちの組織',
-        'recursos-organizacion-descripcion': 'LIAの組織構成をご覧ください。',
-        'recursos-descargar': 'ダウンロード'
-    },
-    'fr': {
-        'inico': 'Accueil',
-        'inicio': 'Accueil',
-        'proyectos': 'Projets',
-        'conocenos': 'À Propos',
-        'contactanos': 'Contactez-nous',
-        'ipn': 'Institut Polytechnique National',
-        'hero-titulo': 'Laboratoire d\' <br> <span class="text-gradient">Intelligence Artificielle</span>',
-        'hero-desc': 'Recherche, robotique et développement de logiciels appliqués. Nous transformons la technologie en solutions tangibles pour notre environnement.',
-        'hero-boton': 'Voir les Projets <i class="fa-solid fa-arrow-down"></i>',
-        'proyectos-destacados': 'Projets en Vedette',
-        'detector-titulo': 'Détecteur de LSM',
-        'detector-desc': 'Système de vision par ordinateur et d\'apprentissage automatique capable de reconnaître et d\'interpréter la langue des signes mexicaine pour promouvoir l\'inclusion.',
-        'concocer-mas': 'En savoir plus <i class="fa-solid fa-arrow-right text-sm"></i>',
-        'torniquete-titulo': 'Tourniquet Automatisé',
-        'torniquete-desc': 'Système d\'accès automatisé intégrant un tourniquet électronique avec des composants de contrôle, permettant de réguler le passage de manière sûre dans les environnements éducatifs.',
-        'conocenos-titulo': 'Découvrez <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
-        'conocenos-subtitulo': 'Innovation, technologie et solutions intelligentes pour l\'avenir.',
-        'identidad-titulo': 'Notre Identité',
-        'identidad-descripcion': 'Chez LIA, nous concevons des systèmes technologiques et électromécaniques contrôlés par la dernière génération de microcontrôleurs. Notre objectif est de transformer des problèmes complexes en solutions automatisées, efficaces et sûres.',
-        'pilares-titulo': 'Nos Piliers',
-        'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Innovation constante en matériel et logiciel.',
-        'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Engagement envers la sécurité de nos utilisateurs.',
-        'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Intégration fluide avec les technologies IoT.',
-        'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Notre Vision',
-        'vision-descripcion': 'Être des leaders dans le développement de prototypes et de systèmes automatisés, créant un écosystème où le matériel et la connectivité fonctionnent en parfaite harmonie.',
-        'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> Pourquoi nous choisir ?',
-        'mision-descripcion': 'Nous combinons des bases de données efficaces, des tableaux de bord administratifs intuitifs et un matériel performant pour offrir des résultats immédiats et fiables.',
-        'nosotros-titulo': 'Nous sommes LIA',
-        'carrusel-1': 'Première génération de LIA',
-        'carrusel-2': 'Le laboratoire où naissent les idées, se forgent les projets et se construit l\'avenir technologique de notre environnement éducatif.',
-        'carrusel-3': 'Nous sommes une équipe d\'étudiants passionnés par la technologie, l\'innovation et l\'apprentissage collaboratif.',
-        'carrusel-4': 'Première session d\'introduction à l\'intelligence artificielle, partageant nos connaissances, nos expériences et notre enthousiasme pour la technologie avec nos camarades de classe.',
-        'carrusel-5': 'Une prochaine génération en route',
-        'reconocimientos-titulo': 'Nos <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Prix</span>',
-        'reconocimientos-descripcion': 'Réalisations et distinctions qui soutiennent notre engagement envers l\'innovation et le développement technologique.',
-        'reconocimientos-etiqueta': 'Gagnants Locaux',
-        'reconocimiento-1': 'Hackathon NASA',
-        'reconocimiento-1-descripcion': 'Reconnaissance pour le développement de solutions créatives et innovantes aux problèmes mondiaux directement posés par la NASA.',
-        'reconocimiento-2': 'Projet plus de Conscience',
-        'reconocimiento-2-descripcion': 'Participation au projet Más Conciencia, axé sur la diffusion scientifique à travers des entretiens avec des étudiants et des chercheurs remarquables.',
-        'reconocimiento-3': 'Participation aux affiches scientifiques (STEM, CECyT 16 & UPIIH)',
-        'reconocimiento-3-descripcion': 'Présentation d\'affiches scientifiques sur le développement d\'un système de reconnaissance de la langue des signes mexicaine avec l\'IA et d\'un prototype de tourniquet automatisé.',
-        'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Ressources et <span class="text-gradient">Plus d\'Infos</span>',
-        'recursos-descripcion': 'Explorez le code source, la documentation technique et d\'autres détails de ce développement.',
-        'recursos-repositorio': 'Dépôt GitHub',
-        'recursos-repositorio-descripcion': 'Accédez aux scripts principaux, à la structure des projets et au code de tous nos développements.',
-        'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Notre Organisation',
-        'recursos-organizacion-descripcion': 'Découvrez comment nous sommes organisés chez LIA.',
-        'recursos-descargar': 'Télécharger'
-    },
-    'pt': {
-        'inico': 'Início',
-        'inicio': 'Início',
-        'proyectos': 'Projetos',
-        'conocenos': 'Sobre Nós',
-        'contactanos': 'Contate-nos',
-        'ipn': 'Instituto Politécnico Nacional',
-        'hero-titulo': 'Laboratório de <br> <span class="text-gradient">Inteligência Artificial</span>',
-        'hero-desc': 'Pesquisa, robótica e desenvolvimento de software aplicado. Transformamos a tecnologia em soluções tangíveis para o nosso ambiente.',
-        'hero-boton': 'Ver Projetos <i class="fa-solid fa-arrow-down"></i>',
-        'proyectos-destacados': 'Projetos em Destaque',
-        'detector-titulo': 'Detector de LSM',
-        'detector-desc': 'Sistema de visão computacional e aprendizado de máquina capaz de reconhecer e interpretar a Língua de Sinais Mexicana para promover a inclusão.',
-        'concocer-mas': 'Saber mais detalhes <i class="fa-solid fa-arrow-right text-sm"></i>',
-        'torniquete-titulo': 'Catraca Automatizada',
-        'torniquete-desc': 'Sistema de acesso automatizado que integra uma catraca eletrônica com componentes de controle, permitindo regular a passagem de forma segura e eficiente.',
-        'conocenos-titulo': 'Conheça o <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
-        'conocenos-subtitulo': 'Inovação, tecnologia e soluções inteligentes para o futuro.',
-        'identidad-titulo': 'Nossa Identidade',
-        'identidad-descripcion': 'No LIA, dedicamo-nos a projetar sistemas tecnológicos e eletromecânicos controlados pela última geração de microcontroladores. Nosso objetivo é transformar problemas complexos em soluções automatizadas, eficientes e seguras.',
-        'pilares-titulo': 'Nossos Pilares',
-        'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Inovação constante em hardware e software.',
-        'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Compromisso com a segurança de nossos usuários.',
-        'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Integração fluida com tecnologias IoT.',
-        'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Nossa Visão',
-        'vision-descripcion': 'Ser líderes no desenvolvimento de protótipos e sistemas automatizados, criando um ecossistema onde o hardware e a conectividade trabalhem em perfeita harmonia.',
-        'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> Por que nos escolher?',
-        'mision-descripcion': 'Combinamos bancos de dados eficientes, dashboards administrativos intuitivos e hardware de alto desempenho para oferecer resultados imediatos e confiáveis.',
-        'nosotros-titulo': 'Nós somos LIA',
-        'carrusel-1': 'Primeira geração do LIA',
-        'carrusel-2': 'O laboratório onde nascem as ideias, forjam-se os projetos e constrói-se o futuro tecnológico do nosso ambiente educacional.',
-        'carrusel-3': 'Somos uma equipe de estudantes apaixonados por tecnologia, inovação e aprendizado colaborativo.',
-        'carrusel-4': 'Primeira sessão de introdução à inteligência artificial, onde compartilhamos conhecimentos, experiências e entusiasmo pela tecnologia com nossos colegas.',
-        'carrusel-5': 'Uma próxima geração a caminho',
-        'reconocimientos-titulo': 'Nossos <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Reconhecimentos</span>',
-        'reconocimientos-descripcion': 'Conquistas e distinções que apoiam nosso compromisso com a inovação e o desenvolvimento tecnológico.',
-        'reconocimientos-etiqueta': 'Vencedores Locais',
-        'reconocimiento-1': 'Hackathon NASA',
-        'reconocimiento-1-descripcion': 'Reconhecimento pelo desenvolvimento de soluções criativas e inovadoras para problemas globais propostos diretamente pela NASA.',
-        'reconocimiento-2': 'Projeto Mais Consciência',
-        'reconocimiento-2-descripcion': 'Participação no projeto Más Consciência, focado na divulgação científica por meio de entrevistas com estudantes e pesquisadores de destaque.',
-        'reconocimiento-3': 'Participação em pôsteres científicos (STEM, CECyT 16 e UPIIH)',
-        'reconocimiento-3-descripcion': 'Apresentação de pôsteres científicos sobre o desenvolvimento de um sistema de reconhecimento da Língua de Sinais Mexicana com IA e um protótipo de catraca automatizada.',
-        'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos e <span class="text-gradient">Mais Informações</span>',
-        'recursos-descripcion': 'Explore o código-fonte, a documentação técnica e outros detalhes deste desenvolvimento.',
-        'recursos-repositorio': 'Repositório no GitHub',
-        'recursos-repositorio-descripcion': 'Acesse os scripts principais, a estrutura dos projetos e os códigos de todos os nossos projetos.',
-        'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Nossa Organização',
-        'recursos-organizacion-descripcion': 'Consulte como estamos organizados no LIA.',
-        'recursos-descargar': 'Baixar'
-    }
-};
-
-
+            // Formulario Modal de Contacto
+            'contacto-titulo': '¿Te interesa colaborar?',
+            'contacto-desc': 'Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.',
+            'form-nombre': 'Nombre',
+            'form-correo': 'Correo Electrónico',
+            'form-mensaje': 'Mensaje',
+            'form-enviar': 'Enviar Mensaje',
+            
+            // Recursos
+            'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos y <span class="text-gradient">Más Información</span>',
+            'recursos-descripcion': 'Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.',
+            'recursos-repositorio': 'Repositorio en GitHub',
+            'recursos-repositorio-descripcion': 'Accede a los scripts principales, estructura de los proyectos y códigos de todos nuestros proyectos.',
+            'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Nuestra Organización',
+            'recursos-organizacion-descripcion': 'Consulta cómo estamos organizados en LIA.',
+            'recursos-descargar': 'Descargar'
+        },
+        'en': {
+            'inico': 'Home',
+            'inicio': 'Home',
+            'proyectos': 'Projects',
+            'conocenos': 'About Us',
+            'contactanos': 'Contact Us',
+            'ipn': 'National Polytechnic Institute',
+            'hero-titulo': 'Artificial Intelligence <br> <span class="text-gradient">Laboratory</span>',
+            'hero-desc': 'Research, robotics, and applied software development. We transform technology into tangible solutions for our environment.',
+            'hero-boton': 'View Projects <i class="fa-solid fa-arrow-down"></i>',
+            'proyectos-destacados': 'Featured Projects',
+            'detector-titulo': 'MSL Detector',
+            'detector-desc': 'Computer vision and machine learning system capable of recognizing and interpreting Mexican Sign Language to promote inclusion.',
+            'status-lsm': 'Testing Phase',
+            'concocer-mas': 'Learn more details <i class="fa-solid fa-arrow-right text-sm"></i>',
+            'torniquete-titulo': 'Automated Turnstile',
+            'torniquete-desc': 'Automated access system integrating an electronic turnstile with control programming, allowing safe and efficient transit regulation in educational environments.',
+            'status-torni': 'Functional Prototype',
+            'conocenos-titulo': 'Meet <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
+            'conocenos-subtitulo': 'Innovation, technology, and smart solutions for the future.',
+            'identidad-titulo': 'Our Identity',
+            'identidad-descripcion': 'At LIA, we design technological and electromechanical systems controlled by the latest generation of microcontrollers. Our goal is to transform complex problems into automated, efficient, and safe solutions.',
+            'pilares-titulo': 'Our Pillars',
+            'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Constant innovation in hardware and software.',
+            'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Commitment to our users\' safety.',
+            'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Seamless integration with IoT technologies.',
+            'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Our Vision',
+            'vision-descripcion': 'To be leaders in developing prototypes and automated systems, creating an ecosystem where hardware and connectivity work in perfect harmony.',
+            'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> Why choose us?',
+            'mision-descripcion': 'We combine efficient databases, intuitive administrative dashboards, and high-performance hardware to offer immediate and reliable results.',
+            'nosotros-titulo': 'We are LIA',
+            'carrusel-1': 'LIA\'s First Generation',
+            'carrusel-2': 'The laboratory where ideas are born, projects are forged, and the technological future of our educational environment is built.',
+            'carrusel-3': 'We are a team of students passionate about technology, innovation, and collaborative learning.',
+            'carrusel-4': 'First session for the introduction to artificial intelligence, sharing knowledge, experiences, and enthusiasm for technology with our classmates.',
+            'carrusel-5': 'A next generation on the way',
+            'reconocimientos-titulo': 'Our <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Awards</span>',
+            'reconocimientos-descripcion': 'Achievements and distinctions that support our commitment to innovation and technological development.',
+            'reconocimientos-etiqueta': 'Local Winners',
+            'reconocimiento-1': 'NASA Hackathon',
+            'reconocimiento-1-descripcion': 'Recognition for developing creative and innovative solutions to global problems directly posed by NASA.',
+            'reconocimiento-2': 'Most Aware Project',
+            'reconocimiento-2-descripcion': 'Participation in the Más Conciencia project, focused on science outreach through interviews with outstanding students and researchers.',
+            'reconocimiento-3': 'Scientific Poster Participation (STEM, CECyT 16 & UPIIH)',
+            'reconocimiento-3-descripcion': 'Presentation of scientific posters on the development of an AI-powered Mexican Sign Language recognition system and an automated turnstile prototype.',
+            'btn-ver-cartel': 'View Poster',
+            'contacto-titulo': 'Interested in collaborating?',
+            'contacto-desc': 'Send us a message and we will get back to you as soon as possible.',
+            'form-nombre': 'Name',
+            'form-correo': 'Email',
+            'form-mensaje': 'Message',
+            'form-enviar': 'Send Message',
+            'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Resources & <span class="text-gradient">More Info</span>',
+            'recursos-descripcion': 'Explore the source code, technical documentation, and other details of this development.',
+            'recursos-repositorio': 'GitHub Repository',
+            'recursos-repositorio-descripcion': 'Access the main scripts, project structures, and code for all our developments.',
+            'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Our Organization',
+            'recursos-organizacion-descripcion': 'Check out how we are organized at LIA.',
+            'recursos-descargar': 'Download'
+        },
+        'ja': {
+            'inico': 'ホーム',
+            'inicio': 'ホーム',
+            'proyectos': 'プロジェクト',
+            'conocenos': '私たちについて',
+            'contactanos': 'お問い合わせ',
+            'ipn': '国立工科大学',
+            'hero-titulo': '人工知能 <br> <span class="text-gradient">研究所</span>',
+            'hero-desc': '研究、ロボティクス、応用ソフトウェア開発。私たちはテクノロジーを環境のための具体的なソリューションに変換します。',
+            'hero-boton': 'プロジェクトを見る <i class="fa-solid fa-arrow-down"></i>',
+            'proyectos-destacados': '注目のプロジェクト',
+            'detector-titulo': 'メキシコ手話検出器',
+            'detector-desc': 'インクルージョンを促進するために、メキシコ手話を認識・通訳できるコンピュータビジョンと機械学習システム。',
+            'status-lsm': 'テスト段階',
+            'concocer-mas': '詳細を見る <i class="fa-solid fa-arrow-right text-sm"></i>',
+            'torniquete-titulo': '自動改札機',
+            'torniquete-desc': '電子改札機と制御コンポーネントを統合し、教育環境における人の通行を安全かつ効率的に規制する自動アクセスシステム。',
+            'status-torni': '機能プロトタイプ',
+            'conocenos-titulo': '<span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span> について',
+            'conocenos-subtitulo': '未来のためのイノベーション、テクノロジー、スマートなソリューション。',
+            'identidad-titulo': '私たちのアイデンティティ',
+            'identidad-descripcion': 'LIAでは、最新世代のマイクロコントローラによって制御される技術的および電気機械システムを設計しています。私たちの目標は、複雑な問題を自動化された効率的で安全なソリューションに変えることです。',
+            'pilares-titulo': '私たちの柱',
+            'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> ハードウェアとソフトウェアの絶え間ない革新。',
+            'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> ユーザーの安全への取り組み。',
+            'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> IoTテクノロジーとのシームレスな統合。',
+            'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> 私たちのビジョン',
+            'vision-descripcion': 'プロトタイプと自動化システムの開発におけるリーダーとなり、ハードウェアと接続性が完全に調和して機能するエコシステムを構築すること。',
+            'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> なぜ私たちを選ぶのか？',
+            'mision-descripcion': '効率的なデータベース、直感的な管理ダッシュボード、高性能ハードウェアを組み合わせて、即時かつ信頼性の高い結果を提供します。',
+            'nosotros-titulo': '私たちがLIAです',
+            'carrusel-1': 'LIAの第一期生',
+            'carrusel-2': 'アイデアが生まれ、プロジェクトが築かれ、教育環境の技術的な未来が構築される実験室。',
+            'carrusel-3': '私たちは、テクノロジー、イノベーション、協調学習に情熱を注ぐ学生チームです。',
+            'carrusel-4': '人工知能入門の最初のセッションで、クラスメートと知識、経験、テクノロジーへの熱意を共有しました。',
+            'carrusel-5': '次世代が間もなく登場',
+            'reconocimientos-titulo': '私たちの <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">受賞歴</span>',
+            'reconocimientos-descripcion': 'イノベーションと技術開発への取り組みを裏付ける実績と受賞歴。',
+            'reconocimientos-etiqueta': '地域優勝者',
+            'reconocimiento-1': 'NASA ハッカソン',
+            'reconocimiento-1-descripcion': 'NASAが直接提起した世界的な問題に対し、創造的で革新的な解決策を開発したことが評価されました。',
+            'reconocimiento-2': '意識向上プロジェクト',
+            'reconocimiento-2-descripcion': '優れた学生や研究者へのインタビューを通じて科学の普及を目的とした「Más Conciencia」プロジェクトへの参加。',
+            'reconocimiento-3': '科学ポスターへの参加 (STEM, CECyT 16 および UPIIH)',
+            'reconocimiento-3-descripcion': 'AIを活用したメキシコ手話認識システムと自動改札機のプロトタイプ開発に関する科学ポスターの発表。',
+            'btn-ver-cartel': 'ポスターを見る',
+            'contacto-titulo': 'コラボレーションにご興味がありますか？',
+            'contacto-desc': 'メッセージをお送りください。できるだけ早くご連絡いたします。',
+            'form-nombre': '名前',
+            'form-correo': 'メールアドレス',
+            'form-mensaje': 'メッセージ',
+            'form-enviar': 'メッセージを送信',
+            'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> リソースと <span class="text-gradient">詳細情報</span>',
+            'recursos-descripcion': 'この開発のソースコード、技術文書、その他の詳細をご覧ください。',
+            'recursos-repositorio': 'GitHub リポジトリ',
+            'recursos-repositorio-descripcion': 'すべてのプロジェクトのメインスクリプト、構造、コードにアクセスできます。',
+            'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> 私たちの組織',
+            'recursos-organizacion-descripcion': 'LIAの組織構成をご覧ください。',
+            'recursos-descargar': 'ダウンロード'
+        },
+        'fr': {
+            'inico': 'Accueil',
+            'inicio': 'Accueil',
+            'proyectos': 'Projets',
+            'conocenos': 'À Propos',
+            'contactanos': 'Contactez-nous',
+            'ipn': 'Institut Polytechnique National',
+            'hero-titulo': 'Laboratoire d\' <br> <span class="text-gradient">Intelligence Artificielle</span>',
+            'hero-desc': 'Recherche, robotique et développement de logiciels appliqués. Nous transformons la technologie en solutions tangibles pour notre environnement.',
+            'hero-boton': 'Voir les Projets <i class="fa-solid fa-arrow-down"></i>',
+            'proyectos-destacados': 'Projets en Vedette',
+            'detector-titulo': 'Détecteur de LSM',
+            'detector-desc': 'Système de vision par ordinateur et d\'apprentissage automatique capable de reconnaître et d\'interpréter la langue des signes mexicaine pour promouvoir l\'inclusion.',
+            'status-lsm': 'Phase de Test',
+            'concocer-mas': 'En savoir plus <i class="fa-solid fa-arrow-right text-sm"></i>',
+            'torniquete-titulo': 'Tourniquet Automatisé',
+            'torniquete-desc': 'Système d\'accès automatisé intégrant un tourniquet électronique avec des composants de contrôle, permettant de réguler le passage de manière sûre dans les environnements éducatifs.',
+            'status-torni': 'Prototype Fonctionnel',
+            'conocenos-titulo': 'Découvrez <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
+            'conocenos-subtitulo': 'Innovation, technologie et solutions intelligentes pour l\'avenir.',
+            'identidad-titulo': 'Notre Identité',
+            'identidad-descripcion': 'Chez LIA, nous concevons des systèmes technologiques et électromécaniques contrôlés par la dernière génération de microcontrôleurs. Notre objectif est de transformer des problèmes complexes en solutions automatisées, efficaces et sûres.',
+            'pilares-titulo': 'Nos Piliers',
+            'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Innovation constante en matériel et logiciel.',
+            'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Engagement envers la sécurité de nos utilisateurs.',
+            'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Intégration fluide avec les technologies IoT.',
+            'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Notre Vision',
+            'vision-descripcion': 'Être des leaders dans le développement de prototypes et de systèmes automatisés, créant un écosystème où le matériel et la connectivité fonctionnent en parfaite harmonie.',
+            'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> Pourquoi nous choisir ?',
+            'mision-descripcion': 'Nous combinons des bases de données efficaces, des tableaux de bord administratifs intuitifs et un matériel performant pour offrir des résultats immédiats et fiables.',
+            'nosotros-titulo': 'Nous sommes LIA',
+            'carrusel-1': 'Première génération de LIA',
+            'carrusel-2': 'Le laboratoire où naissent les idées, se forgent les projets et se construit l\'avenir technologique de notre environnement éducatif.',
+            'carrusel-3': 'Nous sommes une équipe d\'étudiants passionnés par la technologie, l\'innovation et l\'apprentissage collaboratif.',
+            'carrusel-4': 'Première session d\'introduction à l\'intelligence artificielle, partageant nos connaissances, nos expériences et notre enthousiasme pour la technologie avec nos camarades de classe.',
+            'carrusel-5': 'Une prochaine génération en route',
+            'reconocimientos-titulo': 'Nos <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Prix</span>',
+            'reconocimientos-descripcion': 'Réalisations et distinctions qui soutiennent notre engagement envers l\'innovation et le développement technologique.',
+            'reconocimientos-etiqueta': 'Gagnants Locaux',
+            'reconocimiento-1': 'Hackathon NASA',
+            'reconocimiento-1-descripcion': 'Reconnaissance pour le développement de solutions créatives et innovantes aux problèmes mondiaux directement posés par la NASA.',
+            'reconocimiento-2': 'Projet plus de Conscience',
+            'reconocimiento-2-descripcion': 'Participation au projet Más Conciencia, axé sur la diffusion scientifique à travers des entretiens avec des étudiants et des chercheurs remarquables.',
+            'reconocimiento-3': 'Participation aux affiches scientifiques (STEM, CECyT 16 & UPIIH)',
+            'reconocimiento-3-descripcion': 'Présentation d\'affiches scientifiques sur le développement d\'un système de reconnaissance de la langue des signes mexicaine avec l\'IA et d\'un prototype de tourniquet automatisé.',
+            'btn-ver-cartel': 'Voir l\'Affiche',
+            'contacto-titulo': 'Intéressé par une collaboration ?',
+            'contacto-desc': 'Envoyez-nous un message et nous vous répondrons dans les plus brefs délais.',
+            'form-nombre': 'Nom',
+            'form-correo': 'E-mail',
+            'form-mensaje': 'Message',
+            'form-enviar': 'Envoyer le Message',
+            'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Ressources et <span class="text-gradient">Plus d\'Infos</span>',
+            'recursos-descripcion': 'Explorez le code source, la documentation technique et d\'autres détails de ce développement.',
+            'recursos-repositorio': 'Dépôt GitHub',
+            'recursos-repositorio-descripcion': 'Accédez aux scripts principaux, à la structure des projets et au code de tous nos développements.',
+            'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Notre Organisation',
+            'recursos-organizacion-descripcion': 'Découvrez comment nous sommes organisés chez LIA.',
+            'recursos-descargar': 'Télécharger'
+        },
+        'pt': {
+            'inico': 'Início',
+            'inicio': 'Início',
+            'proyectos': 'Projetos',
+            'conocenos': 'Sobre Nós',
+            'contactanos': 'Contate-nos',
+            'ipn': 'Instituto Politécnico Nacional',
+            'hero-titulo': 'Laboratório de <br> <span class="text-gradient">Inteligência Artificial</span>',
+            'hero-desc': 'Pesquisa, robótica e desenvolvimento de software aplicado. Transformamos a tecnologia em soluções tangíveis para o nosso ambiente.',
+            'hero-boton': 'Ver Projetos <i class="fa-solid fa-arrow-down"></i>',
+            'proyectos-destacados': 'Projetos em Destaque',
+            'detector-titulo': 'Detector de LSM',
+            'detector-desc': 'Sistema de visão computacional e aprendizado de máquina capaz de reconhecer e interpretar a Língua de Sinais Mexicana para promover a inclusão.',
+            'status-lsm': 'Fase de Testes',
+            'concocer-mas': 'Saber mais detalhes <i class="fa-solid fa-arrow-right text-sm"></i>',
+            'torniquete-titulo': 'Catraca Automatizada',
+            'torniquete-desc': 'Sistema de acesso automatizado que integra uma catraca eletrônica com componentes de controle, permitindo regular a passagem de forma segura e eficiente.',
+            'status-torni': 'Protótipo Funcional',
+            'conocenos-titulo': 'Conheça o <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">LIA</span>',
+            'conocenos-subtitulo': 'Inovação, tecnologia e soluções inteligentes para o futuro.',
+            'identidad-titulo': 'Nossa Identidade',
+            'identidad-descripcion': 'No LIA, dedicamo-nos a projetar sistemas tecnológicos e eletromecânicos controlados pela última geração de microcontroladores. Nosso objetivo é transformar problemas complexos em soluções automatizadas, eficientes e seguras.',
+            'pilares-titulo': 'Nossos Pilares',
+            'pilar-1': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Inovação constante em hardware e software.',
+            'pilar-2': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Compromisso com a segurança de nossos usuários.',
+            'pilar-3': '<i class="fa-solid fa-check text-green-400 mr-2"></i> Integração fluida com tecnologias IoT.',
+            'vision-titulo': '<i class="fa-solid fa-lightbulb text-indigo-400"></i> Nossa Visão',
+            'vision-descripcion': 'Ser líderes no desenvolvimento de protótipos e sistemas automatizados, criando um ecossistema onde o hardware e a conectividade trabalhem em perfeita harmonia.',
+            'mision-titulo': '<i class="fa-solid fa-handshake text-purple-400"></i> Por que nos escolher?',
+            'mision-descripcion': 'Combinamos bancos de dados eficientes, dashboards administrativos intuitivos e hardware de alto desempenho para oferecer resultados imediatos e confiáveis.',
+            'nosotros-titulo': 'Nós somos LIA',
+            'carrusel-1': 'Primeira geração do LIA',
+            'carrusel-2': 'O laboratório onde nascem as ideias, forjam-se os projetos e constrói-se o futuro tecnológico do nosso ambiente educacional.',
+            'carrusel-3': 'Somos uma equipe de estudantes apaixonados por tecnologia, inovação e aprendizado colaborativo.',
+            'carrusel-4': 'Primeira sessão de introdução à inteligência artificial, onde compartilhamos conhecimentos, experiências e entusiasmo pela tecnologia com nossos colegas.',
+            'carrusel-5': 'Uma próxima geração a caminho',
+            'reconocimientos-titulo': 'Nossos <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Reconhecimentos</span>',
+            'reconocimientos-descripcion': 'Conquistas e distinções que apoiam nosso compromisso com a inovação e o desenvolvimento tecnológico.',
+            'reconocimientos-etiqueta': 'Vencedores Locais',
+            'reconocimiento-1': 'Hackathon NASA',
+            'reconocimiento-1-descripcion': 'Reconhecimento pelo desenvolvimento de soluções criativas e inovadoras para problemas globais propostos diretamente pela NASA.',
+            'reconocimiento-2': 'Projeto Mais Consciência',
+            'reconocimiento-2-descripcion': 'Participação no projeto Más Consciência, focado na divulgação científica por meio de entrevistas com estudantes e pesquisadores de destaque.',
+            'reconocimiento-3': 'Participação em pôsteres científicos (STEM, CECyT 16 e UPIIH)',
+            'reconocimiento-3-descripcion': 'Apresentação de pôsteres científicos sobre o desenvolvimento de um sistema de reconhecimento da Língua de Sinais Mexicana com IA e um protótipo de catraca automatizada.',
+            'btn-ver-cartel': 'Ver Pôster',
+            'contacto-titulo': 'Interessado em colaborar?',
+            'contacto-desc': 'Envie-nos uma mensagem e entraremos em contato o mais breve possível.',
+            'form-nombre': 'Nome',
+            'form-correo': 'E-mail',
+            'form-mensaje': 'Mensagem',
+            'form-enviar': 'Enviar Mensagem',
+            'recursos-titulo': '<i class="fa-solid fa-folder-open text-sky-300 mr-2"></i> Recursos e <span class="text-gradient">Mais Informações</span>',
+            'recursos-descripcion': 'Explore o código-fonte, a documentação técnica e outros detalhes deste desenvolvimento.',
+            'recursos-repositorio': 'Repositório no GitHub',
+            'recursos-repositorio-descripcion': 'Acesse os scripts principais, a estrutura dos projetos e os códigos de todos os nossos projetos.',
+            'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Nossa Organização',
+            'recursos-organizacion-descripcion': 'Consulte como estamos organizados no LIA.',
+            'recursos-descargar': 'Baixar'
+        }
+    };
 
     // --- LÓGICA DE IDIOMAS Y MENÚ DESPLEGABLE ---
 
@@ -934,8 +1117,10 @@ const traducciones = {
     // Función global para cambiar el texto
 
     function cambiarIdioma(idioma) {
-        const elementos = document.querySelectorAll('[data-i18n]');
+        // NUEVA LÍNEA: Cambia el idioma oficial del documento HTML
+        document.documentElement.lang = idioma;
         
+        const elementos = document.querySelectorAll('[data-i18n]');
         elementos.forEach(el => {
             const clave = el.getAttribute('data-i18n');
             if (traducciones[idioma] && traducciones[idioma][clave]) {
@@ -967,7 +1152,61 @@ const traducciones = {
     }
     
 
+    // JS para enviar el formulario con Formspree sin recargar la página
+    const formContacto = document.getElementById('form-contacto');
+    const btnEnviar = document.getElementById('btn-enviar-form');
+    const mensajeExito = document.getElementById('form-exito');
 
+    if (formContacto) {
+        formContacto.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Evita que la página recargue o cambie de URL
+            
+            // Cambiar el estado del botón mientras envía
+            const textoOriginal = btnEnviar.innerHTML;
+            btnEnviar.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Enviando...';
+            btnEnviar.disabled = true;
+
+            try {
+                const response = await fetch(formContacto.action, {
+                    method: formContacto.method,
+                    body: new FormData(formContacto),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // Si se envía correctamente
+                    formContacto.reset(); // Limpia el formulario
+                    mensajeExito.classList.remove('hidden'); // Muestra mensaje de éxito
+                    btnEnviar.innerHTML = '<i class="fa-solid fa-check"></i> ¡Enviado!';
+                    btnEnviar.classList.replace('from-indigo-600', 'from-emerald-500');
+                    btnEnviar.classList.replace('to-purple-600', 'to-emerald-400');
+                    
+                    // Cierra el modal después de 3 segundos
+                    setTimeout(() => {
+                        cerrarModalContacto();
+                        // Restaurar el botón para futuros usos
+                        setTimeout(() => {
+                            mensajeExito.classList.add('hidden');
+                            btnEnviar.innerHTML = textoOriginal;
+                            btnEnviar.disabled = false;
+                            btnEnviar.classList.replace('from-emerald-500', 'from-indigo-600');
+                            btnEnviar.classList.replace('to-emerald-400', 'to-purple-600');
+                        }, 500);
+                    }, 3000);
+
+                } else {
+                    // Si hay un error de Formspree
+                    btnEnviar.innerHTML = 'Error al enviar ❌';
+                    btnEnviar.disabled = false;
+                    setTimeout(() => btnEnviar.innerHTML = textoOriginal, 3000);
+                }
+            } catch (error) {
+                btnEnviar.innerHTML = 'Error de conexión ❌';
+                btnEnviar.disabled = false;
+                setTimeout(() => btnEnviar.innerHTML = textoOriginal, 3000);
+            }
+        });
+    }
 
     </script>
 </body>
