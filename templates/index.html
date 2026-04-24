@@ -381,6 +381,9 @@
                         <p data-i18n="reconocimiento-1-descripcion" class="text-slate-400 text-sm leading-relaxed flex-grow">
                             Reconocimiento por el desarrollo de soluciones creativas e innovadoras ante problemáticas globales planteadas directamente por la NASA.
                         </p>
+                        <a href="https://www.facebook.com/media/set/?vanity=nasaspaceappscarmen&set=a.807466985374146" target="_blank" class="mt-4 inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-medium text-sm transition-colors">
+                            <i class="fa-solid fa-arrow-right"></i> Ver más
+                        </a>
                     </div>
                 </div>
 
@@ -393,6 +396,9 @@
                         <p data-i18n="reconocimiento-2-descripcion" class="text-slate-400 text-sm leading-relaxed flex-grow">
                             Participación en el proyecto Más Conciencia, enfocado en la divulgación científica mediante entrevistas a estudiantes e investigadores destacados.
                         </p>
+                        <button onclick="abrirModalLinks()" class="mt-4 text-sm text-yellow-400 hover:text-yellow-300 font-semibold flex items-center gap-2 transition-colors w-max group/btn cursor-pointer">
+                            <span data-i18n="btn-ver-redes">Ver Redes Sociales</span> <i class="fa-solid fa-share-nodes group-hover/btn:scale-110 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -584,6 +590,73 @@
             <embed id="pdf-viewer" type="application/pdf" class="w-full h-full"></embed>
         </div>
 
+    </div>
+</div>
+
+<!-- Modal del Árbol de Links (Link Tree) -->
+<div id="links-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    <div class="absolute inset-0 bg-slate-900/90 backdrop-blur-md cursor-pointer" onclick="cerrarModalLinks()"></div>
+    <div class="relative w-full max-w-md mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col" id="modal-content-links">
+        <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+            <h3 data-i18n="links-titulo" class="text-white font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-share-nodes text-yellow-400"></i> Más Conciencia
+            </h3>
+            <button onclick="cerrarModalLinks()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+        <div class="p-6 bg-slate-900/90 flex flex-col gap-4">
+            <button onclick="abrirVisorEnlace('https://www.facebook.com/p/Radio-C16-online-100087238571421/')" class="w-full flex items-center justify-between p-4 rounded-xl bg-blue-600/20 border border-blue-500/30 hover:bg-blue-600/30 transition-all group cursor-pointer text-left">
+                <div class="flex items-center gap-3">
+                    <i class="fa-brands fa-facebook text-2xl text-blue-400"></i>
+                    <span class="text-white font-semibold">Facebook</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-blue-400 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+            <button onclick="abrirVisorEnlace('https://www.instagram.com/radioc16online/')" class="w-full flex items-center justify-between p-4 rounded-xl bg-gradient-to-tr from-yellow-400/20 via-pink-500/20 to-purple-600/20 border border-pink-500/30 hover:opacity-80 transition-all group cursor-pointer text-left">
+                <div class="flex items-center gap-3">
+                    <i class="fa-brands fa-instagram text-2xl text-pink-400"></i>
+                    <span class="text-white font-semibold">Instagram</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-pink-400 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+            <button onclick="abrirVisorEnlace('https://www.youtube.com/channel/UCmGiwRjTSb9bjOV4goLwC3A/videos')" class="w-full flex items-center justify-between p-4 rounded-xl bg-red-600/20 border border-red-500/30 hover:bg-red-600/30 transition-all group cursor-pointer text-left">
+                <div class="flex items-center gap-3">
+                    <i class="fa-brands fa-youtube text-2xl text-red-400"></i>
+                    <span class="text-white font-semibold">YouTube</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-red-400 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal del Visor de Enlaces (Iframe) -->
+<div id="visor-modal" class="fixed inset-0 z-[110] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    <div class="absolute inset-0 bg-slate-900/95 backdrop-blur-xl cursor-pointer" onclick="cerrarVisorEnlace()"></div>
+    <div class="relative w-full max-w-6xl mx-4 glass-card rounded-2xl overflow-hidden border border-slate-600 shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col h-[90vh]" id="modal-content-visor">
+        <div class="flex justify-between items-center p-4 border-b border-slate-700 bg-slate-800/80">
+            <h3 data-i18n="visor-titulo" class="text-white font-bold text-lg flex items-center gap-2">
+                Visor de Enlace
+            </h3>
+            <div class="flex gap-3">
+                <a id="btn-abrir-externo" href="#" target="_blank" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="abrir-enlace" class="hidden sm:inline">Abrir en nueva pestaña</span>
+                </a>
+                <button onclick="cerrarVisorEnlace()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="flex-1 w-full bg-slate-100 relative">
+            <div id="visor-loader" class="absolute inset-0 flex items-center justify-center bg-slate-900 z-10">
+                <div class="flex flex-col items-center gap-4">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl text-sky-500"></i>
+                    <p class="text-slate-400 text-sm">Cargando contenido...</p>
+                </div>
+            </div>
+            <iframe id="iframe-visor" class="w-full h-full border-none" src="" onload="document.getElementById('visor-loader').classList.add('hidden')"></iframe>
+        </div>
     </div>
 </div>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -842,7 +915,11 @@
                 'recursos-repositorio-descripcion': 'Accede a los scripts principales, estructura de los proyectos y códigos de todos nuestros proyectos.',
                 'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Nuestra Organización',
                 'recursos-organizacion-descripcion': 'Consulta cómo estamos organizados en LIA.',
-                'recursos-descargar': 'Descargar'
+                'recursos-descargar': 'Descargar',
+                'btn-ver-redes': 'Ver Redes Sociales',
+                'links-titulo': 'Más Conciencia',
+                'abrir-enlace': 'Abrir en nueva pestaña',
+                'visor-titulo': 'Visor de Enlace'
             },
             'en': {
                 'inico': 'Home',
@@ -902,7 +979,11 @@
                 'recursos-repositorio-descripcion': 'Access the main scripts, project structures, and code for all our developments.',
                 'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Our Organization',
                 'recursos-organizacion-descripcion': 'Check out how we are organized at LIA.',
-                'recursos-descargar': 'Download'
+                'recursos-descargar': 'Download',
+                'btn-ver-redes': 'Social Media',
+                'links-titulo': 'Más Conciencia',
+                'abrir-enlace': 'Open in new tab',
+                'visor-titulo': 'Link Viewer'
             },
             'ja': {
                 'inico': 'ホーム',
@@ -962,7 +1043,11 @@
                 'recursos-repositorio-descripcion': 'すべてのプロジェクトのメインスクリプト、構造、コードにアクセスできます。',
                 'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> 私たちの組織',
                 'recursos-organizacion-descripcion': 'LIAの組織構成をご覧ください。',
-                'recursos-descargar': 'ダウンロード'
+                'recursos-descargar': 'ダウンロード',
+                'btn-ver-redes': 'ソーシャルメディア',
+                'links-titulo': 'Más Conciencia',
+                'abrir-enlace': '新しいタブで開く',
+                'visor-titulo': 'リンクビューア'
             },
             'fr': {
                 'inico': 'Accueil',
@@ -1022,7 +1107,11 @@
                 'recursos-repositorio-descripcion': 'Accédez aux scripts principaux, à la structure des projets et au code de tous nos développements.',
                 'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Notre Organisation',
                 'recursos-organizacion-descripcion': 'Découvrez comment nous sommes organisés chez LIA.',
-                'recursos-descargar': 'Télécharger'
+                'recursos-descargar': 'Télécharger',
+                'btn-ver-redes': 'Réseaux Sociaux',
+                'links-titulo': 'Más Conciencia',
+                'abrir-enlace': 'Ouvrir dans un nouvel onglet',
+                'visor-titulo': 'Visionneuse de Liens'
             },
             'pt': {
                 'inico': 'Início',
@@ -1082,7 +1171,11 @@
                 'recursos-repositorio-descripcion': 'Acesse os scripts principais, a estrutura dos projetos e os códigos de todos os nossos projetos.',
                 'recursos-organizacion': '<i class="fa-solid fa-file-pdf text-sky-400 mr-2"></i> Nossa Organização',
                 'recursos-organizacion-descripcion': 'Consulte como estamos organizados no LIA.',
-                'recursos-descargar': 'Baixar'
+                'recursos-descargar': 'Baixar',
+                'btn-ver-redes': 'Redes Sociais',
+                'links-titulo': 'Más Conciencia',
+                'abrir-enlace': 'Abrir em nova guia',
+                'visor-titulo': 'Visualizador de Link'
             }
         };
 
@@ -1212,6 +1305,64 @@
                 setTimeout(() => btnEnviar.innerHTML = textoOriginal, 3000);
             }
         });
+    }
+
+    // --- LÓGICA DEL ÁRBOL DE LINKS Y VISOR ---
+    const modalLinks = document.getElementById('links-modal');
+    const modalContentLinks = document.getElementById('modal-content-links');
+    const modalVisor = document.getElementById('visor-modal');
+    const modalContentVisor = document.getElementById('modal-content-visor');
+    const iframeVisor = document.getElementById('iframe-visor');
+    const btnAbrirExterno = document.getElementById('btn-abrir-externo');
+    const visorLoader = document.getElementById('visor-loader');
+
+    function abrirModalLinks() {
+        modalLinks.classList.remove('hidden');
+        modalLinks.classList.add('flex');
+        setTimeout(() => {
+            modalLinks.classList.remove('opacity-0');
+            modalContentLinks.classList.remove('scale-95');
+            modalContentLinks.classList.add('scale-100');
+        }, 10);
+    }
+
+    function cerrarModalLinks() {
+        modalLinks.classList.add('opacity-0');
+        modalContentLinks.classList.remove('scale-100');
+        modalContentLinks.classList.add('scale-95');
+        setTimeout(() => {
+            modalLinks.classList.add('hidden');
+            modalLinks.classList.remove('flex');
+        }, 300);
+    }
+
+    function abrirVisorEnlace(url) {
+        modalVisor.classList.remove('hidden');
+        modalVisor.classList.add('flex');
+        
+        // Reset loader
+        visorLoader.classList.remove('hidden');
+        
+        // Configurar iframe y botón externo
+        iframeVisor.src = url;
+        btnAbrirExterno.href = url;
+
+        setTimeout(() => {
+            modalVisor.classList.remove('opacity-0');
+            modalContentVisor.classList.remove('scale-95');
+            modalContentVisor.classList.add('scale-100');
+        }, 10);
+    }
+
+    function cerrarVisorEnlace() {
+        modalVisor.classList.add('opacity-0');
+        modalContentVisor.classList.remove('scale-100');
+        modalContentVisor.classList.add('scale-95');
+        setTimeout(() => {
+            modalVisor.classList.add('hidden');
+            modalVisor.classList.remove('flex');
+            iframeVisor.src = ''; // Limpiar src para detener videos/audios
+        }, 300);
     }
 
     </script>
