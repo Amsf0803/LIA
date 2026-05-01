@@ -1,0 +1,33 @@
+<!-- Chatbot widget template -->
+<div class="chat-container" style="display: none;">
+  <div class="message-wrapper">
+    <!-- Chat messages will be displayed here -->
+  </div>
+  <button id="send-btn" aria-label="Enviar">
+    <svg class="send-icon" viewBox="0 0 24 24">
+      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  // JavaScript code to toggle chat container and send messages
+  const chatContainer = document.querySelector('.chat-container');
+  const sendBtn = document.getElementById('send-btn');
+
+  sendBtn.addEventListener('click', () => {
+    chatContainer.style.display = 'flex';
+  });
+
+  // Fetch logic for /chat route
+  fetch('/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      session_id: '{{ session_id }}',
+      mensaje: ''
+    })
+  });
+</script>

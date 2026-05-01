@@ -1,21 +1,12 @@
-from flask import request, redirect, Flask, Response, render_template, jsonify, url_for, flash, session
+from flask import Flask, render_template, request
+import polibot_ref
 
+app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'
 
-
-
-app = Flask(__name__, static_folder="static", template_folder="templates")
-app.secret_key = 'clave_secreta_segura'
-
-
-@app.errorhandler(404)
-def not_found(e):
-    return render_template('404.html'), 404
-
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/lsm')
 def lsm():
@@ -23,9 +14,12 @@ def lsm():
 
 @app.route('/torniquete')
 def torniquete():
-    return render_template('torniquete.html')   
+    return render_template('torniquete.html')
 
-
+@app.route('/chat', methods=['POST'])
+def chat():
+    # AI logic from polibot_ref.py
+    pass
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True)
