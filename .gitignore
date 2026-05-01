@@ -1,0 +1,28 @@
+.aider*
+
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+
+# Archivos de configuración y secretos
+instance/
+.webassets-cache
+secret_key.py
+.env
+
+
+
+# Base de datos vectorial (si estás usando persistencia local con ChromaDB)
+chroma.db
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+

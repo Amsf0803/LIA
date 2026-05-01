@@ -1,33 +1,106 @@
-<!-- Chatbot widget template -->
-<div class="chat-container" style="display: none;">
-  <div class="message-wrapper">
-    <!-- Chat messages will be displayed here -->
-  </div>
-  <button id="send-btn" aria-label="Enviar">
-    <svg class="send-icon" viewBox="0 0 24 24">
-      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-    </svg>
-  </button>
+<!-- Botón Flotante Tecnológico -->
+<div id="chat-bubble" onclick="toggleChat()" style="position: fixed; bottom: 25px; right: 25px; width: 65px; height: 65px; background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(56, 189, 248, 0.5); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10000; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);">
+    <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="LIA" style="width: 75%; height: 75%; border-radius: 50%; object-fit: cover; filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.5));">
 </div>
 
+<!-- Ventana del Chat Glassmorphism -->
+<div id="chat-window" style="position: fixed; bottom: 100px; right: 25px; width: 360px; height: 520px; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); display: none; flex-direction: column; overflow: hidden; z-index: 10000; font-family: 'Segoe UI', system-ui, sans-serif;">
+    
+    <!-- Header con Gradiente Tecnológico -->
+    <div style="background: linear-gradient(to right, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2)); border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #f8fafc; padding: 18px; display: flex; align-items: center; gap: 12px;">
+        <div style="position: relative;">
+            <img src="{{ url_for('static', filename='img/avatar.png') }}" style="width: 35px; height: 35px; border-radius: 50%; border: 1px solid #38bdf8;">
+            <div style="position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; background: #22c55e; border-radius: 50%; border: 2px solid #0f172a;"></div>
+        </div>
+        <div style="flex: 1;">
+            <div style="font-size: 15px; font-weight: 600; letter-spacing: 0.5px;" class="text-gradient">Polibot LIA</div>
+            <div style="font-size: 11px; color: #94a3b8;">Sistemas Automatizados v2.1</div>
+        </div>
+        <span onclick="toggleChat()" style="cursor:pointer; font-size: 24px; color: #94a3b8; hover:color:white;">&times;</span>
+    </div>
+
+    <!-- Área de Mensajes -->
+    <div id="chat-messages" style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: thin; scrollbar-color: rgba(56, 189, 248, 0.3) transparent;">
+        <div style="background: rgba(51, 65, 85, 0.5); color: #e2e8f0; padding: 12px 16px; border-radius: 15px 15px 15px 2px; align-self: flex-start; max-width: 85%; border: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5;">
+            Hola André. Sistema en línea. ¿En qué puedo apoyar hoy al laboratorio?
+        </div>
+    </div>
+
+    <!-- Input Estilo Terminal -->
+    <div style="padding: 18px; background: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.05); display: flex; gap: 10px;">
+        <input type="text" id="chat-input" placeholder="Consola de comandos..." style="flex: 1; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 15px; border-radius: 12px; color: white; outline: none; font-size: 14px; transition: all 0.3s;" onfocus="this.style.borderColor='#818cf8'; this.style.boxShadow='0 0 10px rgba(129, 140, 248, 0.2)'" onblur="this.style.borderColor='rgba(56, 189, 248, 0.3)'; this.style.boxShadow='none'">
+        
+        <button onclick="sendMessage()" style="background: linear-gradient(135deg, #38bdf8, #818cf8); color: white; border: none; width: 42px; height: 42px; border-radius: 10px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: transform 0.2s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+    </div>
+</div>
+
+<style>
+    /* Estilo para los mensajes del usuario con los colores del gradiente de tu web */
+    .user-msg {
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.8), rgba(129, 140, 248, 0.8)) !important;
+        color: white !important;
+        padding: 12px 16px;
+        border-radius: 15px 15px 2px 15px !important;
+        align-self: flex-end;
+        max-width: 85%;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+    }
+    
+    /* Scrollbar personalizada para que combine */
+    #chat-messages::-webkit-scrollbar { width: 4px; }
+    #chat-messages::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 10px; }
+</style>
+
 <script>
-  // JavaScript code to toggle chat container and send messages
-  const chatContainer = document.querySelector('.chat-container');
-  const sendBtn = document.getElementById('send-btn');
+    function toggleChat() {
+        const win = document.getElementById('chat-window');
+        const bubble = document.getElementById('chat-bubble');
+        if (win.style.display === 'none' || win.style.display === '') {
+            win.style.display = 'flex';
+            bubble.style.border = '1px solid #818cf8';
+            bubble.style.boxShadow = '0 0 25px rgba(129, 140, 248, 0.4)';
+        } else {
+            win.style.display = 'none';
+            bubble.style.border = '1px solid rgba(56, 189, 248, 0.5)';
+            bubble.style.boxShadow = '0 0 20px rgba(56, 189, 248, 0.2)';
+        }
+    }
 
-  sendBtn.addEventListener('click', () => {
-    chatContainer.style.display = 'flex';
-  });
+    async function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const msg = input.value.trim();
+        if(!msg) return;
 
-  // Fetch logic for /chat route
-  fetch('/chat', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      session_id: '{{ session_id }}',
-      mensaje: ''
-    })
-  });
+        const box = document.getElementById('chat-messages');
+        
+        // Renderizar mensaje de usuario
+        box.innerHTML += `<div class="user-msg">${msg}</div>`;
+        input.value = '';
+        box.scrollTop = box.scrollHeight;
+
+        try {
+            const res = await fetch('/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({mensaje: msg, session_id: 'lia_tech_session'})
+            });
+            const data = await res.json();
+            
+            // Renderizar respuesta del bot (Estilo Glass)
+            box.innerHTML += `
+                <div style="background: rgba(30, 41, 59, 0.7); color: #cbd5e1; padding: 12px 16px; border-radius: 15px 15px 15px 2px; align-self: flex-start; max-width: 85%; border: 1px solid rgba(56, 189, 248, 0.2); font-size: 14px; line-height: 1.5;">
+                    ${data.respuesta}
+                </div>`;
+            box.scrollTop = box.scrollHeight;
+        } catch (e) {
+            box.innerHTML += `<div style="color: #f87171; font-size: 11px; text-align: center; margin-top: 5px;">⚠️ Error en el enlace de datos.</div>`;
+        }
+    }
+
+    document.getElementById('chat-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
 </script>

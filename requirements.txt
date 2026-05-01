@@ -1,2 +1,11 @@
+# Servidor Web
 Flask
 gunicorn
+
+# Inteligencia Artificial y RAG
+ollama
+chromadb
+
+# Utilidades de entorno y sistema
+python-dotenv
+urllib3
