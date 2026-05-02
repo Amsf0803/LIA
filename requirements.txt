@@ -4,7 +4,7 @@ gunicorn
 
 # Inteligencia Artificial y RAG
 chromadb
-google-generativeai
+google-genai
 
 # Utilidades de entorno y sistema
 python-dotenv
