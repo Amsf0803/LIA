@@ -26,7 +26,7 @@ def asegurar_ollama():
         time.sleep(3)
 
 def inicializar_base_vectorial():
-    ruta = "conocimiento_cecyt16.txt"
+    ruta = "conocimiento_lia.txt"
     if not os.path.exists(ruta):
         return
     with open(ruta, "r", encoding="utf-8") as f:
@@ -62,6 +62,14 @@ def lsm():
 def torniquete():
     return render_template('torniquete.html')
 
+@app.route('/polibot')
+def polibot():
+    return render_template('polibot.html')
+
+@app.route('/liosito')
+def liosito():
+    return render_template('liosito.html')
+
 # --- RUTA DEL CHATBOT ---
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -81,7 +89,19 @@ def chat():
     respuesta = ollama.chat(model="llama3.2:3b", messages=[historial[0], {"role": "user", "content": prompt_final}])
     mensaje_ia = respuesta["message"]["content"]
     
-    historial.append({"role": "assistant", "content": mensaje_ia})
+    # Formatear saltos de línea para que se vean bien en HTML
+    mensaje_ia = mensaje_ia.replace("\n", "<br>")
+    
+    # Reemplazar etiquetas por contenido visual interactivo
+    if "[MAPA_UBICACION]" in mensaje_ia:
+        mapa_html = '<div style="margin-top: 12px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 4px 12px rgba(0,0,0,0.2);"><iframe width="100%" height="200" style="border:0;" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=CECyT%2016%20Hidalgo,%20Kil%C3%B3metro%201.500,%20Actopan%20-%20Pachuca,%20San%20Agust%C3%ADn%20Tlaxiaca,%20Hgo.&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe></div>'
+        mensaje_ia = mensaje_ia.replace("[MAPA_UBICACION]", mapa_html)
+        
+    if "[DIAGRAMA_ESCUELA]" in mensaje_ia:
+        img_html = '<div style="margin-top: 12px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 4px 12px rgba(0,0,0,0.2);"><img src="/static/img/instalaciones_cecyt16.jpg" alt="Instalaciones CECyT 16" style="width: 100%; height: auto; display: block; object-fit: cover;"></div>'
+        mensaje_ia = mensaje_ia.replace("[DIAGRAMA_ESCUELA]", img_html)
+    
+    historial.append({"role": "assistant", "content": respuesta["message"]["content"]})
     return jsonify({"respuesta": mensaje_ia, "session_id": session_id})
 
 if __name__ == '__main__':

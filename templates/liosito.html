@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIOSITO | LIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/static/img/LIA_Mini.png" type="image/png">
+    <style>
+        body { background-color: #0b1120; color: #f8fafc; overflow-x: hidden; font-family: 'Segoe UI', Roboto, sans-serif; }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
+        .glass-card { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+        .text-gradient { background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; background-clip: none; -webkit-text-fill-color: transparent; }
+        
+        /* Ocultar scrollbar en el carrusel pero mantener funcionalidad */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Texto con gradiente con colores Politecnicos*/
+        .text-gradient-ipn { 
+            background: linear-gradient(to right, #6c1d45, #fff); 
+            -webkit-background-clip: text; 
+            background-clip: none;
+            -webkit-text-fill-color: transparent; 
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="particles-js"></div>
+
+    <nav class="p-6 fixed w-full z-50 glass-card border-b-0">
+        <div class="container mx-auto flex justify-between items-center" >
+            
+            <h1 class="text-2xl font-bold tracking-tighter flex items-center gap-10 ml-2" style="font-size: 2rem;">
+                <img src="/static/img/Logo_LIA.png" alt="Logo Lia" class="h-12 w-auto object-contain transform scale-[1.8] origin-left">
+    
+                <span class="text-gradient-ipn">LIA</span> 
+                <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;">CECyT 16</a> 
+            </h1>
+            
+            
+            <div class="flex items-center">
+                <a data-i18n="nav-volver" href="/" class="hover:text-sky-400 transition-colors font-medium text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+                </a>
+
+                <div class="relative hidden md:block">
+                    <button id="btn-selector-idioma" class="ml-6 text-slate-300 hover:text-indigo-400 transition-colors font-medium flex items-center gap-2 cursor-pointer py-2">
+                        <i class="fa-solid fa-globe"></i> <span id="current-lang-text">ES</span> <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    
+                    <div id="dropdown-idiomas" class="absolute -left-8 top-full mt-2 w-36 glass-card rounded-xl border border-slate-700/50 overflow-hidden shadow-2xl transition-all duration-300 opacity-0 invisible scale-95 origin-top z-50">
+                        <button onclick="cambiarIdioma('es')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇪🇸 Español
+                        </button>
+                        <button onclick="cambiarIdioma('en')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇬🇧 English
+                        </button>
+                        <button onclick="cambiarIdioma('ja')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇯 পল্ল 日本語
+                        </button>
+                        <button onclick="cambiarIdioma('fr')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇫🇷 Français
+                        </button>
+                        <button onclick="cambiarIdioma('pt')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇧🇷 Português
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen pt-32 pb-20 px-4">
+        <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+            
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-rose-500/20 to-red-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-rose-400 text-4xl border border-rose-500/20">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </div>
+                <h2 data-i18n="hero-titulo" class="text-4xl md:text-5xl font-extrabold mb-4"><span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">LIOSITO</span></h2>
+                <p data-i18n="hero-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Sistema de gestión de proyectos impulsado por IA y oráculo técnico.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+                <div class="flex-1 glass-card p-8 rounded-2xl h-full">
+                    <h3 data-i18n="proy-titulo" class="text-2xl font-bold mb-4 text-white">Sobre el Proyecto</h3>
+                    <p data-i18n="proy-desc" class="text-slate-300 leading-relaxed mb-6">
+                        LIOSITO es un avanzado sistema de gestión de proyectos con arquitectura RAG. Actúa como un oráculo técnico donde se pueden integrar repositorios de GitHub para aumentar su conocimiento. Asigna tareas de manera inteligente a los integrantes del LIA según sus capacidades, estableciendo pesos por tarea y manteniendo un ranking de productividad para motivar el trabajo en equipo.
+                    </p>
+                    <h4 data-i18n="obj-titulo" class="text-xl font-semibold mb-3 text-rose-300">Objetivo de Impacto</h4>
+                    <p data-i18n="obj-desc" class="text-slate-300 leading-relaxed">
+                        Optimizar el flujo de trabajo del laboratorio, motivar la participación activa mediante la gamificación (ranking) y servir como una memoria técnica centralizada del LIA para evitar la pérdida de conocimiento entre generaciones.
+                    </p>
+                </div>
+
+                <div class="flex-1 w-full flex flex-col gap-4">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-rose-500">
+                        <h4 data-i18n="stack-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-brands fa-python text-rose-400"></i> Stack Tecnológico
+                        </h4>
+                        <ul class="text-slate-400 space-y-2 text-sm">
+                            <li data-i18n="stack-1">• Arquitectura RAG e Inteligencia Artificial</li>
+                            <li data-i18n="stack-2">• Python y Framework Web (Flask)</li>
+                            <li data-i18n="stack-3">• GitHub API para lectura de repositorios</li>
+                            <li data-i18n="stack-4">• Base de Datos relacional para el ranking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-red-500">
+                        <h4 data-i18n="fut-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-red-400"></i> El futuro del proyecto
+                        </h4>
+                        <ul class="text-slate-400 space-y-2 text-sm">
+                            <li data-i18n="fut-1">• Análisis de código automático y sugerencias de mejora</li>
+                            <li data-i18n="fut-2">• Integración directa con entornos de desarrollo (IDEs)</li>
+                            <li data-i18n="fut-3">• Recordatorios automatizados de tareas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+            <div class="glass-card p-8 rounded-2xl relative">
+                
+                <div class="flex justify-between items-center mb-6">
+                    <h3 data-i18n="func-titulo" class="text-2xl font-bold text-white"> Galería de LIOSITO</h3>
+                    
+                    <div class="flex gap-2">
+                        <button onclick="moverCarrusel(-1)" class="bg-slate-800 hover:bg-rose-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button onclick="moverCarrusel(1)" class="bg-slate-800 hover:bg-rose-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="carrusel-galeria" class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth">
+                    
+                    <!-- Imagen 1 (Placeholder) -->
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <i class="fa-solid fa-ranking-star text-6xl text-rose-500/20 absolute"></i>
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <p data-i18n="car-1" class="text-white text-lg font-semibold text-center leading-snug">
+                                Sistema de ranking y gamificación para el equipo
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Imagen 2 (Placeholder) -->
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <i class="fa-brands fa-github text-6xl text-rose-500/20 absolute"></i>
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <p data-i18n="car-2" class="text-white text-lg font-semibold text-center leading-snug">
+                                Integración fluida con repositorios de GitHub
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Imagen 3 (Placeholder) -->
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <i class="fa-solid fa-list-check text-6xl text-rose-500/20 absolute"></i>
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <p data-i18n="car-3" class="text-white text-lg font-semibold text-center leading-snug">
+                                Asignación inteligente de tareas
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    <section id="recursos" class="py-20 px-4 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 data-i18n="rec-titulo" class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    <i class="fa-solid fa-folder-open text-rose-300 mr-2"></i> 
+                    Recursos y <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">Más Información</span>
+                </h3>
+                <div class="h-1 w-20 bg-rose-500 mx-auto rounded-full mb-4"></div>
+                <p data-i18n="rec-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <a href="https://github.com/Amsf0803/LIOSITO" target="_blank" rel="noopener noreferrer" 
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
+                        <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 data-i18n="git-titulo" class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                    <p data-i18n="git-desc" class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ once: true, duration: 1000 });
+        particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#f43f5e" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#fb7185", "opacity": 0.2 }, "move": { "enable": true, "speed": 1 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } } });
+
+        const carrusel = document.getElementById('carrusel-galeria');
+        const contenedorPrincipal = carrusel.closest('.glass-card'); 
+        let intervaloAutoPlay;
+        const tiempoEspera = 3000; 
+
+        function moverCarrusel(direccion) {
+            if (!carrusel) return;
+            const tarjeta = carrusel.querySelector('.snap-center');
+            if (!tarjeta) return;
+            const cantidadScroll = tarjeta.clientWidth + 24; 
+
+            if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
+                carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (direccion === -1 && carrusel.scrollLeft <= 0) {
+                carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
+            } else {
+                carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+            }
+            reiniciarAutoPlay();
+        }
+
+        function iniciarAutoPlay() { intervaloAutoPlay = setInterval(() => { moverCarrusel(1); }, tiempoEspera); }
+        function detenerAutoPlay() { clearInterval(intervaloAutoPlay); }
+        function reiniciarAutoPlay() { detenerAutoPlay(); iniciarAutoPlay(); }
+
+        if (contenedorPrincipal) {
+            contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
+            contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
+        }
+        iniciarAutoPlay();
+
+        // --- SISTEMA DE TRADUCCIONES (LIOSITO) ---
+        const traducciones = {
+            'es': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Volver al Inicio',
+                'hero-titulo': '<span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">LIOSITO</span>',
+                'hero-desc': 'Sistema de gestión de proyectos impulsado por IA y oráculo técnico.',
+                'proy-titulo': 'Sobre el Proyecto',
+                'proy-desc': 'LIOSITO es un avanzado sistema de gestión de proyectos con arquitectura RAG. Actúa como un oráculo técnico donde se pueden integrar repositorios de GitHub para aumentar su conocimiento. Asigna tareas de manera inteligente a los integrantes del LIA según sus capacidades, estableciendo pesos por tarea y manteniendo un ranking de productividad para motivar el trabajo en equipo.',
+                'obj-titulo': 'Objetivo de Impacto',
+                'obj-desc': 'Optimizar el flujo de trabajo del laboratorio, motivar la participación activa mediante la gamificación (ranking) y servir como una memoria técnica centralizada del LIA para evitar la pérdida de conocimiento entre generaciones.',
+                'stack-titulo': '<i class="fa-brands fa-python text-rose-400"></i> Stack Tecnológico',
+                'stack-1': '• Arquitectura RAG e Inteligencia Artificial',
+                'stack-2': '• Python y Framework Web (Flask)',
+                'stack-3': '• GitHub API para lectura de repositorios',
+                'stack-4': '• Base de Datos relacional para el ranking',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-red-400"></i> El futuro del proyecto',
+                'fut-1': '• Análisis de código automático y sugerencias de mejora',
+                'fut-2': '• Integración directa con entornos de desarrollo (IDEs)',
+                'fut-3': '• Recordatorios automatizados de tareas',
+                'func-titulo': 'Galería de LIOSITO',
+                'car-1': 'Sistema de ranking y gamificación para el equipo',
+                'car-2': 'Integración fluida con repositorios de GitHub',
+                'car-3': 'Asignación inteligente de tareas',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-rose-300 mr-2"></i> Recursos y <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">Más Información</span>',
+                'rec-desc': 'Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.',
+                'git-titulo': 'Repositorio en GitHub',
+                'git-desc': 'Accede a los scripts principales, estructura del proyecto y código de implementación.'
+            },
+            'en': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Back to Home',
+                'hero-titulo': '<span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">LIOSITO</span>',
+                'hero-desc': 'AI-powered project management system and technical oracle.',
+                'proy-titulo': 'About the Project',
+                'proy-desc': 'LIOSITO is an advanced project management system with a RAG architecture. It acts as a technical oracle where GitHub repositories can be integrated to increase its knowledge. It intelligently assigns tasks to LIA members based on their capabilities, setting task weights and maintaining a productivity ranking to motivate teamwork.',
+                'obj-titulo': 'Impact Objective',
+                'obj-desc': 'To optimize the laboratory workflow, motivate active participation through gamification (ranking), and serve as a centralized technical memory for LIA to prevent knowledge loss between generations.',
+                'stack-titulo': '<i class="fa-brands fa-python text-rose-400"></i> Tech Stack',
+                'stack-1': '• RAG Architecture and Artificial Intelligence',
+                'stack-2': '• Python and Web Framework (Flask)',
+                'stack-3': '• GitHub API for repository reading',
+                'stack-4': '• Relational Database for ranking',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-red-400"></i> Future of the project',
+                'fut-1': '• Automatic code analysis and improvement suggestions',
+                'fut-2': '• Direct integration with development environments (IDEs)',
+                'fut-3': '• Automated task reminders',
+                'func-titulo': 'LIOSITO Gallery',
+                'car-1': 'Ranking and gamification system for the team',
+                'car-2': 'Seamless integration with GitHub repositories',
+                'car-3': 'Intelligent task assignment',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-rose-300 mr-2"></i> Resources & <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">More Info</span>',
+                'rec-desc': 'Explore the source code, technical documentation, and other details of this development.',
+                'git-titulo': 'GitHub Repository',
+                'git-desc': 'Access the main scripts, project structure, and implementation code.'
+            },
+            'ja': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> ホームに戻る',
+                'hero-titulo': '<span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">LIOSITO</span>',
+                'hero-desc': 'AI駆動のプロジェクト管理システムと技術的オラクル。',
+                'proy-titulo': 'プロジェクトについて',
+                'proy-desc': 'LIOSITOは、RAGアーキテクチャを備えた高度なプロジェクト管理システムです。GitHubリポジトリを統合して知識を増やすことができる技術的なオラクルとして機能します。LIAメンバーの能力に基づいてタスクをインテリジェントに割り当て、タスクの重みを設定し、チームワークを動機付けるために生産性ランキングを維持します。',
+                'obj-titulo': '影響の目標',
+                'obj-desc': 'ラボのワークフローを最適化し、ゲーミフィケーション（ランキング）を通じて積極的な参加を動機付け、世代間の知識の喪失を防ぐためのLIAの集中化された技術メモリとして機能すること。',
+                'stack-titulo': '<i class="fa-brands fa-python text-rose-400"></i> 技術スタック',
+                'stack-1': '• RAGアーキテクチャと人工知能',
+                'stack-2': '• PythonとWebフレームワーク(Flask)',
+                'stack-3': '• リポジトリ読み取り用のGitHub API',
+                'stack-4': '• ランキング用のリレーショナルデータベース',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-red-400"></i> プロジェクトの未来',
+                'fut-1': '• 自動コード分析と改善提案',
+                'fut-2': '• 開発環境(IDE)との直接統合',
+                'fut-3': '• 自動化されたタスクリマインダー',
+                'func-titulo': 'LIOSITO ギャラリー',
+                'car-1': 'チーム向けのランキングおよびゲーミフィケーションシステム',
+                'car-2': 'GitHubリポジトリとのシームレスな統合',
+                'car-3': 'インテリジェントなタスク割り当て',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-rose-300 mr-2"></i> リソースと <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">詳細情報</span>',
+                'rec-desc': 'この開発のソースコード、技術文書、その他の詳細をご覧ください。',
+                'git-titulo': 'GitHub リポジトリ',
+                'git-desc': 'メインスクリプト、プロジェクト構造、実装コードにアクセスできます。'
+            },
+            'fr': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Retour à l\'Accueil',
+                'hero-titulo': '<span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">LIOSITO</span>',
+                'hero-desc': 'Système de gestion de projets propulsé par l\'IA et oracle technique.',
+                'proy-titulo': 'À propos du Projet',
+                'proy-desc': 'LIOSITO est un système avancé de gestion de projets avec une architecture RAG. Il agit comme un oracle technique où des référentiels GitHub peuvent être intégrés pour accroître ses connaissances. Il attribue intelligemment des tâches aux membres du LIA en fonction de leurs capacités, en établissant des pondérations de tâches et en maintenant un classement de productivité pour motiver le travail d\'équipe.',
+                'obj-titulo': 'Objectif d\'Impact',
+                'obj-desc': 'Optimiser le flux de travail du laboratoire, motiver la participation active grâce à la gamification (classement) et servir de mémoire technique centralisée du LIA pour éviter la perte de connaissances entre les générations.',
+                'stack-titulo': '<i class="fa-brands fa-python text-rose-400"></i> Pile Technologique',
+                'stack-1': '• Architecture RAG et Intelligence Artificielle',
+                'stack-2': '• Python et Framework Web (Flask)',
+                'stack-3': '• API GitHub pour la lecture des référentiels',
+                'stack-4': '• Base de Données relationnelle pour le classement',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-red-400"></i> L\'avenir du projet',
+                'fut-1': '• Analyse automatique du code et suggestions d\'amélioration',
+                'fut-2': '• Intégration directe avec les environnements de développement (IDE)',
+                'fut-3': '• Rappels de tâches automatisés',
+                'func-titulo': 'Galerie LIOSITO',
+                'car-1': 'Système de classement et de gamification pour l\'équipe',
+                'car-2': 'Intégration fluide avec les référentiels GitHub',
+                'car-3': 'Attribution intelligente des tâches',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-rose-300 mr-2"></i> Ressources et <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">Plus d\'Infos</span>',
+                'rec-desc': 'Explorez le code source, la documentation technique et d\'autres détails de ce développement.',
+                'git-titulo': 'Dépôt GitHub',
+                'git-desc': 'Accédez aux scripts principaux, à la structure du projet et au code d\'implémentation.'
+            },
+            'pt': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Voltar ao Início',
+                'hero-titulo': '<span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">LIOSITO</span>',
+                'hero-desc': 'Sistema de gestão de projetos impulsionado por IA e oráculo técnico.',
+                'proy-titulo': 'Sobre o Projeto',
+                'proy-desc': 'O LIOSITO é um sistema avançado de gestão de projetos com arquitetura RAG. Atua como um oráculo técnico onde repositórios GitHub podem ser integrados para aumentar seu conhecimento. Atribui tarefas de forma inteligente aos membros do LIA com base em suas capacidades, estabelecendo pesos por tarefa e mantendo um ranking de produtividade para motivar o trabalho em equipe.',
+                'obj-titulo': 'Objetivo de Impacto',
+                'obj-desc': 'Otimizar o fluxo de trabalho do laboratório, motivar a participação ativa através da gamificação (ranking) e servir como uma memória técnica centralizada do LIA para evitar a perda de conhecimento entre as gerações.',
+                'stack-titulo': '<i class="fa-brands fa-python text-rose-400"></i> Stack Tecnológico',
+                'stack-1': '• Arquitetura RAG e Inteligência Artificial',
+                'stack-2': '• Python e Web Framework (Flask)',
+                'stack-3': '• API do GitHub para leitura de repositórios',
+                'stack-4': '• Banco de Dados relacional para o ranking',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-red-400"></i> O futuro do projeto',
+                'fut-1': '• Análise automática de código e sugestões de melhoria',
+                'fut-2': '• Integração direta com ambientes de desenvolvimento (IDEs)',
+                'fut-3': '• Lembretes de tarefas automatizados',
+                'func-titulo': 'Galeria do LIOSITO',
+                'car-1': 'Sistema de ranking e gamificação para a equipe',
+                'car-2': 'Integração perfeita com repositórios GitHub',
+                'car-3': 'Atribuição inteligente de tarefas',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-rose-300 mr-2"></i> Recursos e <span class="text-gradient text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-500">Mais Informações</span>',
+                'rec-desc': 'Explore o código-fonte, a documentação técnica e outros detalhes deste desenvolvimento.',
+                'git-titulo': 'Repositório no GitHub',
+                'git-desc': 'Acesse os scripts principais, a estrutura do projeto e o código de implementação.'
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnSelectorIdioma = document.getElementById('btn-selector-idioma');
+            const dropdownIdiomas = document.getElementById('dropdown-idiomas');
+
+            if (btnSelectorIdioma && dropdownIdiomas) {
+                btnSelectorIdioma.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    dropdownIdiomas.classList.toggle('opacity-0');
+                    dropdownIdiomas.classList.toggle('invisible');
+                    dropdownIdiomas.classList.toggle('scale-95');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!dropdownIdiomas.contains(e.target) && !btnSelectorIdioma.contains(e.target)) {
+                        dropdownIdiomas.classList.add('opacity-0', 'invisible', 'scale-95');
+                    }
+                });
+            }
+
+            const idiomaGuardado = localStorage.getItem('lia-idioma') || 'es';
+            cambiarIdioma(idiomaGuardado);
+        });
+
+        function cambiarIdioma(idioma) {
+            document.documentElement.lang = idioma;
+            const elementos = document.querySelectorAll('[data-i18n]');
+            
+            elementos.forEach(el => {
+                const clave = el.getAttribute('data-i18n');
+                if (traducciones[idioma] && traducciones[idioma][clave]) {
+                    el.innerHTML = traducciones[idioma][clave]; 
+                }
+            });
+
+            const langLabel = document.getElementById('current-lang-text');
+            if(langLabel) langLabel.textContent = idioma.toUpperCase();
+
+            localStorage.setItem('lia-idioma', idioma);
+
+            const dropdown = document.getElementById('dropdown-idiomas');
+            if(dropdown) {
+                dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            }
+        }
+    </script>
+    {% include 'chatbot_widget.html' %}
+</body>
+</html>

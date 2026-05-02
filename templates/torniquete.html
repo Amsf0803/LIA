@@ -312,7 +312,7 @@
                     <i class="fa-solid fa-file-pdf text-sky-400"></i> Diagrama de Flujo Entrada y Salida
                 </h3>
                 <div class="flex gap-3">
-                    <a href="/static/docs/Diagrama de Flujo Entrada y Salida-1.pdf" download="Diagrama de Flujo Entrada y Salida-1.pdf" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                    <a href="/static/docs/Diagrama_de_Flujo_Entrada_y_Salida-1.pdf" download="Diagrama de Flujo Entrada y Salida-1.pdf" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
                         <i class="fa-solid fa-download"></i> <span data-i18n="modal-pdf-descargar" class="hidden sm:inline">Descargar</span>
                     </a>
                     <button onclick="cerrarModalPDF()" class="w-10 h-10 bg-slate-700 hover:bg-rose-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg cursor-pointer">
@@ -368,7 +368,7 @@
             // NUEVO: Asignar el src al iframe solo cuando se abre el modal
             const iframe = document.getElementById('pdf-viewer');
             if (iframe && !iframe.src) {
-                iframe.src = "/static/docs/Diagrama.pdf";
+                iframe.src = "/static/docs/Diagrama_de_Flujo_Entrada_y_Salida-1.pdf";
             }
 
             setTimeout(() => {

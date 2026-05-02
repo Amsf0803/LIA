@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polibot | LIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/static/img/LIA_Mini.png" type="image/png">
+    <style>
+        body { background-color: #0b1120; color: #f8fafc; overflow-x: hidden; font-family: 'Segoe UI', Roboto, sans-serif; }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
+        .glass-card { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+        .text-gradient { background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; background-clip: none; -webkit-text-fill-color: transparent; }
+        
+        /* Ocultar scrollbar en el carrusel pero mantener funcionalidad */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Texto con gradiente con colores Politecnicos*/
+        .text-gradient-ipn { 
+            background: linear-gradient(to right, #6c1d45, #fff); 
+            -webkit-background-clip: text; 
+            background-clip: none;
+            -webkit-text-fill-color: transparent; 
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="particles-js"></div>
+
+    <nav class="p-6 fixed w-full z-50 glass-card border-b-0">
+        <div class="container mx-auto flex justify-between items-center" >
+            
+            <h1 class="text-2xl font-bold tracking-tighter flex items-center gap-10 ml-2" style="font-size: 2rem;">
+                <img src="/static/img/Logo_LIA.png" alt="Logo Lia" class="h-12 w-auto object-contain transform scale-[1.8] origin-left">
+    
+                <span class="text-gradient-ipn">LIA</span> 
+                <a href="https://www.cecyt16.ipn.mx/" class="hover:text-[#6c1d45] transition-colors" style="font-size: 2rem;">CECyT 16</a> 
+            </h1>
+            
+            
+            <div class="flex items-center">
+                <a data-i18n="nav-volver" href="/" class="hover:text-sky-400 transition-colors font-medium text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+                </a>
+
+                <div class="relative hidden md:block">
+                    <button id="btn-selector-idioma" class="ml-6 text-slate-300 hover:text-indigo-400 transition-colors font-medium flex items-center gap-2 cursor-pointer py-2">
+                        <i class="fa-solid fa-globe"></i> <span id="current-lang-text">ES</span> <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    
+                    <div id="dropdown-idiomas" class="absolute -left-8 top-full mt-2 w-36 glass-card rounded-xl border border-slate-700/50 overflow-hidden shadow-2xl transition-all duration-300 opacity-0 invisible scale-95 origin-top z-50">
+                        <button onclick="cambiarIdioma('es')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇪🇸 Español
+                        </button>
+                        <button onclick="cambiarIdioma('en')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇬🇧 English
+                        </button>
+                        <button onclick="cambiarIdioma('ja')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇯🇵 日本語
+                        </button>
+                        <button onclick="cambiarIdioma('fr')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇫🇷 Français
+                        </button>
+                        <button onclick="cambiarIdioma('pt')" class="w-full text-left px-4 py-2.5 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors flex items-center gap-2 cursor-pointer">
+                            🇧🇷 Português
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen pt-32 pb-20 px-4">
+        <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+            
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-teal-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 text-emerald-400 text-4xl border border-emerald-500/20">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <h2 data-i18n="hero-titulo" class="text-4xl md:text-5xl font-extrabold mb-4"><span class="text-gradient">Polibot</span></h2>
+                <p data-i18n="hero-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Asistente inteligente diseñado para orientar a la comunidad del CECyT 16.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+                <div class="flex-1 glass-card p-8 rounded-2xl h-full">
+                    <h3 data-i18n="proy-titulo" class="text-2xl font-bold mb-4 text-white">Sobre el Proyecto</h3>
+                    <p data-i18n="proy-desc" class="text-slate-300 leading-relaxed mb-6">
+                        Polibot es un asistente conversacional inteligente desarrollado para facilitar el acceso a la información dentro del CECyT 16. Está capacitado para orientar a la comunidad en trámites escolares, ubicación de instalaciones, servicios estudiantiles y resolver las preguntas más frecuentes de manera rápida y precisa.
+                    </p>
+                    <h4 data-i18n="obj-titulo" class="text-xl font-semibold mb-3 text-emerald-300">Objetivo de Impacto</h4>
+                    <p data-i18n="obj-desc" class="text-slate-300 leading-relaxed">
+                        Mejorar la experiencia de la comunidad estudiantil y docente al proporcionar respuestas inmediatas y precisas, descongestionando los canales de atención tradicionales y fomentando la autonomía de los usuarios.
+                    </p>
+                </div>
+
+                <div class="flex-1 w-full flex flex-col gap-4">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-emerald-500">
+                        <h4 data-i18n="stack-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-brands fa-python text-emerald-400"></i> Stack Tecnológico
+                        </h4>
+                        <ul class="text-slate-400 space-y-2 text-sm">
+                            <li data-i18n="stack-1">• Python y Flask</li>
+                            <li data-i18n="stack-2">• Arquitectura RAG (Retrieval-Augmented Generation)</li>
+                            <li data-i18n="stack-3">• ChromaDB (Base de Datos Vectorial)</li>
+                            <li data-i18n="stack-4">• Modelos LLM (Ollama)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-teal-500">
+                        <h4 data-i18n="fut-titulo" class="font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-teal-400"></i> El futuro del proyecto
+                        </h4>
+                        <ul class="text-slate-400 space-y-2 text-sm">
+                            <li data-i18n="fut-1">• Integración con plataformas de mensajería (WhatsApp/Telegram)</li>
+                            <li data-i18n="fut-2">• Ampliar la base de conocimientos con más trámites</li>
+                            <li data-i18n="fut-3">• Conexión con sistemas de control escolar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+            <div class="glass-card p-8 rounded-2xl relative">
+                
+                <div class="flex justify-between items-center mb-6">
+                    <h3 data-i18n="func-titulo" class="text-2xl font-bold text-white"> Galería de Polibot</h3>
+                    
+                    <div class="flex gap-2">
+                        <button onclick="moverCarrusel(-1)" class="bg-slate-800 hover:bg-emerald-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button onclick="moverCarrusel(1)" class="bg-slate-800 hover:bg-emerald-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-slate-700 shadow-lg cursor-pointer">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="carrusel-galeria" class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth">
+                    
+                    <!-- Imagen 1 (Placeholder) -->
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <i class="fa-solid fa-robot text-6xl text-emerald-500/20 absolute"></i>
+                        <!-- <img src="/static/img/tu_imagen1.jpg" alt="Polibot 1" class="object-cover w-full h-full relative z-10"> -->
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <p data-i18n="car-1" class="text-white text-lg font-semibold text-center leading-snug">
+                                Interfaz del chatbot lista para asistir
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Imagen 2 (Placeholder) -->
+                    <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[45%] aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group flex items-center justify-center">
+                        <i class="fa-solid fa-comments text-6xl text-emerald-500/20 absolute"></i>
+                        <!-- <img src="/static/img/tu_imagen2.jpg" alt="Polibot 2" class="object-cover w-full h-full relative z-10"> -->
+                        <div class="absolute inset-0 bg-slate-900/80 p-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                            <p data-i18n="car-2" class="text-white text-lg font-semibold text-center leading-snug">
+                                Respuestas rápidas basadas en RAG
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    <section id="recursos" class="py-20 px-4 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 data-i18n="rec-titulo" class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                    <i class="fa-solid fa-folder-open text-emerald-300 mr-2"></i> 
+                    Recursos y <span class="text-gradient">Más Información</span>
+                </h3>
+                <div class="h-1 w-20 bg-emerald-500 mx-auto rounded-full mb-4"></div>
+                <p data-i18n="rec-desc" class="text-slate-400 text-lg max-w-2xl mx-auto">Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <a href="https://github.com/Amsf0803/Chatbot-Polibot" target="_blank" rel="noopener noreferrer" 
+                    class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group flex flex-col items-center text-center border border-slate-700/50 hover:border-green-500/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-slate-800/80 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600/20 transition-colors shadow-lg">
+                        <i class="fa-brands fa-github text-4xl text-slate-300 group-hover:text-green-400 transition-colors animate-pulse group-hover:animate-none"></i>
+                    </div>
+                    <h4 data-i18n="git-titulo" class="text-xl font-bold text-white mb-2">Repositorio en GitHub</h4>
+                    <p data-i18n="git-desc" class="text-slate-400 text-sm leading-relaxed">Accede a los scripts principales, estructura del proyecto y código de implementación.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ once: true, duration: 1000 });
+        particlesJS("particles-js", { "particles": { "number": { "value": 40 }, "color": { "value": "#10b981" }, "opacity": { "value": 0.3 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#34d399", "opacity": 0.2 }, "move": { "enable": true, "speed": 1 } }, "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } } });
+
+        const carrusel = document.getElementById('carrusel-galeria');
+        const contenedorPrincipal = carrusel.closest('.glass-card'); 
+        let intervaloAutoPlay;
+        const tiempoEspera = 3000; 
+
+        function moverCarrusel(direccion) {
+            if (!carrusel) return;
+            const tarjeta = carrusel.querySelector('.snap-center');
+            if (!tarjeta) return;
+            const cantidadScroll = tarjeta.clientWidth + 24; 
+
+            if (direccion === 1 && Math.ceil(carrusel.scrollLeft + carrusel.clientWidth) >= carrusel.scrollWidth) {
+                carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (direccion === -1 && carrusel.scrollLeft <= 0) {
+                carrusel.scrollTo({ left: carrusel.scrollWidth, behavior: 'smooth' });
+            } else {
+                carrusel.scrollBy({ left: cantidadScroll * direccion, behavior: 'smooth' });
+            }
+            reiniciarAutoPlay();
+        }
+
+        function iniciarAutoPlay() { intervaloAutoPlay = setInterval(() => { moverCarrusel(1); }, tiempoEspera); }
+        function detenerAutoPlay() { clearInterval(intervaloAutoPlay); }
+        function reiniciarAutoPlay() { detenerAutoPlay(); iniciarAutoPlay(); }
+
+        if (contenedorPrincipal) {
+            contenedorPrincipal.addEventListener('mouseenter', detenerAutoPlay);
+            contenedorPrincipal.addEventListener('mouseleave', iniciarAutoPlay);
+        }
+        iniciarAutoPlay();
+
+        // --- SISTEMA DE TRADUCCIONES (POLIBOT) ---
+        const traducciones = {
+            'es': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Volver al Inicio',
+                'hero-titulo': '<span class="text-gradient">Polibot</span>',
+                'hero-desc': 'Asistente inteligente diseñado para orientar a la comunidad del CECyT 16.',
+                'proy-titulo': 'Sobre el Proyecto',
+                'proy-desc': 'Polibot es un asistente conversacional inteligente desarrollado para facilitar el acceso a la información dentro del CECyT 16. Está capacitado para orientar a la comunidad en trámites escolares, ubicación de instalaciones, servicios estudiantiles y resolver las preguntas más frecuentes de manera rápida y precisa.',
+                'obj-titulo': 'Objetivo de Impacto',
+                'obj-desc': 'Mejorar la experiencia de la comunidad estudiantil y docente al proporcionar respuestas inmediatas y precisas, descongestionando los canales de atención tradicionales y fomentando la autonomía de los usuarios.',
+                'stack-titulo': '<i class="fa-brands fa-python text-emerald-400"></i> Stack Tecnológico',
+                'stack-1': '• Python y Flask',
+                'stack-2': '• Arquitectura RAG (Retrieval-Augmented Generation)',
+                'stack-3': '• ChromaDB (Base de Datos Vectorial)',
+                'stack-4': '• Modelos LLM (Ollama)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-teal-400"></i> El futuro del proyecto',
+                'fut-1': '• Integración con plataformas de mensajería (WhatsApp/Telegram)',
+                'fut-2': '• Ampliar la base de conocimientos con más trámites',
+                'fut-3': '• Conexión con sistemas de control escolar',
+                'func-titulo': 'Galería de Polibot',
+                'car-1': 'Interfaz del chatbot lista para asistir',
+                'car-2': 'Respuestas rápidas basadas en RAG',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-emerald-300 mr-2"></i> Recursos y <span class="text-gradient">Más Información</span>',
+                'rec-desc': 'Explora el código fuente, la documentación técnica y otros detalles de este desarrollo.',
+                'git-titulo': 'Repositorio en GitHub',
+                'git-desc': 'Accede a los scripts principales, estructura del proyecto y código de implementación.'
+            },
+            'en': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Back to Home',
+                'hero-titulo': '<span class="text-gradient">Polibot</span>',
+                'hero-desc': 'Smart assistant designed to guide the CECyT 16 community.',
+                'proy-titulo': 'About the Project',
+                'proy-desc': 'Polibot is an intelligent conversational assistant developed to facilitate access to information within CECyT 16. It is trained to guide the community in school procedures, facility locations, student services, and quickly resolve frequently asked questions.',
+                'obj-titulo': 'Impact Objective',
+                'obj-desc': 'To improve the student and faculty experience by providing immediate and accurate answers, relieving traditional support channels and fostering user autonomy.',
+                'stack-titulo': '<i class="fa-brands fa-python text-emerald-400"></i> Tech Stack',
+                'stack-1': '• Python & Flask',
+                'stack-2': '• RAG Architecture (Retrieval-Augmented Generation)',
+                'stack-3': '• ChromaDB (Vector Database)',
+                'stack-4': '• LLM Models (Ollama)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-teal-400"></i> Future of the project',
+                'fut-1': '• Integration with messaging platforms (WhatsApp/Telegram)',
+                'fut-2': '• Expanding the knowledge base with more procedures',
+                'fut-3': '• Connection with school control systems',
+                'func-titulo': 'Polibot Gallery',
+                'car-1': 'Chatbot interface ready to assist',
+                'car-2': 'Fast RAG-based responses',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-emerald-300 mr-2"></i> Resources & <span class="text-gradient">More Info</span>',
+                'rec-desc': 'Explore the source code, technical documentation, and other details of this development.',
+                'git-titulo': 'GitHub Repository',
+                'git-desc': 'Access the main scripts, project structure, and implementation code.'
+            },
+            'ja': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> ホームに戻る',
+                'hero-titulo': '<span class="text-gradient">Polibot</span>',
+                'hero-desc': 'CECyT 16コミュニティを案内するために設計されたスマートアシスタント。',
+                'proy-titulo': 'プロジェクトについて',
+                'proy-desc': 'Polibotは、CECyT 16内の情報へのアクセスを容易にするために開発されたインテリジェントな対話型アシスタントです。学校の手続き、施設の場所、学生サービス、よくある質問を迅速かつ正確に解決するように訓練されています。',
+                'obj-titulo': '影響の目標',
+                'obj-desc': '即座に正確な回答を提供し、従来のサポートチャネルの負担を軽減し、ユーザーの自律性を促進することで、学生や教職員の体験を向上させること。',
+                'stack-titulo': '<i class="fa-brands fa-python text-emerald-400"></i> 技術スタック',
+                'stack-1': '• Python と Flask',
+                'stack-2': '• RAGアーキテクチャ (検索拡張生成)',
+                'stack-3': '• ChromaDB (ベクトルデータベース)',
+                'stack-4': '• LLMモデル (Ollama)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-teal-400"></i> プロジェクトの未来',
+                'fut-1': '• メッセージングプラットフォーム(WhatsApp/Telegram)との統合',
+                'fut-2': '• より多くの手続きで知識ベースを拡張',
+                'fut-3': '• 学校管理システムとの連携',
+                'func-titulo': 'Polibot ギャラリー',
+                'car-1': '支援準備完了のチャットボットインターフェース',
+                'car-2': 'RAGに基づく高速な応答',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-emerald-300 mr-2"></i> リソースと <span class="text-gradient">詳細情報</span>',
+                'rec-desc': 'この開発のソースコード、技術文書、その他の詳細をご覧ください。',
+                'git-titulo': 'GitHub リポジトリ',
+                'git-desc': 'メインスクリプト、プロジェクト構造、実装コードにアクセスできます。'
+            },
+            'fr': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Retour à l\'Accueil',
+                'hero-titulo': '<span class="text-gradient">Polibot</span>',
+                'hero-desc': 'Assistant intelligent conçu pour guider la communauté du CECyT 16.',
+                'proy-titulo': 'À propos du Projet',
+                'proy-desc': 'Polibot est un assistant conversationnel intelligent développé pour faciliter l\'accès à l\'information au sein du CECyT 16. Il est formé pour guider la communauté dans les procédures scolaires, l\'emplacement des installations, les services étudiants et résoudre rapidement les questions fréquemment posées.',
+                'obj-titulo': 'Objectif d\'Impact',
+                'obj-desc': 'Améliorer l\'expérience des étudiants et des enseignants en fournissant des réponses immédiates et précises, en désengorgeant les canaux d\'assistance traditionnels et en favorisant l\'autonomie des utilisateurs.',
+                'stack-titulo': '<i class="fa-brands fa-python text-emerald-400"></i> Pile Technologique',
+                'stack-1': '• Python et Flask',
+                'stack-2': '• Architecture RAG (Retrieval-Augmented Generation)',
+                'stack-3': '• ChromaDB (Base de Données Vectorielle)',
+                'stack-4': '• Modèles LLM (Ollama)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-teal-400"></i> L\'avenir du projet',
+                'fut-1': '• Intégration avec les plateformes de messagerie (WhatsApp/Telegram)',
+                'fut-2': '• Élargir la base de connaissances avec plus de procédures',
+                'fut-3': '• Connexion avec les systèmes de contrôle scolaire',
+                'func-titulo': 'Galerie Polibot',
+                'car-1': 'Interface du chatbot prête à assister',
+                'car-2': 'Réponses rapides basées sur RAG',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-emerald-300 mr-2"></i> Ressources et <span class="text-gradient">Plus d\'Infos</span>',
+                'rec-desc': 'Explorez le code source, la documentation technique et d\'autres détails de ce développement.',
+                'git-titulo': 'Dépôt GitHub',
+                'git-desc': 'Accédez aux scripts principaux, à la structure du projet et au code d\'implémentation.'
+            },
+            'pt': {
+                'nav-volver': '<i class="fa-solid fa-arrow-left"></i> Voltar ao Início',
+                'hero-titulo': '<span class="text-gradient">Polibot</span>',
+                'hero-desc': 'Assistente inteligente projetado para orientar a comunidade do CECyT 16.',
+                'proy-titulo': 'Sobre o Projeto',
+                'proy-desc': 'O Polibot é um assistente conversacional inteligente desenvolvido para facilitar o acesso à informação dentro do CECyT 16. É treinado para orientar a comunidade em procedimentos escolares, localização de instalações, serviços estudantis e resolver rapidamente as perguntas mais frequentes.',
+                'obj-titulo': 'Objetivo de Impacto',
+                'obj-desc': 'Melhorar a experiência dos alunos e professores, fornecendo respostas imediatas e precisas, descongestionando os canais tradicionais de atendimento e fomentando a autonomia dos usuários.',
+                'stack-titulo': '<i class="fa-brands fa-python text-emerald-400"></i> Stack Tecnológico',
+                'stack-1': '• Python e Flask',
+                'stack-2': '• Arquitetura RAG (Retrieval-Augmented Generation)',
+                'stack-3': '• ChromaDB (Banco de Dados Vetorial)',
+                'stack-4': '• Modelos LLM (Ollama)',
+                'fut-titulo': '<i class="fa-solid fa-bolt text-teal-400"></i> O futuro do projeto',
+                'fut-1': '• Integração com plataformas de mensagens (WhatsApp/Telegram)',
+                'fut-2': '• Expandir a base de conhecimento com mais procedimentos',
+                'fut-3': '• Conexão com sistemas de controle escolar',
+                'func-titulo': 'Galeria do Polibot',
+                'car-1': 'Interface do chatbot pronta para ajudar',
+                'car-2': 'Respostas rápidas baseadas em RAG',
+                'rec-titulo': '<i class="fa-solid fa-folder-open text-emerald-300 mr-2"></i> Recursos e <span class="text-gradient">Mais Informações</span>',
+                'rec-desc': 'Explore o código-fonte, a documentação técnica e outros detalhes deste desenvolvimento.',
+                'git-titulo': 'Repositório no GitHub',
+                'git-desc': 'Acesse os scripts principais, a estrutura do projeto e o código de implementação.'
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnSelectorIdioma = document.getElementById('btn-selector-idioma');
+            const dropdownIdiomas = document.getElementById('dropdown-idiomas');
+
+            if (btnSelectorIdioma && dropdownIdiomas) {
+                btnSelectorIdioma.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    dropdownIdiomas.classList.toggle('opacity-0');
+                    dropdownIdiomas.classList.toggle('invisible');
+                    dropdownIdiomas.classList.toggle('scale-95');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!dropdownIdiomas.contains(e.target) && !btnSelectorIdioma.contains(e.target)) {
+                        dropdownIdiomas.classList.add('opacity-0', 'invisible', 'scale-95');
+                    }
+                });
+            }
+
+            const idiomaGuardado = localStorage.getItem('lia-idioma') || 'es';
+            cambiarIdioma(idiomaGuardado);
+        });
+
+        function cambiarIdioma(idioma) {
+            document.documentElement.lang = idioma;
+            const elementos = document.querySelectorAll('[data-i18n]');
+            
+            elementos.forEach(el => {
+                const clave = el.getAttribute('data-i18n');
+                if (traducciones[idioma] && traducciones[idioma][clave]) {
+                    el.innerHTML = traducciones[idioma][clave]; 
+                }
+            });
+
+            const langLabel = document.getElementById('current-lang-text');
+            if(langLabel) langLabel.textContent = idioma.toUpperCase();
+
+            localStorage.setItem('lia-idioma', idioma);
+
+            const dropdown = document.getElementById('dropdown-idiomas');
+            if(dropdown) {
+                dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+            }
+        }
+    </script>
+    {% include 'chatbot_widget.html' %}
+</body>
+</html>
