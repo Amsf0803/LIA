@@ -3,8 +3,8 @@ Flask
 gunicorn
 
 # Inteligencia Artificial y RAG
-ollama
 chromadb
+google-generativeai
 
 # Utilidades de entorno y sistema
 python-dotenv

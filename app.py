@@ -1,15 +1,15 @@
 from flask import Flask, request, jsonify, render_template, session
-import ollama 
 import chromadb
 import os
 from dotenv import load_dotenv
-import subprocess
-import time
-import urllib.request
-from urllib.error import URLError
+from google import genai
+from google.genai import types  # Importante para estructurar el chat
 
 # Carga variables de entorno
 load_dotenv()
+
+# Inicializar el nuevo cliente (Automáticamente lee GEMINI_API_KEY del entorno)
+client = genai.Client()
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "lia_polibot_secret_2024")
@@ -18,26 +18,27 @@ app.secret_key = os.getenv("FLASK_SECRET_KEY", "lia_polibot_secret_2024")
 chroma_client = chromadb.Client()
 collection = chroma_client.get_or_create_collection(name="memoria_cecyt16")
 
-def asegurar_ollama():
-    try:
-        urllib.request.urlopen("http://127.0.0.1:11434")
-    except URLError:
-        subprocess.Popen(["ollama", "serve"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        time.sleep(3)
-
 def inicializar_base_vectorial():
     ruta = "conocimiento_lia.txt"
     if not os.path.exists(ruta):
+        print(f"Advertencia: No se encontró el archivo {ruta}")
         return
     with open(ruta, "r", encoding="utf-8") as f:
         texto = f.read()
     parrafos = [p.strip() for p in texto.split("\n\n") if p.strip()]
+    
     for i, parrafo in enumerate(parrafos):
-        emb = ollama.embeddings(model="nomic-embed-text", prompt=parrafo)["embedding"]
+        # Usando el nuevo modelo de embeddings
+        response = client.models.embed_content(
+            model="gemini-embedding-001", 
+            contents=parrafo
+        )
+        emb = response.embeddings[0].values
         collection.add(ids=[f"doc_{i}"], embeddings=[emb], documents=[parrafo])
+    
+    print("Base vectorial inicializada correctamente.")
 
 # Inicializar IA al arrancar
-asegurar_ollama()
 inicializar_base_vectorial()
 
 historiales = {}
@@ -78,16 +79,47 @@ def chat():
     mensaje_usuario = data.get("mensaje")
     historial = get_historial(session_id)
 
-    # Búsqueda RAG
-    vector_pregunta = ollama.embeddings(model="nomic-embed-text", prompt=mensaje_usuario)["embedding"]
+    # 1. Búsqueda RAG (Usando el nuevo modelo de embeddings)
+    response_emb = client.models.embed_content(
+        model="gemini-embedding-001", 
+        contents=mensaje_usuario
+    )
+    vector_pregunta = response_emb.embeddings[0].values
+    
     resultados = collection.query(query_embeddings=[vector_pregunta], n_results=2)
     contexto = "\n".join(resultados['documents'][0]) if resultados['documents'] else ""
 
     prompt_final = f"Contexto: {contexto}\nUsuario: {mensaje_usuario}"
     historial.append({"role": "user", "content": mensaje_usuario})
 
-    respuesta = ollama.chat(model="llama3.2:3b", messages=[historial[0], {"role": "user", "content": prompt_final}])
-    mensaje_ia = respuesta["message"]["content"]
+    # 2. Preparar instrucciones del sistema
+    system_instruction = historial[0]["content"] if historial else ""
+    config = types.GenerateContentConfig(
+        system_instruction=system_instruction
+    )
+    
+    # 3. Construir historial para enviar a Gemini (Estructura de google-genai)
+    mensajes_gemini = []
+    for msg in historial[1:-1]:
+        # La API usa 'model' en vez de 'assistant'
+        role = "user" if msg["role"] == "user" else "model" 
+        mensajes_gemini.append(
+            types.Content(role=role, parts=[types.Part.from_text(text=msg["content"])])
+        )
+        
+    # Agregamos la última pregunta inyectada con el contexto de ChromaDB
+    mensajes_gemini.append(
+        types.Content(role="user", parts=[types.Part.from_text(text=prompt_final)])
+    )
+    
+    # 4. Generar respuesta
+    respuesta = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=mensajes_gemini,
+        config=config
+    )
+
+    mensaje_ia = respuesta.text
     
     # Formatear saltos de línea para que se vean bien en HTML
     mensaje_ia = mensaje_ia.replace("\n", "<br>")
@@ -101,7 +133,7 @@ def chat():
         img_html = '<div style="margin-top: 12px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 4px 12px rgba(0,0,0,0.2);"><img src="/static/img/instalaciones_cecyt16.jpg" alt="Instalaciones CECyT 16" style="width: 100%; height: auto; display: block; object-fit: cover;"></div>'
         mensaje_ia = mensaje_ia.replace("[DIAGRAMA_ESCUELA]", img_html)
     
-    historial.append({"role": "assistant", "content": respuesta["message"]["content"]})
+    historial.append({"role": "assistant", "content": mensaje_ia})
     return jsonify({"respuesta": mensaje_ia, "session_id": session_id})
 
 if __name__ == '__main__':
