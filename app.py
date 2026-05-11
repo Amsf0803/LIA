@@ -46,7 +46,7 @@ historiales = {}
 def get_historial(session_id):
     if session_id not in historiales:
         historiales[session_id] = [
-            {"role": "system", "content": "Eres el asistente del LIA y CECyT 16. Ayuda con dudas de la escuela y proyectos del laboratorio como LIOSITO, LSM y el Torniquete."}
+            {"role": "system", "content": "Eres Polibot, el asistente del LIA y CECyT 16. Responde SIEMPRE en español, de forma breve y directa (máximo 3 oraciones). Ayuda con dudas sobre la escuela y proyectos del laboratorio como LIOSITO, LSM y el Torniquete. Si no sabes algo, dílo en una sola línea."}
         ]
     return historiales[session_id]
 
@@ -86,8 +86,8 @@ def chat():
     )
     vector_pregunta = response_emb.embeddings[0].values
     
-    resultados = collection.query(query_embeddings=[vector_pregunta], n_results=2)
-    contexto = "\n".join(resultados['documents'][0]) if resultados['documents'] else ""
+    resultados = collection.query(query_embeddings=[vector_pregunta], n_results=1)
+    contexto = resultados['documents'][0][0] if resultados['documents'] and resultados['documents'][0] else ""
 
     prompt_final = f"Contexto: {contexto}\nUsuario: {mensaje_usuario}"
     historial.append({"role": "user", "content": mensaje_usuario})
@@ -114,9 +114,13 @@ def chat():
     
     # 4. Generar respuesta
     respuesta = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-2.0-flash",
         contents=mensajes_gemini,
-        config=config
+        config=types.GenerateContentConfig(
+            system_instruction=system_instruction,
+            max_output_tokens=300,
+            temperature=0.7,
+        )
     )
 
     mensaje_ia = respuesta.text

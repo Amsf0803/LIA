@@ -53,6 +53,18 @@
     /* Scrollbar personalizada para que combine */
     #chat-messages::-webkit-scrollbar { width: 4px; }
     #chat-messages::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.3); border-radius: 10px; }
+    
+    @keyframes blink {
+        0% { opacity: .2; }
+        20% { opacity: 1; }
+        100% { opacity: .2; }
+    }
+    .loading-dots {
+        animation-name: blink;
+        animation-duration: 1.4s;
+        animation-iteration-count: infinite;
+        animation-fill-mode: both;
+    }
 </style>
 
 <script>
@@ -82,6 +94,14 @@
         input.value = '';
         box.scrollTop = box.scrollHeight;
 
+        // Indicador de carga
+        const loadingId = 'loading-' + Date.now();
+        box.innerHTML += `
+            <div id="${loadingId}" style="background: rgba(30, 41, 59, 0.7); color: #cbd5e1; padding: 12px 16px; border-radius: 15px 15px 15px 2px; align-self: flex-start; max-width: 85%; border: 1px solid rgba(56, 189, 248, 0.2); font-size: 14px; display: flex; gap: 4px; align-items: center;">
+                Escribiendo<span class="loading-dots">...</span>
+            </div>`;
+        box.scrollTop = box.scrollHeight;
+
         try {
             const res = await fetch('/chat', {
                 method: 'POST',
@@ -90,6 +110,9 @@
             });
             const data = await res.json();
             
+            // Remover loading
+            document.getElementById(loadingId).remove();
+
             // Renderizar respuesta del bot (Estilo Glass)
             box.innerHTML += `
                 <div style="background: rgba(30, 41, 59, 0.7); color: #cbd5e1; padding: 12px 16px; border-radius: 15px 15px 15px 2px; align-self: flex-start; max-width: 85%; border: 1px solid rgba(56, 189, 248, 0.2); font-size: 14px; line-height: 1.5;">
@@ -97,7 +120,8 @@
                 </div>`;
             box.scrollTop = box.scrollHeight;
         } catch (e) {
-            box.innerHTML += `<div style="color: #f87171; font-size: 11px; text-align: center; margin-top: 5px;">⚠️ Error en el enlace de datos.</div>`;
+            document.getElementById(loadingId).remove();
+            box.innerHTML += `<div style="color: #f87171; font-size: 11px; text-align: center; margin-top: 5px;">⚠️ Error de conexión con el servidor.</div>`;
         }
     }
 
