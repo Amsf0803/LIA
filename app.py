@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template, session
 import chromadb
 import os
+import time
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types  # Importante para estructurar el chat
@@ -15,28 +16,43 @@ app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "lia_polibot_secret_2024")
 
 # --- CONFIGURACIÓN DE IA (POLIBOT) ---
-chroma_client = chromadb.Client()
+# Usamos PersistentClient para guardar la base de datos en una carpeta local
+chroma_client = chromadb.PersistentClient(path="./chroma_db")
 collection = chroma_client.get_or_create_collection(name="memoria_cecyt16")
 
 def inicializar_base_vectorial():
+    # Validamos si ya existen documentos para no gastar cuota de la API
+    if collection.count() > 0:
+        print("Base vectorial ya existe en disco. Omitiendo embeddings.")
+        return
+
     ruta = "conocimiento_lia.txt"
     if not os.path.exists(ruta):
         print(f"Advertencia: No se encontró el archivo {ruta}")
         return
+        
     with open(ruta, "r", encoding="utf-8") as f:
         texto = f.read()
     parrafos = [p.strip() for p in texto.split("\n\n") if p.strip()]
     
+    print(f"Generando embeddings para {len(parrafos)} párrafos...")
     for i, parrafo in enumerate(parrafos):
-        # Usando el nuevo modelo de embeddings
-        response = client.models.embed_content(
-            model="gemini-embedding-001", 
-            contents=parrafo
-        )
-        emb = response.embeddings[0].values
-        collection.add(ids=[f"doc_{i}"], embeddings=[emb], documents=[parrafo])
-    
-    print("Base vectorial inicializada correctamente.")
+        try:
+            # Usando el nuevo modelo de embeddings
+            response = client.models.embed_content(
+                model="gemini-embedding-001", 
+                contents=parrafo
+            )
+            emb = response.embeddings[0].values
+            collection.add(ids=[f"doc_{i}"], embeddings=[emb], documents=[parrafo])
+            
+            # Pausa de 3 segundos entre peticiones para respetar el límite de la API gratuita
+            time.sleep(3) 
+        except Exception as e:
+            print(f"Error al procesar el párrafo {i}: {e}")
+            break
+            
+    print("Base vectorial inicializada y guardada correctamente.")
 
 # Inicializar IA al arrancar
 inicializar_base_vectorial()
@@ -72,6 +88,10 @@ def liosito():
     return render_template('liosito.html')
 
 # --- RUTA DEL CHATBOT ---
+# --- RUTA DEL CHATBOT ---
+
+
+# --- RUTA DEL CHATBOT ---
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json
@@ -79,52 +99,59 @@ def chat():
     mensaje_usuario = data.get("mensaje")
     historial = get_historial(session_id)
 
-    # 1. Búsqueda RAG (Usando el nuevo modelo de embeddings)
-    response_emb = client.models.embed_content(
-        model="gemini-embedding-001", 
-        contents=mensaje_usuario
-    )
-    vector_pregunta = response_emb.embeddings[0].values
-    
-    resultados = collection.query(query_embeddings=[vector_pregunta], n_results=1)
-    contexto = resultados['documents'][0][0] if resultados['documents'] and resultados['documents'][0] else ""
+    # 1. Búsqueda RAG (Protegida contra error 429 de cuota)
+    try:
+        response_emb = client.models.embed_content(
+            model="gemini-embedding-001", 
+            contents=mensaje_usuario
+        )
+        vector_pregunta = response_emb.embeddings[0].values
+        resultados = collection.query(query_embeddings=[vector_pregunta], n_results=1)
+        contexto = resultados['documents'][0][0] if resultados['documents'] and resultados['documents'][0] else ""
+    except Exception as e:
+        print(f"Error al generar embedding: {e}")
+        contexto = "" # Si falla por cuota, seguimos sin contexto en lugar de tirar la página
 
     prompt_final = f"Contexto: {contexto}\nUsuario: {mensaje_usuario}"
     historial.append({"role": "user", "content": mensaje_usuario})
 
     # 2. Preparar instrucciones del sistema
     system_instruction = historial[0]["content"] if historial else ""
-    config = types.GenerateContentConfig(
-        system_instruction=system_instruction
-    )
     
-    # 3. Construir historial para enviar a Gemini (Estructura de google-genai)
+    # 3. Construir historial para enviar a Gemini
     mensajes_gemini = []
     for msg in historial[1:-1]:
-        # La API usa 'model' en vez de 'assistant'
         role = "user" if msg["role"] == "user" else "model" 
         mensajes_gemini.append(
             types.Content(role=role, parts=[types.Part.from_text(text=msg["content"])])
         )
         
-    # Agregamos la última pregunta inyectada con el contexto de ChromaDB
     mensajes_gemini.append(
         types.Content(role="user", parts=[types.Part.from_text(text=prompt_final)])
     )
     
-    # 4. Generar respuesta
-    respuesta = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=mensajes_gemini,
-        config=types.GenerateContentConfig(
-            system_instruction=system_instruction,
-            max_output_tokens=300,
-            temperature=0.7,
+    # 4. Generar respuesta (Protegida y con las variables en el scope correcto)
+    try:
+        respuesta = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=mensajes_gemini,
+            config=types.GenerateContentConfig(
+                system_instruction=system_instruction,
+                max_output_tokens=300,
+                temperature=0.7,
+            )
         )
-    )
+        # Asignamos el mensaje DENTRO del try
+        mensaje_ia = respuesta.text
+    except Exception as e:
+        error_msg = str(e)
+        print(f"Error en Gemini: {error_msg}")
+        # Asignamos un mensaje de rescate DENTRO del except
+        if "429" in error_msg:
+            mensaje_ia = "Estoy recibiendo demasiadas consultas en este momento. Por favor, espera un minuto e intenta de nuevo."
+        else:
+            mensaje_ia = "Hubo un problema de conexión. Intenta más tarde."
 
-    mensaje_ia = respuesta.text
-    
     # Formatear saltos de línea para que se vean bien en HTML
     mensaje_ia = mensaje_ia.replace("\n", "<br>")
     
